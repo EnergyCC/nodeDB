@@ -1,0 +1,20 @@
+<section id="gigs" class="container">
+    <h1>All results</h1>
+
+    {{#each results}}
+
+
+    <div class="gig">
+        <h3>{{nume}}</h3>
+        <p>Model Masina: {{model_masina}}</p>
+        <p>Nr. Inmatriculare {{nr_inmatriculare}}</p>
+        <ul>
+            <li>Cost: {{cost}}</li>
+            <li><a href="#" class="btn btn-reverse">Apply Now</a></li>
+        </ul>
+    </div>
+
+    {{else}}
+    <p>Nu sunt rezultate</p>
+    {{/each}}
+</section>
