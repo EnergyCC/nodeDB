@@ -1,0 +1,16 @@
+{
+  "name": "nodedb",
+  "version": "1.0.0",
+  "description": "A node database with mysql",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "EnergyCC",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4",
+    "mysql": "^2.17.1",
+    "passport": "^0.4.0"
+  }
+}
