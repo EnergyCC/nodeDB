@@ -4,7 +4,7 @@ const express = require('express');
 const path = require('path');
 
 const app = express();
-
+// app.use(express.static('html'));
 connection.db.connect(err => {
   if (err) {
     console.log(err);
@@ -14,13 +14,11 @@ connection.db.connect(err => {
 });
 
 app.get('/getdb', (req, res) => {
-  let sql = 'SELECT * FROM profile';
+  let sql = 'SELECT * FROM profile1';
   connection.db.query(sql, (err, result) => {
     if (err) {
       console.log(err);
-      res.sendFile('error.html', {
-        root: path.join(__dirname, './html/')
-      });
+      res.sendFile(path.join(__dirname, 'html', 'error.html'));
     }
     console.log('Success');
     res.send(result);
