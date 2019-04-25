@@ -16,7 +16,7 @@ connection.db.connect(err => {
 //create router for index
 
 router.get('/', (req, res) => {
-  let sql = `SELECT * FROM profile;`;
+  let sql = `SELECT * FROM profile WHERE profile_id < 10;`;
   connection.db.query(sql, (err, results) => {
     if (err) {
       console.log(err);
@@ -30,7 +30,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/getdb', (req, res) => {
-  let sql = 'SELECT * FROM profile;';
+  let sql = 'SELECT * FROM profile WHERE profile_id < 10;';
   connection.db.query(sql, (err, results) => {
     res.send(results);
   });
