@@ -36,4 +36,5 @@ router.get('/getdb', (req, res) => {
   });
 });
 
+router.get('/add');
 module.exports = router;
