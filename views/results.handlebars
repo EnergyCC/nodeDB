@@ -1,18 +1,21 @@
-<section id='results'>
+<section id='results content'>
     <h1>All results</h1>
 
     {{#each results}}
 
+        <div class="card-content">
+            <div class='textContent'>
+                <h2>Firma: {{nume}}</h2>
+                <h2>Tip masina: {{model_masina}}</h2>
+                <h3>Nr. inmatriculare: {{nr_inmatriculare}}</h3>
+            </div>
+            <ul class='actionBtn'>
+                <li class='viewBtn'><a href='#'>Vezi mai mult</a></li>
+                <li class='editBtn'><a href='#'>Editeaza</a></li>
+                <li class='deleteBtn'><a href='#'>Sterge</a></li>
+            </ul>
 
-    <div class='result'>
-        <h3>{{nume}}</h3>
-        <p>Model Masina: {{model_masina}}</p>
-        <p>Nr. Inmatriculare {{nr_inmatriculare}}</p>
-        <ul>
-            <li>Cost: {{cost}}</li>
-            <li><a href="#" class="btn btn-reverse">Apply Now</a></li>
-        </ul>
-    </div>
+        </div>
 
     {{else}}
     <p>Nu sunt rezultate</p>
