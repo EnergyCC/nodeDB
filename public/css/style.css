@@ -1,61 +1,48 @@
 body {
-    margin: 0;
-    padding: 0;
-    background: rgb(34, 34, 34);
-    font-weight: 600;
-    font-family: sans-serif;
-    /* height: 200vh; */
-    color: white;
-}
-
-<<<<<<< HEAD
-header {
   margin: 0;
   padding: 0;
-  background: rgba(27, 173, 180, 0.8);
-  display: grid;
-  grid-template-columns: 1fr auto minmax(600px, 3fr) 1fr;
-  position: fixed;
-  width: 100%;
-  z-index: 999;
-=======
+  background: rgb(34, 34, 34);
+  font-weight: 600;
+  font-family: sans-serif;
+  /* height: 200vh; */
+  color: white;
+}
 
 /* Navigation css */
 
 .bgcolor {
-    background: rgba(27, 173, 180, 0.8);
-    position: fixed;
+  background: rgba(27, 173, 180, 0.8);
+  position: fixed;
 }
 
 nav a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.5rem;
-    text-transform: uppercase;
-    padding: 1rem;
-    position: relative;
+  color: white;
+  text-decoration: none;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  padding: 1rem;
+  position: relative;
 }
 
 nav a:hover {
-    color: #000;
+  color: #000;
 }
 
 nav a::before {
-    content: '';
-    display: block;
-    height: 5px;
-    background: black;
-    position: absolute;
-    top: -0.3em;
-    left: 0;
-    right: 0;
-    transform: scale(0, 1);
-    transition: transform ease-in-out 250ms;
+  content: '';
+  display: block;
+  height: 5px;
+  background: black;
+  position: absolute;
+  top: -0.3em;
+  left: 0;
+  right: 0;
+  transform: scale(0, 1);
+  transition: transform ease-in-out 250ms;
 }
 
 nav a:hover::before {
-    transform: scale(1, 1);
->>>>>>> 6eaa87edbc1382aff2d9e7043766d94ed0e29118
+  transform: scale(1, 1);
 }
 .content {
   width: 80%;
@@ -64,75 +51,73 @@ nav a:hover::before {
   overflow: none;
 }
 
-
 /* end of navigation css */
-
 
 /* start of card */
 
 .content {
-    width: 60%;
-    margin: 10rem auto;
+  width: 60%;
+  margin: 10rem auto;
 }
 
 .card-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    background: rgba(45, 186, 252, 0.651);
-    box-shadow: 5px 5px 10px rgba(118, 212, 243, 0.521);
-    color: #fff;
-    padding: 0.6rem 0 0 2.5rem;
-    margin-top: 2rem;
-    border-radius: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  background: rgba(45, 186, 252, 0.651);
+  box-shadow: 5px 5px 10px rgba(118, 212, 243, 0.521);
+  color: #fff;
+  padding: 0.6rem 0 0 2.5rem;
+  margin-top: 2rem;
+  border-radius: 10px;
 }
 
 .actionBtn {
-    list-style: none;
-    grid-column: 4/5;
-    justify-self: end;
+  list-style: none;
+  grid-column: 4/5;
+  justify-self: end;
 }
 
 .actionBtn li {
-    display: block;
-    margin: 0.5rem;
-    text-decoration: none;
+  display: block;
+  margin: 0.5rem;
+  text-decoration: none;
 }
 
 .actionBtn a {
-    display: block;
-    text-decoration: none;
-    text-align: center;
-    font-size: 1rem;
-    font-weight: 800;
-    list-style: none;
-    color: white;
-    padding: 0.5rem;
-    width: 150px;
-    border-radius: 10px;
-    box-shadow: inset 4px 5px rgba(255, 255, 255, 0.5);
-    /* background-color: darkgray; */
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 800;
+  list-style: none;
+  color: white;
+  padding: 0.5rem;
+  width: 150px;
+  border-radius: 10px;
+  box-shadow: inset 4px 5px rgba(255, 255, 255, 0.5);
+  /* background-color: darkgray; */
 }
 
 .actionBtn a:hover {
-    color: black;
-    background-color: rgba(0, 0, 0, 0.3);
+  color: black;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .textContent {
-    grid-column: 1/2;
+  grid-column: 1/2;
 }
 
 .viewBtn {
-    background-color: gray;
-    border-radius: 10px;
+  background-color: gray;
+  border-radius: 10px;
 }
 
 .editBtn {
-    background-color: gray;
-    border-radius: 10px;
+  background-color: gray;
+  border-radius: 10px;
 }
 
 .deleteBtn {
-    background-color: red;
-    border-radius: 10px;
+  background-color: red;
+  border-radius: 10px;
 }
