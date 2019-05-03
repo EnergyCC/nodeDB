@@ -1,0 +1,40 @@
+<section id="add">
+    <div class="jumbotron bg-primary text-center">
+        <div class="form">
+            <h3>Add a profile</h3>
+            {{#each errors}}
+            <div class="alert alert-danger">
+                {{text}}
+            </div>
+            {{/each}}
+            <div class="container">
+                <div class="row justify-content-center">
+                    <form action="/index/add" method="POST">
+                        <div class="form-group">
+                            <label for="nume" class="float-left">Company name</label>
+                            <input type="text" name="nume" class="form-control" id="nume"
+                                placeholder="Enter a company name" value='{{nume}}' />
+                        </div>
+                        <div class="form-group">
+                            <label for="model_masina" class="float-left">Car model</label>
+                            <input type="text" name="model_masina" class="form-control" id="model_masina"
+                                placeholder="Enter the car model" value='{{model_masina}}' />
+                        </div>
+                        <div class="form-group">
+                            <label for="nr_inmatriculare" class="float-left">Plate number</label>
+                            <input type="text" name="nr_inmatriculare" class="form-control" id="nr_inmatriculare"
+                                placeholder="Enter a plate number" value='{{nr_inmatriculare}}' />
+                        </div>
+                        <div class="form-group">
+                            <label for="cost" class="float-left">Cost</label>
+                            <input type="text" name="cost" class="form-control" id="cost" placeholder="Enter cost"
+                                value='{{cost}}' />
+                        </div>
+                        <input type="submit" value="Save profile" class="btn btn-secondary btn-block" />
+                        <a href='/index' class='btn btn-block btn-outline-light'>Cancel</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

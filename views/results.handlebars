@@ -11,23 +11,23 @@
                         <h3>{{nume}}</h3>
                     </div>
                     <div class="col-sm-6">
-                        <a href="#" class="btn btn-danger float-right mr-3 mt-1">Sterge</a>
-                        <a href="#" class="btn btn-primary float-right mr-3 mt-1">Editeaza</a>
-                        <a href="#" class="btn btn-primary float-right mr-3 mt-1">Vezi mai mult</a>
+                        <a href="index/delete/{{profile_id}}" class="btn btn-danger float-right mr-3 mt-1">Delete</a>
+                        <a href="index/edit/{{profile_id}}" class="btn btn-primary float-right mr-3 mt-1">Edit</a>
+                        <a href="#" class="btn btn-primary float-right mr-3 mt-1">More</a>
                     </div>
                 </div>
             </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-3">
-                        <h4 class="card-title">Model masina: {{model_masina}}</h4>
-                        <h4 class="card-title">Nr. inmatriculare: {{nr_inmatriculare}}</h4>
+                        <h4 class="card-title">Car model: {{model_masina}}</h4>
+                        <h4 class="card-title">Plate number: {{nr_inmatriculare}}</h4>
                     </div>
                     <div class="col-sm-3">
                         <h4 class="card-title">Cost: {{cost}}</h4>
                     </div>
                     <div class="col-sm-3">
-                        <h4 class="card-title">Data: {{data_adaug}}</h4>
+                        <h4 class="card-title">Date: {{data_adaug}}</h4>
                     </div>
                 </div>
             </div>
@@ -35,6 +35,6 @@
     </div>
 
     {{else}}
-    <p>Nu sunt rezultate</p>
+    <p>No results</p>
     {{/each}}
 </section>

@@ -21,20 +21,115 @@ router.get('/', (req, res) => {
     if (err) {
       console.log(err);
       res.sendStatus(403);
+    } else {
+      res.render('results', {
+        results
+      });
     }
-    // console.log(results);
-    res.render('results', {
-      results
-    });
   });
 });
 
+//router get for the add form
+router.get('/add', (req, res) => res.render('add'));
+
+// router post for the data post
+router.post('/add', (req, res) => {
+  let { nume, model_masina, nr_inmatriculare, cost } = req.body;
+  let sql =
+    'INSERT INTO profile(nume, model_masina, nr_inmatriculare, data_adaug, cost) VALUES (?, ?, ?, ?, ?);';
+  let d = new Date();
+  const data = d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate();
+  let errors = [];
+
+  // field validation
+  if (!nume) {
+    errors.push({ text: 'Please add a name' });
+  }
+  if (!model_masina) {
+    errors.push({ text: 'Please add a car model' });
+  }
+  if (!nr_inmatriculare) {
+    errors.push({ text: 'Please add a plate number' });
+  }
+  if (!cost) {
+    errors.push({ text: 'Please add a cost' });
+  }
+
+  if (errors.length > 0) {
+    res.render('add', {
+      errors,
+      nume,
+      model_masina,
+      nr_inmatriculare,
+      cost
+    });
+  } else {
+    connection.db.query(
+      sql,
+      [nume, model_masina, nr_inmatriculare, data, cost],
+      (err, result) => {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log('success');
+          res.redirect('/index');
+        }
+      }
+    );
+  }
+});
+
+//Just raw(dog) data
 router.get('/getdb', (req, res) => {
-  let sql = 'SELECT * FROM profile LIMIT 10;';
+  let sql = 'SELECT * FROM;';
   connection.db.query(sql, (err, results) => {
     res.send(results);
   });
 });
 
-router.get('/add');
+// get and render delete route
+router.get('/delete/:id', (req, res) => {
+  let sql = 'SELECT * FROM profile WHERE profile_id = ?;';
+  connection.db.query(sql, req.params.id, (err, result) => {
+    if (err) throw err;
+    else {
+      // console.log(result);
+      res.render('remove', {
+        result
+      });
+    }
+  });
+});
+
+//confirm deletion route
+router.get('/delete/:id/true', (req, res) => {
+  let sql = 'DELETE FROM profile WHERE profile_id = ?;';
+  connection.db.query(sql, req.params.id, (err, result) => {
+    if (err) throw err;
+    else {
+      res.redirect('/index');
+    }
+  });
+});
+
+router.get('/edit/:id', (req, res) => {
+  let sql = 'SELECT * FROM profile WHERE profile_id = ?;';
+  connection.db.query(sql, req.params.id, (err, result) => {
+    let nume = result[0].nume;
+    let model_masina = result[0].model_masina;
+    let nr_inmatriculare = result[0].nr_inmatriculare;
+    let cost = result[0].cost;
+    if (err) console.log(err);
+    else {
+      // console.log(result);
+      res.render('add', {
+        nume,
+        model_masina,
+        nr_inmatriculare,
+        cost
+      });
+    }
+  });
+});
+
 module.exports = router;

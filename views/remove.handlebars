@@ -1,0 +1,14 @@
+<section id='remove-result'>
+    {{#each result}}
+
+    <div class="card text-white bg-secondary mb-3">
+        <div class="card-header">Remove profile</div>
+        <div class="card-body">
+            <h4 class="card-title">Are you sure you want to remove the profile: {{ nume }} </h4>
+            <a href="/index/delete/{{ profile_id }}/true" class="btn btn-block btn-danger">Yes</a>
+            <a href='/index' class='btn btn-block btn-outline-primary'>No</a>
+        </div>
+    </div>
+
+    {{/each}}
+</section>
