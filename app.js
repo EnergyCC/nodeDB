@@ -7,24 +7,21 @@ const path = require('path');
 
 const app = express();
 
+//set handlebars engine
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
+//set body parser
+
+app.use(bodyParser.urlencoded({ extended: false }));
+
 //set static
 app.use(express.static(path.join(__dirname, 'public')));
-// app.use(express.static('html'));
-// connection.db.connect(err => {
-//   if (err) {
-//     console.log(err);
-//   } else {
-//     console.log('Connection successfully made');
-//   }
-// });
 
 //Get index route
 
 app.get('/', (req, res) => {
-  res.send('Index file(temp)');
+  res.send('Login page soon');
 });
 
 //index routes

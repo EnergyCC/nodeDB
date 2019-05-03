@@ -3,19 +3,36 @@
 
     {{#each results}}
 
-        <div class="card-content">
-            <div class='textContent'>
-                <h2>Firma: {{nume}}</h2>
-                <h2>Tip masina: {{model_masina}}</h2>
-                <h3>Nr. inmatriculare: {{nr_inmatriculare}}</h3>
+    <div class="container-fluid">
+        <div class="card text-white mb-3 " style="background:rgba(45, 186, 252, 0.5)">
+            <div class="card-header float-left">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h3>{{nume}}</h3>
+                    </div>
+                    <div class="col-sm-6">
+                        <a href="#" class="btn btn-danger float-right mr-3 mt-1">Sterge</a>
+                        <a href="#" class="btn btn-primary float-right mr-3 mt-1">Editeaza</a>
+                        <a href="#" class="btn btn-primary float-right mr-3 mt-1">Vezi mai mult</a>
+                    </div>
+                </div>
             </div>
-            <ul class='actionBtn'>
-                <li class='viewBtn'><a href='#'>Vezi mai mult</a></li>
-                <li class='editBtn'><a href='#'>Editeaza</a></li>
-                <li class='deleteBtn'><a href='#'>Sterge</a></li>
-            </ul>
-
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h4 class="card-title">Model masina: {{model_masina}}</h4>
+                        <h4 class="card-title">Nr. inmatriculare: {{nr_inmatriculare}}</h4>
+                    </div>
+                    <div class="col-sm-3">
+                        <h4 class="card-title">Cost: {{cost}}</h4>
+                    </div>
+                    <div class="col-sm-3">
+                        <h4 class="card-title">Data: {{data_adaug}}</h4>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
 
     {{else}}
     <p>Nu sunt rezultate</p>

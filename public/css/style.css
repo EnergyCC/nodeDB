@@ -24,11 +24,11 @@ nav a {
   position: relative;
 }
 
-nav a:hover {
+.navBtn a:hover {
   color: #000;
 }
 
-nav a::before {
+.navBtn a::before {
   content: '';
   display: block;
   height: 5px;
@@ -41,7 +41,7 @@ nav a::before {
   transition: transform ease-in-out 250ms;
 }
 
-nav a:hover::before {
+.navBtn a:hover::before {
   transform: scale(1, 1);
 }
 .content {
@@ -79,7 +79,7 @@ nav a:hover::before {
 
 .actionBtn li {
   display: block;
-  margin: 0.5rem;
+  /* margin: 0.5rem; */
   text-decoration: none;
 }
 
@@ -109,15 +109,17 @@ nav a:hover::before {
 
 .viewBtn {
   background-color: gray;
-  border-radius: 10px;
 }
 
 .editBtn {
   background-color: gray;
-  border-radius: 10px;
 }
 
 .deleteBtn {
   background-color: red;
-  border-radius: 10px;
+}
+
+.jumbotron {
+  padding: 0;
+  margin: 0;
 }
