@@ -21,12 +21,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Get index route
 
 app.get('/', (req, res) => {
-  res.send('Login page soon');
+    res.redirect('/index');
 });
 
 //index routes
 app.use('/index', require('./routes/index'));
 
 app.listen(connection.PORT, () => {
-  console.log(`Application listening to port ${connection.PORT}`);
+    console.log(`Application listening to port ${connection.PORT}`);
 });
