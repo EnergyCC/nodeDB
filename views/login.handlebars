@@ -1,0 +1,29 @@
+<section id='login'>
+    <div class="jumbotron bg-primary text-center">
+        <div class="form">
+            <h2>Login</h2>
+            {{#each errors}}
+            <div class="alert alert-danger">
+                {{text}}
+            </div>
+            {{/each}}
+            <div class="container">
+                <div class="row justify-content-center">
+                    <form action="/login" method="POST">
+                        <div class="form-group">
+                            <label for="username" class="float-left">Utilizator:</label>
+                            <input type="text" name="username" class="form-control" id="username"
+                                placeholder="Introdu utilizator" value='{{username}}' />
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="float-left">Parola:</label>
+                            <input type="password" name="password" class="form-control" id="password"
+                                placeholder="Introdu parola" value='{{password}}' />
+                        </div>
+                        <input type="submit" value='Logare' class="btn btn-secondary btn-block" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
