@@ -30,7 +30,14 @@ router.get('/', (req, res) => {
 });
 
 //router get for the add form
-router.get('/add', (req, res) => res.render('add'));
+router.get('/add', (req, res) => {
+  let url = '/index/add';
+  let mth = 'POST';
+  res.render('add', {
+    url,
+    mth
+  });
+});
 
 // router post for the data post
 router.post('/add', (req, res) => {
@@ -115,14 +122,19 @@ router.get('/delete/:id/true', (req, res) => {
 router.get('/edit/:id', (req, res) => {
   let sql = 'SELECT * FROM profile WHERE profile_id = ?;';
   connection.db.query(sql, req.params.id, (err, result) => {
+    let url = `/edit/` + req.params.id;
+    let mth = 'POST';
     let nume = result[0].nume;
     let model_masina = result[0].model_masina;
     let nr_inmatriculare = result[0].nr_inmatriculare;
     let cost = result[0].cost;
+    let profile_id = req.params.id;
     if (err) console.log(err);
     else {
       // console.log(result);
       res.render('add', {
+        url,
+        mth,
         nume,
         model_masina,
         nr_inmatriculare,
@@ -130,6 +142,22 @@ router.get('/edit/:id', (req, res) => {
       });
     }
   });
+});
+
+router.get('/edit/:id', (req, res) => {
+  let sql =
+    'UPDATE profile SET nume = ?, model_masina = ?, nr_inmatriculare = ?, cost = ? WHERE profile_id = ?';
+  let { nume, model_masina, nr_inmatriculare, cost } = req.body;
+  connection.db.query(
+    sql,
+    [nume, model_masina, nr_inmatriculare, cost, req.params.id],
+    (err, result) => {
+      if (err) console.log(err);
+      else {
+        res.redirect('/index');
+      }
+    }
+  );
 });
 
 module.exports = router;
