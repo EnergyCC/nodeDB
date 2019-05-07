@@ -17,7 +17,7 @@ connection.db.connect(err => {
 
 //create router for index
 
-router.get('/', checkAuthentication, (req, res) => {
+router.get('/', (req, res) => {
     let sql = `SELECT * FROM profile LIMIT 10;`;
     connection.db.query(sql, (err, results) => {
         if (err) {
@@ -32,7 +32,7 @@ router.get('/', checkAuthentication, (req, res) => {
 });
 
 //router get for the add form
-router.get('/add', checkAuthentication, (req, res) => {
+router.get('/add', (req, res) => {
     let url = '/index/add';
     let mth = 'POST';
     res.render('add', {
@@ -42,7 +42,7 @@ router.get('/add', checkAuthentication, (req, res) => {
 });
 
 // router post for the data post
-router.post('/add', checkAuthentication, (req, res) => {
+router.post('/add', (req, res) => {
     let { nume, model_masina, nr_inmatriculare, cost } = req.body;
     let sql =
         'INSERT INTO profile(nume, model_masina, nr_inmatriculare, data_adaug, cost) VALUES (?, ?, ?, ?, ?);';
@@ -93,7 +93,7 @@ router.post('/add', checkAuthentication, (req, res) => {
 });
 
 //Just raw(dog) data
-router.get('/getdb', checkAuthentication, (req, res) => {
+router.get('/getdb', (req, res) => {
     let sql = 'SELECT * FROM profile;';
     jwt.verify(req.token, 'secretkey', (err, authData) => {
         if (err) {
@@ -108,7 +108,7 @@ router.get('/getdb', checkAuthentication, (req, res) => {
 });
 
 // get and render delete route
-router.get('/delete/:id', checkAuthentication, (req, res) => {
+router.get('/delete/:id', (req, res) => {
     let sql = 'SELECT * FROM profile WHERE profile_id = ?;';
     connection.db.query(sql, req.params.id, (err, result) => {
         if (err) throw err;
@@ -122,7 +122,7 @@ router.get('/delete/:id', checkAuthentication, (req, res) => {
 });
 
 //confirm deletion route
-router.get('/delete/:id/true', checkAuthentication, (req, res) => {
+router.get('/delete/:id/true', (req, res) => {
     let sql = 'DELETE FROM profile WHERE profile_id = ?;';
     connection.db.query(sql, req.params.id, (err, result) => {
         if (err) throw err;
@@ -133,7 +133,7 @@ router.get('/delete/:id/true', checkAuthentication, (req, res) => {
 });
 
 //Add edit route with data -> send it to app.handlebars
-router.get('/edit/:id', checkAuthentication, (req, res) => {
+router.get('/edit/:id', (req, res) => {
     let sql = 'SELECT * FROM profile WHERE profile_id = ?;';
     connection.db.query(sql, req.params.id, (err, result) => {
         let url = `/index/edit/${req.params.id}`;
@@ -160,7 +160,7 @@ router.get('/edit/:id', checkAuthentication, (req, res) => {
 
 //Edit route for editing purpose onyl
 
-router.post('/edit/:id', checkAuthentication, (req, res) => {
+router.post('/edit/:id', (req, res) => {
     let sql =
         'UPDATE profile SET nume=?, model_masina=?, nr_inmatriculare=?, cost=? WHERE profile_id=?';
     let { nume, model_masina, nr_inmatriculare, cost } = req.body;

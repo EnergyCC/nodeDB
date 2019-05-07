@@ -1,7 +1,7 @@
 <section id="add">
     <div class="jumbotron bg-primary text-center">
         <div class="form">
-            <h3>Add a profile</h3>
+            <h3>Creaza un profil</h3>
             {{#each errors}}
             <div class="alert alert-danger">
                 {{text}}
@@ -11,27 +11,27 @@
                 <div class="row justify-content-center">
                     <form action="{{url}}" method="{{mth}}">
                         <div class="form-group">
-                            <label for="nume" class="float-left">Company name</label>
+                            <label for="nume" class="float-left">Nume firma:</label>
                             <input type="text" name="nume" class="form-control" id="nume"
                                 placeholder="Enter a company name" value='{{nume}}' maxlength="30" />
                         </div>
                         <div class="form-group">
-                            <label for="model_masina" class="float-left">Car model</label>
+                            <label for="model_masina" class="float-left">Model masina:</label>
                             <input type="text" name="model_masina" class="form-control" id="model_masina"
                                 placeholder="Enter the car model" value='{{model_masina}}' maxlength="30" />
                         </div>
                         <div class="form-group">
-                            <label for="nr_inmatriculare" class="float-left">Plate number</label>
+                            <label for="nr_inmatriculare" class="float-left">Numar inmatriculare:</label>
                             <input type="text" name="nr_inmatriculare" class="form-control" id="nr_inmatriculare"
                                 placeholder="Enter a plate number" value='{{nr_inmatriculare}}' maxlength="15" />
                         </div>
                         <div class="form-group">
-                            <label for="cost" class="float-left">Cost</label>
+                            <label for="cost" class="float-left">Cost:</label>
                             <input type="text" name="cost" class="form-control" id="cost" placeholder="Enter cost"
                                 value='{{cost}}' />
                         </div>
-                        <input type="submit" value="Save profile" class="btn btn-secondary btn-block" />
-                        <a href='/index' class='btn btn-block btn-outline-light'>Cancel</a>
+                        <input type="submit" value="Salveaza profil" class="btn btn-secondary btn-block" />
+                        <a href='/index' class='btn btn-block btn-outline-light'>Anuleaza</a>
                     </form>
                 </div>
             </div>
