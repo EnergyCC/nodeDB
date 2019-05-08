@@ -45,24 +45,8 @@ app.post('/login', (req, res) => {
   connection.db.query(sql, username, (err, result) => {
     if (err) console.log(err);
     else {
-      // check if user exists
-      if (result.length < 1) {
-        errors.push({ text: 'Utilizator sau parola gresite' });
-      }
-      //   check if input password matches the database password
-      if (result[0].password !== password && errors.length < 1) {
-        errors.push({ text: 'Utilizator sau parola gresite' });
-      }
-      //   checks for errors and pushes them back in the client
-      if (errors.length > 0) {
-        res.render('login', {
-          errors,
-          username,
-          password
-        });
-      }
       //   if user exists and passwords match -> login = true
-      if (result.length === 1 && result[0].password === password) {
+      if (result.length !== 0 && result[0].password === password) {
         // console.log('login successful');
         jwt.sign(
           { username },
@@ -70,13 +54,23 @@ app.post('/login', (req, res) => {
           { expiresIn: '1m' },
           (err, token) => {
             // res.setHeader('authorization', `Bearer ${token}`);
-            res.cookie('authorization', token, { maxAge: 60000 });
+            res.cookie('authorization', token, {
+              maxAge: 60000,
+              httpOnly: true
+            });
             // console.log(token);
             // console.log(req.cookie.token);
             // res.redirect('index');
             res.redirect('index');
           }
         );
+      } else {
+        errors.push({ text: 'Utilizator sau parola gresite' });
+        res.render('login', {
+          errors,
+          username,
+          password
+        });
       }
     }
   });

@@ -37,6 +37,28 @@ router.get('/', checkAuthentication, (req, res) => {
   });
 });
 
+router.post('/', checkAuthentication, (req, res) => {
+  let { searchQuery, searchParam } = req.body;
+  jwt.verify(req.token, 'secretkey', (err, authData) => {
+    if (err) {
+      res.redirect('http://localhost:3003/login');
+    } else {
+      console.log(`Param: ${searchParam} || Query: ${searchQuery}`);
+      let sql = `SELECT * FROM profile WHERE ${searchParam} LIKE '%${searchQuery}%'`;
+      connection.db.query(sql, (err, results) => {
+        if (err) {
+          console.log(err);
+          res.sendStatus(403);
+        } else {
+          res.render('results', {
+            results
+          });
+        }
+      });
+    }
+  });
+});
+
 //router get for the add form
 router.get('/add', checkAuthentication, (req, res) => {
   jwt.verify(req.token, 'secretkey', (err, authData) => {
@@ -96,7 +118,13 @@ router.post('/add', checkAuthentication, (req, res) => {
       } else {
         connection.db.query(
           sql,
-          [nume, model_masina, nr_inmatriculare, data, cost],
+          [
+            nume.toUpperCase(),
+            model_masina.toUpperCase(),
+            nr_inmatriculare.toUpperCase(),
+            data,
+            cost
+          ],
           (err, result) => {
             if (err) {
               console.log(err);
