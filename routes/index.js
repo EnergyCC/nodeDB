@@ -37,6 +37,7 @@ router.get('/', checkAuthentication, (req, res) => {
   });
 });
 
+// Search function ↓
 router.post('/', checkAuthentication, (req, res) => {
   let { searchQuery, searchParam } = req.body;
   jwt.verify(req.token, 'secretkey', (err, authData) => {

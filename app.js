@@ -47,24 +47,23 @@ app.post('/login', (req, res) => {
     else {
       //   if user exists and passwords match -> login = true
       if (result.length !== 0 && result[0].password === password) {
-        // console.log('login successful');
+        // get the token, set epiration date on token btw
         jwt.sign(
           { username },
           'secretkey',
-          { expiresIn: '1m' },
+          { expiresIn: '10m' },
           (err, token) => {
-            // res.setHeader('authorization', `Bearer ${token}`);
+            // send cookie
             res.cookie('authorization', token, {
-              maxAge: 60000,
+              maxAge: 600000,
               httpOnly: true
             });
-            // console.log(token);
-            // console.log(req.cookie.token);
-            // res.redirect('index');
             res.redirect('index');
           }
         );
-      } else {
+      }
+      // response in case user and password is wrong
+      else {
         errors.push({ text: 'Utilizator sau parola gresite' });
         res.render('login', {
           errors,
