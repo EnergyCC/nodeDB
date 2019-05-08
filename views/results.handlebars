@@ -1,6 +1,20 @@
 <section id='results content'>
+<<<<<<< HEAD
     <h1>Toate rezultatele</h1>
 
+=======
+    <h1>All results</h1>
+    <form class="form-inline my-2 my-lg-0 mb-lg-5" action='/index/' method="POST">
+        <input class="form-control mr-sm-5" type="text" placeholder="Cauta" name='searchQuery'>
+        <label class='mr-2'>Cautare dupa: </label>
+        <select class="custom-select mr-sm-2" name='searchParam'>
+            <option value="nume">Nume</option>
+            <option value="nr_inmatriculare">Numar inmatriculare</option>
+            <option value="model_masina">Model masina</option>
+        </select>
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Cautare</button>
+    </form>
+>>>>>>> fb964548b61da4fe5802562e43e74441a66b2614
     {{#each results}}
 
     <div class="container-fluid">
@@ -11,9 +25,15 @@
                         <h3>{{nume}}</h3>
                     </div>
                     <div class="col-sm-6">
+<<<<<<< HEAD
                         <a href="index/delete/{{profile_id}}" class="btn btn-danger float-right mr-3 mt-1">Sterge</a>
                         <a href="index/edit/{{profile_id}}" class="btn btn-primary float-right mr-3 mt-1">Editeaza</a>
                         <a href="#" class="btn btn-primary float-right mr-3 mt-1">Vezi mai mult</a>
+=======
+                        <a href="index/delete/{{profile_id}}" class="btn btn-danger float-right mr-3 mt-1">Delete</a>
+                        <a href="index/edit/{{profile_id}}" class="btn btn-primary float-right mr-3 mt-1">Edit</a>
+                        <a href="index/view/{{profile_id}}" class="btn btn-primary float-right mr-3 mt-1">More</a>
+>>>>>>> fb964548b61da4fe5802562e43e74441a66b2614
                     </div>
                 </div>
             </div>
