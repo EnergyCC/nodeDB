@@ -165,8 +165,11 @@ router.get('/delete/:id', checkAuthentication, (req, res) => {
         if (err) throw err;
         else {
           // console.log(result);
+          let nume = result[0].nume;
+          let profile_id = result[0].profile_id;
           res.render('remove', {
-            result
+            nume,
+            profile_id
           });
         }
       });
@@ -244,6 +247,31 @@ router.post('/edit/:id', checkAuthentication, (req, res) => {
           }
         }
       );
+    }
+  });
+});
+
+// create view route for jobs table
+
+router.get('/view/:id', (req, res) => {
+  let sql = 'SELECT * FROM profile WHERE profile_id = ?';
+  let profile_id = req.params.id;
+  connection.db.query(sql, profile_id, (err, result) => {
+    if (err) {
+      console.log(err);
+      res.sendStatus(403);
+    } else {
+      let nume = result[0].nume;
+      let model_masina = result[0].model_masina;
+      let nr_inmatriculare = result[0].nr_inmatriculare;
+      console.log(
+        `nume ${nume} || model ${model_masina} || nr ${nr_inmatriculare}`
+      );
+      res.render('view', {
+        nume,
+        model_masina,
+        nr_inmatriculare
+      });
     }
   });
 });
