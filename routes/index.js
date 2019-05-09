@@ -155,6 +155,7 @@ router.get('/getdb', checkAuthentication, (req, res) => {
 
 // get and render delete route
 router.get('/delete/:id', checkAuthentication, (req, res) => {
+<<<<<<< HEAD
     jwt.verify(req.token, 'secretkey', (err, authData) => {
         if (err) {
             res.redirect('http://localhost:3003/login');
@@ -172,6 +173,22 @@ router.get('/delete/:id', checkAuthentication, (req, res) => {
                     });
                 }
             });
+=======
+  jwt.verify(req.token, 'secretkey', (err, authData) => {
+    if (err) {
+      res.redirect('http://localhost:3003/login');
+    } else {
+      let sql = 'SELECT * FROM profile WHERE profile_id = ?;';
+      connection.db.query(sql, req.params.id, (err, result) => {
+        if (err) throw err;
+        else {
+          let nume = result[0].nume;
+          let profile_id = result[0].profile_id;
+          res.render('remove', {
+            nume,
+            profile_id
+          });
+>>>>>>> 1731ccd1f85f5d87c48c81aeeac12999f573f64c
         }
     });
 });
@@ -252,6 +269,7 @@ router.post('/edit/:id', checkAuthentication, (req, res) => {
 // create view route for jobs table
 
 router.get('/view/:id', (req, res) => {
+<<<<<<< HEAD
     let sql = 'SELECT * FROM profile WHERE profile_id = ?';
     let profile_id = req.params.id;
     connection.db.query(sql, profile_id, (err, result) => {
@@ -272,6 +290,40 @@ router.get('/view/:id', (req, res) => {
             });
         }
     });
+=======
+  let sql = 'SELECT * FROM profile WHERE profile_id = ?';
+  let profile_id = req.params.id;
+  connection.db.query(sql, profile_id, (err, result) => {
+    if (err) {
+      console.log(err);
+      res.sendStatus(403);
+    } else {
+      let nume = result[0].nume;
+      let model_masina = result[0].model_masina;
+      let nr_inmatriculare = result[0].nr_inmatriculare;
+      let cost = result[0].cost;
+      let data_N = result[0].data_adaug.toLocaleDateString('en-GB').split('/');
+      let data_adaug = `${data_N[1]}/${data_N[0]}/${data_N[2]}`;
+      let jsql = `SELECT * FROM jobs WHERE nume =?`;
+      connection.db.query(jsql, nume, (err, results) => {
+        if (err) {
+          console.log(err);
+          res.sendStatus(403);
+        } else {
+          console.log(results);
+          res.render('view', {
+            results,
+            nume,
+            model_masina,
+            nr_inmatriculare,
+            cost,
+            data_adaug
+          });
+        }
+      });
+    }
+  });
+>>>>>>> 1731ccd1f85f5d87c48c81aeeac12999f573f64c
 });
 
 module.exports = router;
