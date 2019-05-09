@@ -164,7 +164,6 @@ router.get('/delete/:id', checkAuthentication, (req, res) => {
       connection.db.query(sql, req.params.id, (err, result) => {
         if (err) throw err;
         else {
-          // console.log(result);
           let nume = result[0].nume;
           let profile_id = result[0].profile_id;
           res.render('remove', {
@@ -264,13 +263,28 @@ router.get('/view/:id', (req, res) => {
       let nume = result[0].nume;
       let model_masina = result[0].model_masina;
       let nr_inmatriculare = result[0].nr_inmatriculare;
-      console.log(
-        `nume ${nume} || model ${model_masina} || nr ${nr_inmatriculare}`
-      );
+      let cost = result[0].cost;
+      let data_N = result[0].data_adaug.toLocaleDateString('en-GB').split('/');
+      let data_adaug = `${data_N[1]}/${data_N[0]}/${data_N[2]}`;
+
       res.render('view', {
         nume,
         model_masina,
-        nr_inmatriculare
+        nr_inmatriculare,
+        cost,
+        data_adaug
+      });
+    }
+  });
+
+  let jsql = `SELECT * FROM jobs WHERE nume = ${nume}`;
+  connection.db.query(jsql, (err, results) => {
+    if (err) {
+      console.log(err);
+      res.sendStatus(403);
+    } else {
+      res.render('view', {
+        results
       });
     }
   });
