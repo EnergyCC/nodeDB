@@ -266,25 +266,22 @@ router.get('/view/:id', (req, res) => {
       let cost = result[0].cost;
       let data_N = result[0].data_adaug.toLocaleDateString('en-GB').split('/');
       let data_adaug = `${data_N[1]}/${data_N[0]}/${data_N[2]}`;
-
-      res.render('view', {
-        nume,
-        model_masina,
-        nr_inmatriculare,
-        cost,
-        data_adaug
-      });
-    }
-  });
-
-  let jsql = `SELECT * FROM jobs WHERE nume = ${nume}`;
-  connection.db.query(jsql, (err, results) => {
-    if (err) {
-      console.log(err);
-      res.sendStatus(403);
-    } else {
-      res.render('view', {
-        results
+      let jsql = `SELECT * FROM jobs WHERE nume =?`;
+      connection.db.query(jsql, nume, (err, results) => {
+        if (err) {
+          console.log(err);
+          res.sendStatus(403);
+        } else {
+          console.log(results);
+          res.render('view', {
+            results,
+            nume,
+            model_masina,
+            nr_inmatriculare,
+            cost,
+            data_adaug
+          });
+        }
       });
     }
   });
