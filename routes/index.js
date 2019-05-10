@@ -21,7 +21,7 @@ router.get('/', checkAuthentication, (req, res) => {
     let sql = `SELECT * FROM profile LIMIT 10;`;
     jwt.verify(req.token, 'secretkey', (err, authData) => {
         if (err) {
-            res.redirect('http://localhost:3003/login');
+            res.redirect('/login');
         } else {
             connection.db.query(sql, (err, results) => {
                 if (err) {
@@ -42,7 +42,7 @@ router.post('/', checkAuthentication, (req, res) => {
     let { searchQuery, searchParam } = req.body;
     jwt.verify(req.token, 'secretkey', (err, authData) => {
         if (err) {
-            res.redirect('http://localhost:3003/login');
+            res.redirect('/login');
         } else {
             console.log(`Param: ${searchParam} || Query: ${searchQuery}`);
             let sql = `SELECT * FROM profile WHERE ${searchParam} LIKE '%${searchQuery}%'`;
@@ -64,7 +64,7 @@ router.post('/', checkAuthentication, (req, res) => {
 router.get('/add', checkAuthentication, (req, res) => {
     jwt.verify(req.token, 'secretkey', (err, authData) => {
         if (err) {
-            res.redirect('http://localhost:3003/login');
+            res.redirect('/login');
         } else {
             let url = '/index/add';
             let mth = 'POST';
@@ -80,7 +80,7 @@ router.get('/add', checkAuthentication, (req, res) => {
 router.post('/add', checkAuthentication, (req, res) => {
     jwt.verify(req.token, 'secretkey', (err, authData) => {
         if (err) {
-            res.redirect('http://localhost:3003/login');
+            res.redirect('/login');
         } else {
             let { nume, model_masina, nr_inmatriculare, cost } = req.body;
             let sql =
@@ -157,7 +157,7 @@ router.get('/getdb', checkAuthentication, (req, res) => {
 router.get('/delete/:id', checkAuthentication, (req, res) => {
     jwt.verify(req.token, 'secretkey', (err, authData) => {
         if (err) {
-            res.redirect('http://localhost:3003/login');
+            res.redirect('/login');
         } else {
             let sql = 'SELECT * FROM profile WHERE profile_id = ?;';
             connection.db.query(sql, req.params.id, (err, result) => {
@@ -179,7 +179,7 @@ router.get('/delete/:id', checkAuthentication, (req, res) => {
 router.get('/delete/:id/true', checkAuthentication, (req, res) => {
     jwt.verify(req.token, 'secretkey', (err, authData) => {
         if (err) {
-            res.redirect('http://localhost:3003/login');
+            res.redirect('/login');
         } else {
             let sql = 'DELETE FROM profile WHERE profile_id = ?;';
             connection.db.query(sql, req.params.id, (err, result) => {
@@ -196,7 +196,7 @@ router.get('/delete/:id/true', checkAuthentication, (req, res) => {
 router.get('/edit/:id', checkAuthentication, (req, res) => {
     jwt.verify(req.token, 'secretkey', (err, authData) => {
         if (err) {
-            res.redirect('http://localhost:3003/login');
+            res.redirect('/login');
         } else {
             let sql = 'SELECT * FROM profile WHERE profile_id = ?;';
             connection.db.query(sql, req.params.id, (err, result) => {
@@ -229,7 +229,7 @@ router.get('/edit/:id', checkAuthentication, (req, res) => {
 router.post('/edit/:id', checkAuthentication, (req, res) => {
     jwt.verify(req.token, 'secretkey', (err, authData) => {
         if (err) {
-            res.redirect('http://localhost:3003/login');
+            res.redirect('/login');
         } else {
             let sql =
                 'UPDATE profile SET nume=?, model_masina=?, nr_inmatriculare=?, cost=? WHERE profile_id=?';
@@ -317,7 +317,7 @@ router.post('/view/:id/addjobs', (req, res) => {
                 console.log(err);
                 res.sendStatus(403);
             } else {
-                res.redirect(`http://localhost:3003/index/view/${profile_id}`);
+                res.redirect(`/index/view/${profile_id}`);
             }
         }
     );
