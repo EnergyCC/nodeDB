@@ -1,15 +1,23 @@
 <section id='results content'>
-    <h1>All results</h1>
-    <form class="form-inline my-2 my-lg-0 mb-lg-5" action='/index/' method="POST">
-        <input class="form-control mr-sm-5" type="text" placeholder="Cauta" name='searchQuery'>
-        <label class='mr-2'>Cautare dupa: </label>
-        <select class="custom-select mr-sm-2" name='searchParam'>
-            <option value="nume">Nume</option>
-            <option value="nr_inmatriculare">Numar inmatriculare</option>
-            <option value="model_masina">Model masina</option>
-        </select>
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Cautare</button>
-    </form>
+    <div class=''>
+        <form class="form-inline my-2 my-lg-0 mb-lg-5 align-right" action='/index/' method="POST">
+            <input class="form-control mr-sm-5" type="text" placeholder="Cauta" name='searchQuery'>
+            <label class='mr-2'>Search by: </label>
+            <select class="custom-select mr-sm-5" name='searchParam'>
+                <option value="nume">Name</option>
+                <option value="nr_inmatriculare">Plate number</option>
+                <option value="model_masina">Car model</option>
+            </select>
+            <label class='mr-2'>Order by: </label>
+            <select class='custom-select mr-sm-2' name='orderParam'>
+                <option value='data'>Date</option>
+                <option value='cost'>Cost</option>
+            </select>
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+
+    <h1 class=''>All results</h1>
     {{#each results}}
 
     <div class="container-fluid">
@@ -28,14 +36,14 @@
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <h4 class="card-title">Car model: {{model_masina}}</h4>
                         <h4 class="card-title">Plate number: {{nr_inmatriculare}}</h4>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <h4 class="card-title">Cost: {{cost}}</h4>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <h4 class="card-title">Date: {{data_adaug}}</h4>
                     </div>
                 </div>

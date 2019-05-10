@@ -1,34 +1,48 @@
 <section id='viewJob'>
     <div class="jumbotron bg-primary">
         <div class="row justify-content-center text-center">
-            <div class="col-sm-3">
+            <div class="col-sm-4">
                 <p>{{ nume }}</p>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-4">
                 <p>{{ model_masina }}</p>
                 <p>{{ data_adaug }}</p>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-4">
                 <p>{{ nr_inmatriculare }}</p>
                 <p>{{ cost }}</p>
             </div>
         </div>
     </div>
+    <div class='text-right'>
+        <a href='/index/view/{{profile_id}}/addjobs?nume={{nume}}' class='btn btn-secondary btn-lg'>Adauga</a>
+    </div>
 
-    {{#each results}}
     <table class='table table-hover'>
         <thead>
-            <tr class="table-primary">
-                <th scope="row">{{ jobID}}</th>
-                <td>{{ nume }}</td>
-                <td>{{ rep_cost }}</td>
-                <td>{{ descript }}</td>
+            <tr class='table-primary'>
+                <th scope='col' class='align-middle'>#</th>
+                <th scope='col' class='align-middle'>Name</th>
+                <th scope='col' class='align-middle'>Repair cost</th>
+                <th scope='col' class='align-middle'>Description</th>
+                <th scope='col' class='align-middle'>Actions</th>
             </tr>
         </thead>
+        <tbody>
+            {{#each results}}
+            <tr class='table-primary'>
+                <th scope="row" class='align-middle'>{{ jobID}}</th>
+                <td class='align-middle'>{{ nume }}</td>
+                <td class='align-middle'>{{ rep_cost }}</td>
+                <td class='align-middle'>{{ descript }}</td>
+                <td class='align-left'>
+                    <a href='/index/deletejobs/{{id}}' class='btn btn-danger'>Delete</a>
+                    <a href='/index/editjbos/{{id}}' class='btn btn-secondary'>Edit</a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
     </table>
-    {{else}}
-    No results
-    {{/each}}
 
 
 

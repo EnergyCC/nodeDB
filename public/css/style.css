@@ -51,6 +51,9 @@ nav a {
   overflow: none;
 }
 
+/* .dropdown-toggle::after {
+  display: none !important;
+} */
 /* end of navigation css */
 
 /* start of card */

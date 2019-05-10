@@ -272,9 +272,10 @@ router.get('/view/:id', (req, res) => {
           console.log(err);
           res.sendStatus(403);
         } else {
-          console.log(results);
+          // console.log(results);
           res.render('view', {
             results,
+            profile_id,
             nume,
             model_masina,
             nr_inmatriculare,
@@ -285,6 +286,44 @@ router.get('/view/:id', (req, res) => {
       });
     }
   });
+});
+
+// route to render the form for adding jobs
+
+router.get('/view/:id/addjobs', (req, res) => {
+  let nume = req.query.nume;
+  let profile_id = req.params.id;
+  let url = `/index/view/${profile_id}/addjobs?nume=${nume}`;
+  let mth = 'POST';
+  // console.log(nume);
+  res.render('addjobs', {
+    url,
+    mth,
+    profile_id
+  });
+});
+
+// post route to add the job data
+
+router.post('/view/:id/addjobs', (req, res) => {
+  let nume = req.query.nume;
+  let profile_id = req.params.id;
+  let { rep_cost, descript, partRepl } = req.body;
+  let sql =
+    'INSERT INTO jobs(rep_cost, descript, partRepl, nume, profile_id) VALUES(?, ?, ?, ?, ?)';
+
+  connection.db.query(
+    sql,
+    [rep_cost, descript, partRepl, nume, profile_id],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.sendStatus(403);
+      } else {
+        res.redirect(`http://localhost:3003/index/view/${profile_id}`);
+      }
+    }
+  );
 });
 
 module.exports = router;
