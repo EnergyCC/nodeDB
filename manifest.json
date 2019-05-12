@@ -1,0 +1,14 @@
+{
+    "name": "Database PWA",
+    "short_name": "DB",
+    "icons": [{
+        "src": "./js/icon-128.png",
+        "sizes": "144x144",
+        "type": "image/png"
+    }],
+    "start_url": "./login",
+    "display": "standalone",
+    "orientation": "portrait",
+    "background_color": "#ccc",
+    "theme_color": "#222"
+}

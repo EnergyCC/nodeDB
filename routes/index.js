@@ -255,7 +255,7 @@ router.get('/view/:id', (req, res) => {
     let profile_id = req.params.id;
     connection.db.query(sql, profile_id, (err, result) => {
         if (err) {
-            console.log(err);
+            console.log(err.message);
             res.sendStatus(403);
         } else {
             let nume = result[0].nume;
@@ -271,6 +271,7 @@ router.get('/view/:id', (req, res) => {
                     res.sendStatus(403);
                 } else {
                     // console.log(results);
+                    console.log(`From view ${nume} || ${result[0].nume}`)
                     res.render('view', {
                         results,
                         profile_id,
@@ -293,7 +294,7 @@ router.get('/view/:id/addjobs', (req, res) => {
     let profile_id = req.params.id;
     let url = `/index/view/${profile_id}/addjobs?nume=${nume}`;
     let mth = 'POST';
-    // console.log(nume);
+    console.log(`from addjobs ${nume} || ${profile_id}`);
     res.render('addjobs', {
         url,
         mth,
@@ -307,6 +308,7 @@ router.post('/view/:id/addjobs', (req, res) => {
     let nume = req.query.nume;
     let profile_id = req.params.id;
     let { rep_cost, descript, partRepl } = req.body;
+    console.log(nume);
     let sql =
         'INSERT INTO jobs(rep_cost, descript, partRepl, nume, profile_id) VALUES(?, ?, ?, ?, ?)';
 
@@ -321,6 +323,35 @@ router.post('/view/:id/addjobs', (req, res) => {
             }
         }
     );
+});
+
+
+// route to confirm job remove
+router.get('/deletejobs/:id', (req, res) => {
+    let profile_id = req.query.profile;
+    let jobID = req.params.id;
+    res.render('removejobs', {
+        jobID,
+        profile_id
+    })
+});
+
+// route to remove jobs
+
+router.get('/deletejobs/:id/true', (req, res) => {
+    let profile_id = req.query.profile;
+    let jobID = req.params.id;
+    let sql = 'DELETE FROM jobs WHERE jobID = ?';
+    console.log(`${profile_id} | ${jobID} | ${sql}`);
+    connection.db.query(sql, jobID, (err, result) => {
+        if (err) {
+            console.log(err);
+            res.send(403);
+        } else {
+            res.redirect(`/index/view/${profile_id}`);
+            console.log(`Successfully removed job with the id ${jobID}`)
+        }
+    })
 });
 
 module.exports = router;

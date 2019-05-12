@@ -1,0 +1,12 @@
+<section id='remove-result'>
+
+    <div class="card text-white bg-secondary mb-3">
+        <div class="card-header">Delete job</div>
+        <div class="card-body">
+            <h4 class="card-title">Are you sure you want to remove: {{ nume }} ?</h4>
+            <a href="/index/deletejobs/{{ jobID }}/true?profile={{profile_id}}" class="btn btn-block btn-danger">Yes</a>
+            <a href='/index/view/{{profile_id}}' class='btn btn-block btn-outline-primary'>No</a>
+        </div>
+    </div>
+
+</section>
