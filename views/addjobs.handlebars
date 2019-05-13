@@ -6,27 +6,36 @@
         </div>
         {{/if}}
         <div class="container">
-            <div class="row justify-content-center text-left">
-                <form action='{{url}}' method='{{mth}}'>
-                    <div class="form-group">
-                        <label for='rep_cost' class='float-left'>Repair cost: </label>
-                        <input type='text' name='rep_cost' class='form-control' id='nume'
-                            placeholder="Input repair cost" value='{{rep_cost}}'>
+            <form action='{{mth}}' method='{{mth}}'>
+                <div class="row justify-content-center">
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label for="lucrari_sol" class="float-left">Lucrari solicitate:</label>
+                            <input type="text" name="lucrari_sol1" class="form-control" id="lucrari_sol1"
+                                placeholder="Lucrari solicitate 1" value='{{lucrari_sol1}}' maxlength="100" />
+                            <input type="text" name="lucrari_sol2" class="form-control" id="lucrari_sol2"
+                                placeholder="Lucrari solicitate 2" value='{{lucrari_sol2}}' maxlength="100" />
+                            <input type="text" name="lucrari_sol3" class="form-control" id="lucrari_sol3"
+                                placeholder="Lucrari solicitate 3" value='{{lucrari_sol3}}' maxlength="100" />
+                            <input type="text" name="lucrari_sol4" class="form-control" id="lucrari_sol4"
+                                placeholder="Lucrari solicitate 4" value='{{lucrari_sol4}}' maxlength="100" />
+                            <input type="text" name="lucrari_sol5" class="form-control" id="lucrari_sol5"
+                                placeholder="Lucrari solicitate 5" value='{{lucrari_sol5}}' maxlength="100" />
+                            <label for='den_piesa_cl' class='float-left'>Piese client: </label>
+                            <input type='text' name='den_piesa_cl1' class='form-control' id='den_piesa_cl1'
+                                placeholder='Piese client 1' value='{{den_piesa_cl1}}' maxlength="50">
+                        </div>
+
                     </div>
-                    <div class='form-group'>
-                        <label for='descript' class='float-left'>Description: </label>
-                        <input type='text' name='descript' class='form-control' id='descript'
-                            placeholder="Input small description" value='{{descript}}'>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label for="nume_client" class="float-left">Nume client:</label>
+                            <input type="text" name="nume_client" class="form-control" id="nume_client"
+                                placeholder="Introdu nume client" value='{{nume_client}}' maxlength="64" />
+                        </div>
                     </div>
-                    <div class='form-group'>
-                        <label for='partRepl' class='float-left'>Part replaced: </label>
-                        <input type='text' name='partRepl' class='form-control' id='partRepl'
-                            placeholder="Input the part replaced" value='{{partRepl}}'>
-                    </div>
-                    <input type='submit' value='Add' class='btn btn-block btn-secondary'>
-                    <a href='/index/view/{{profile_id}}' class='btn btn-block btn-outline-light'>Cancel</a>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
 

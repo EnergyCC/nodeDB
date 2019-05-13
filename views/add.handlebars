@@ -11,14 +11,14 @@
                 <div class="row justify-content-center">
                     <form action="{{url}}" method="{{mth}}">
                         <div class="form-group">
-                            <label for="nume" class="float-left">Nume firma:</label>
-                            <input type="text" name="nume" class="form-control" id="nume"
-                                placeholder="Enter a company name" value='{{nume}}' maxlength="30" />
+                            <label for="nume_client" class="float-left">Nume client:</label>
+                            <input type="text" name="nume_client" class="form-control" id="nume_client"
+                                placeholder="Introdu nume client" value='{{nume_client}}' maxlength="64" />
                         </div>
                         <div class="form-group">
-                            <label for="model_masina" class="float-left">Model masina:</label>
-                            <input type="text" name="model_masina" class="form-control" id="model_masina"
-                                placeholder="Enter the car model" value='{{model_masina}}' maxlength="30" />
+                            <label for="tip_auto" class="float-left">Tip auto:</label>
+                            <input type="text" name="tip_auto" class="form-control" id="tip_auto"
+                                placeholder="Introdu tip auto" value='{{tip_auto}}' maxlength="48" />
                         </div>
                         <div class="form-group">
                             <label for="nr_inmatriculare" class="float-left">Numar inmatriculare:</label>
@@ -26,9 +26,14 @@
                                 placeholder="Enter a plate number" value='{{nr_inmatriculare}}' maxlength="15" />
                         </div>
                         <div class="form-group">
-                            <label for="cost" class="float-left">Cost:</label>
-                            <input type="text" name="cost" class="form-control" id="cost" placeholder="Enter cost"
-                                value='{{cost}}' />
+                            <label for="serie_caroserie" class="float-left">Serie caroserie:</label>
+                            <input type="text" name="serie_caroserie" class="form-control" id="serie_caroserie"
+                                placeholder="Introdu serie caroserie" value='{{serie_caroserie}}' maxlength='20' />
+                        </div>
+                        <div class="form-group">
+                            <label for="serie_motor" class="float-left">Serie motor:</label>
+                            <input type="text" name="serie_motor" class="form-control" id="serie_motor"
+                                placeholder="Introdu serie motor" value='{{serie_motor}}' maxlength='20' />
                         </div>
                         <input type="submit" value="Salveaza profil" class="btn btn-secondary btn-block" />
                         <a href='/index' class='btn btn-block btn-outline-light'>Anuleaza</a>

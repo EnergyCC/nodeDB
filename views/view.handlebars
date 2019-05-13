@@ -1,49 +1,49 @@
 <section id='viewJob'>
     <div class="jumbotron bg-primary" style='padding-left:0px; padding-right:0px; padding-bottom:1rem'>
         <div class="row justify-content-center text-center">
-            <div class="col-sm-4">
-                <p>{{ nume }}</p>
+            <div class="col-sm-6">
+                <h3 class='text-left ml-sm-2'>Nume client: {{ nume_client }}</h3>
+                <h3 class='text-left ml-sm-2'>Tip auto: {{ tip_auto }}</h3>
+                <h3 class='text-left ml-sm-2'>Numar inmatriculare: {{nr_inmatriculare}}</h3>
             </div>
-            <div class="col-sm-4">
-                <p>{{ model_masina }}</p>
-                <p>{{ data_adaug }}</p>
-            </div>
-            <div class="col-sm-4">
-                <p>{{ nr_inmatriculare }}</p>
-                <p>{{ cost }}</p>
+            <div class="col-sm-6">
+                <h3 class='text-left ml-sm-2'> Serie caroserie: {{ serie_caroserie }}</h3>
+                <h3 class='text-left ml-sm-2'> Serie motor: {{ serie_motor }}</h3>
             </div>
         </div>
+        <hr>
         <div class='text-right'>
-        <a href='/index/view/{{profile_id}}/addjobs?nume={{nume}}' class='btn btn-secondary btn-lg mr-3'>Add a job</a>
+            <a href='/index/view/{{profile_id}}/addjobs' class='btn btn-secondary btn-lg mr-3'>Adauga lucrare
+                service</a>
+        </div>
+
+        <table class='table table-hover'>
+            <thead>
+                <tr class='table-primary'>
+                    <th scope='col' class='align-middle'>#</th>
+                    <th scope='col' class='align-middle'>Name</th>
+                    <th scope='col' class='align-middle'>Repair cost</th>
+                    <th scope='col' class='align-middle'>Description</th>
+                    <th scope='col' class='align-middle'>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each results}}
+                <tr class='table-primary'>
+                    <th scope="row" class='align-middle'>{{ jobID}}</th>
+                    <td class='align-middle'>{{ nume }}</td>
+                    <td class='align-middle'>{{ rep_cost }}</td>
+                    <td class='align-middle'>{{ descript }}</td>
+                    <td class='align-left'>
+                        <a href='/index/deletejobs/{{jobID}}?profile={{profile_id}}' class='btn btn-danger'>Delete</a>
+                        <a href='/index/editjbos/{{jobID}}' class='btn btn-secondary'>Edit</a>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
     </div>
 
-    <table class='table table-hover'>
-        <thead>
-            <tr class='table-primary'>
-                <th scope='col' class='align-middle'>#</th>
-                <th scope='col' class='align-middle'>Name</th>
-                <th scope='col' class='align-middle'>Repair cost</th>
-                <th scope='col' class='align-middle'>Description</th>
-                <th scope='col' class='align-middle'>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each results}}
-            <tr class='table-primary'>
-                <th scope="row" class='align-middle'>{{ jobID}}</th>
-                <td class='align-middle'>{{ nume }}</td>
-                <td class='align-middle'>{{ rep_cost }}</td>
-                <td class='align-middle'>{{ descript }}</td>
-                <td class='align-left'>
-                    <a href='/index/deletejobs/{{jobID}}?profile={{profile_id}}' class='btn btn-danger'>Delete</a>
-                    <a href='/index/editjbos/{{jobID}}' class='btn btn-secondary'>Edit</a>
-                </td>
-            </tr>
-            {{/each}}
-        </tbody>
-    </table>
-    </div>
-    
 
 
 
