@@ -306,43 +306,49 @@ router.post('/edit/:id', checkAuthentication, (req, res) => {
 
 // create view route for jobs table
 
-router.get('/view/:id', (req, res) => {
-  let sql = 'SELECT * FROM profile WHERE profile_id = ?';
-  let profile_id = req.params.id;
-  connection.db.query(sql, profile_id, (err, result) => {
+router.get('/view/:id', checkAuthentication, (req, res) => {
+  jwt.verify(req.token, 'secretkey', (err, authData) => {
     if (err) {
-      console.log(err.message);
-      let error = 'Eroare';
-      res.render('errors', {
-        error
-      });
+      res.redirect('/login');
     } else {
-      let nume_client = result[0].nume_client;
-      let tip_auto = result[0].tip_auto;
-      let nr_inmatriculare = result[0].nr_inmatriculare;
-      let serie_caroserie = result[0].serie_caroserie;
-      //   let data_N = result[0].data_adaug.toLocaleDateString('en-GB').split('/');
-      //   let data_adaug = `${data_N[1]}/${data_N[0]}/${data_N[2]}`;
-      let serie_motor = result[0].serie_motor;
-      let jsql = `SELECT * FROM jobs WHERE profile_id =?`;
-      connection.db.query(jsql, profile_id, (err, results) => {
+      let sql = 'SELECT * FROM profile WHERE profile_id = ?';
+      let profile_id = req.params.id;
+      connection.db.query(sql, profile_id, (err, result) => {
         if (err) {
-          console.log(err);
-          let error = 'Eroare'; //Errors string temp
+          console.log(err.message);
+          let error = 'Eroare';
           res.render('errors', {
             error
           });
         } else {
-          // console.log(results);
-          //   console.log(`From view ${nume} || ${result[0].nume}`);
-          res.render('view', {
-            results,
-            profile_id,
-            nume_client,
-            tip_auto,
-            nr_inmatriculare,
-            serie_caroserie,
-            serie_motor
+          let nume_client = result[0].nume_client;
+          let tip_auto = result[0].tip_auto;
+          let nr_inmatriculare = result[0].nr_inmatriculare;
+          let serie_caroserie = result[0].serie_caroserie;
+          //   let data_N = result[0].data_adaug.toLocaleDateString('en-GB').split('/');
+          //   let data_adaug = `${data_N[1]}/${data_N[0]}/${data_N[2]}`;
+          let serie_motor = result[0].serie_motor;
+          let jsql = `SELECT * FROM jobs WHERE profile_id =?`;
+          connection.db.query(jsql, profile_id, (err, results) => {
+            if (err) {
+              console.log(err);
+              let error = 'Eroare'; //Errors string temp
+              res.render('errors', {
+                error
+              });
+            } else {
+              // console.log(results);
+              //   console.log(`From view ${nume} || ${result[0].nume}`);
+              res.render('view', {
+                results,
+                profile_id,
+                nume_client,
+                tip_auto,
+                nr_inmatriculare,
+                serie_caroserie,
+                serie_motor
+              });
+            }
           });
         }
       });
@@ -352,65 +358,89 @@ router.get('/view/:id', (req, res) => {
 
 // route to render the form for adding jobs
 
-router.get('/view/:id/addjobs', (req, res) => {
-  let profile_id = req.params.id;
-  let url = `/index/view/${profile_id}/addjobs`;
-  let mth = 'POST';
-  res.render('addjobs', {
-    url,
-    mth,
-    profile_id
+router.get('/view/:id/addjobs', checkAuthentication, (req, res) => {
+  jwt.verify(req.token, 'secretkey', (err, authData) => {
+    if (err) {
+      res.redirect('/login');
+    } else {
+      let profile_id = req.params.id;
+      let url = `/index/view/${profile_id}/addjobs`;
+      let mth = 'POST';
+      res.render('addjobs', {
+        url,
+        mth,
+        profile_id
+      });
+    }
   });
 });
 
 // post route to add the job data
 
-router.post('/view/:id/addjobs', (req, res) => {
-  let nume = req.query.nume;
-  let profile_id = req.params.id;
-  let { rep_cost, descript, partRepl } = req.body;
-  console.log(nume);
-  let sql =
-    'INSERT INTO jobs(rep_cost, descript, partRepl, nume, profile_id) VALUES(?, ?, ?, ?, ?)';
+router.post('/view/:id/addjobs', checkAuthentication, (req, res) => {
+  jwt.verify(req.token, 'secretkey', (err, authData) => {
+    if (err) {
+      res.redirect('/login');
+    } else {
+      let nume = req.query.nume;
+      let profile_id = req.params.id;
+      let { rep_cost, descript, partRepl } = req.body;
+      console.log(nume);
+      let sql =
+        'INSERT INTO jobs(rep_cost, descript, partRepl, nume, profile_id) VALUES(?, ?, ?, ?, ?)';
 
-  connection.db.query(
-    sql,
-    [rep_cost, descript, partRepl, nume, profile_id],
-    (err, result) => {
-      if (err) {
-        console.log(err);
-        res.sendStatus(403);
-      } else {
-        res.redirect(`/index/view/${profile_id}`);
-      }
+      connection.db.query(
+        sql,
+        [rep_cost, descript, partRepl, nume, profile_id],
+        (err, result) => {
+          if (err) {
+            console.log(err);
+            res.sendStatus(403);
+          } else {
+            res.redirect(`/index/view/${profile_id}`);
+          }
+        }
+      );
     }
-  );
+  });
 });
 
 // route to confirm job remove
-router.get('/deletejobs/:id', (req, res) => {
-  let profile_id = req.query.profile;
-  let jobID = req.params.id;
-  res.render('removejobs', {
-    jobID,
-    profile_id
+router.get('/deletejobs/:id', checkAuthentication, (req, res) => {
+  jwt.verify(req.token, 'secretkey', (err, authData) => {
+    if (err) {
+      res.redirect('/login');
+    } else {
+      let profile_id = req.query.profile;
+      let jobID = req.params.id;
+      res.render('removejobs', {
+        jobID,
+        profile_id
+      });
+    }
   });
 });
 
 // route to remove jobs
 
-router.get('/deletejobs/:id/true', (req, res) => {
-  let profile_id = req.query.profile;
-  let jobID = req.params.id;
-  let sql = 'DELETE FROM jobs WHERE jobID = ?';
-  console.log(`${profile_id} | ${jobID} | ${sql}`);
-  connection.db.query(sql, jobID, (err, result) => {
+router.get('/deletejobs/:id/true', checkAuthentication, (req, res) => {
+  jwt.verify(req.token, 'secretkey', (err, authData) => {
     if (err) {
-      console.log(err);
-      res.send(403);
+      res.redirect('/login');
     } else {
-      res.redirect(`/index/view/${profile_id}`);
-      console.log(`Successfully removed job with the id ${jobID}`);
+      let profile_id = req.query.profile;
+      let jobID = req.params.id;
+      let sql = 'DELETE FROM jobs WHERE jobID = ?';
+      console.log(`${profile_id} | ${jobID} | ${sql}`);
+      connection.db.query(sql, jobID, (err, result) => {
+        if (err) {
+          console.log(err);
+          res.send(403);
+        } else {
+          res.redirect(`/index/view/${profile_id}`);
+          console.log(`Successfully removed job with the id ${jobID}`);
+        }
+      });
     }
   });
 });
