@@ -1,12 +1,12 @@
 <section id='addjobs'>
     <div class='jumbotron bg-primary text-center'>
-        {{#if error}}
+        {{#each errors}}
         <div class="alert alert-danger">
             {{text}}
         </div>
-        {{/if}}
+        {{/each}}
         <div class="container">
-            <form action='{{mth}}' method='{{mth}}'>
+            <form action='{{url}}' method='{{mth}}'>
                 <div class="row justify-content-center">
                     <div class="col-lg-4">
                         <div class="form-group">
@@ -62,6 +62,9 @@
                                 placeholder="Denumire operatie 4" value='{{denum_operatie4}}' maxlength="64" />
                             <input type="text" name="denum_operatie5" class="form-control" id="denum_operatie5"
                                 placeholder="Denumire operatie 5" value='{{denum_operatie5}}' maxlength="64" />
+                            <label for='kilometri' class='float-left mt-3'>Kilometri: </label>
+                            <input type='text' name='kilometri' class='form-control' id='kilometri'
+                                placeholder='Nr. kilometri' value='{{kilometri}}' />
                         </div>
 
                     </div>
@@ -100,7 +103,7 @@
                                 placeholder='Denumire piesa' value='{{denum_piesa4}}' />
                             <input type='text' name='denum_piesa5' class='form-control' id='denum_piesa5'
                                 placeholder='Denumire piesa' value='{{denum_piesa5}}' />
-                            <label for='cant_piese' class='float-left'>Cantitate piese: </label>
+                            <label for='cant_piese' class='float-left mt-3'>Cantitate piese: </label>
                             <input type='text' name='cant_piese1' class='form-control' id='cant_piese1'
                                 placeholder='Cantitate piese' value='{{cant_piese1}}' />
                             <input type='text' name='cant_piese2' class='form-control' id='cant_piese2'
@@ -122,6 +125,7 @@
                                 placeholder='Pret piesa' value='{{pret_piesa4}}' />
                             <input type='text' name='pret_piesa5' class='form-control' id='pret_piesa5'
                                 placeholder='Pret piesa' value='{{pret_piesa5}}' />
+                            <label for='tarif_ora' class='float-left mt-3'>Tarif ora:</label>
                             <input type='text' name='tarif_ora' class='form-control' id='tarif_ora'
                                 placeholder="Tarif/ora" value='80' />
                         </div>
