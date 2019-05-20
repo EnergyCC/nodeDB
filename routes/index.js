@@ -337,8 +337,9 @@ router.get('/view/:id', checkAuthentication, (req, res) => {
                 error
               });
             } else {
-              // console.log(results);
-              //   console.log(`From view ${nume} || ${result[0].nume}`);
+              let lucrari_sol = JSON.parse(results[0].lucrari_sol);
+              let lucrare_sol_1 = lucrari_sol[0];
+              let job_id = results[0].job_id;
               res.render('view', {
                 results,
                 profile_id,
@@ -382,6 +383,80 @@ router.post('/view/:id/addjobs', checkAuthentication, (req, res) => {
     if (err) {
       res.redirect('/login');
     } else {
+      let lucrari_sol_parse = [
+        req.body.lucrari_sol1,
+        req.body.lucrari_sol2,
+        req.body.lucrari_sol3,
+        req.body.lucrari_sol4,
+        req.body.lucrari_sol5
+      ];
+      let den_piesa_cl_parse = [
+        req.body.den_piesa_cl1,
+        req.body.den_piesa_cl2,
+        req.body.den_piesa_cl3,
+        req.body.den_piesa_cl4,
+        req.body.den_piesa_cl5
+      ];
+      let buc_piesa_cl_parse = [
+        req.body.buc_piesa_cl1,
+        req.body.buc_piesa_cl2,
+        req.body.buc_piesa_cl3,
+        req.body.buc_piesa_cl4,
+        req.body.buc_piesa_cl5
+      ];
+      let def_suplim_parse = [
+        req.body.def_suplimentare1,
+        req.body.def_suplimentare2
+      ];
+      let termen_executie = req.body.termen_executie;
+      let denum_operatie_parse = [
+        req.body.denum_operatie1,
+        req.body.denum_operatie2,
+        req.body.denum_operatie3,
+        req.body.denum_operatie4,
+        req.body.denum_operatie5
+      ];
+      let kilometri = req.body.kilometri;
+      let timp_operatie_parse = [
+        req.body.timp_operatie1,
+        req.body.timp_operatie2,
+        req.body.timp_operatie3,
+        req.body.timp_operatie4,
+        req.body.timp_operatie5
+      ];
+      let denum_piesa_parse = [
+        req.body.denum_piesa1,
+        req.body.denum_piesa2,
+        req.body.denum_piesa3,
+        req.body.denum_piesa4,
+        req.body.denum_piesa5
+      ];
+      let cant_piese_parse = [
+        req.body.cant_piese1,
+        req.body.cant_piese2,
+        req.body.cant_piese3,
+        req.body.cant_piese4,
+        req.body.cant_piese5
+      ];
+      let lucrari_sol = JSON.stringify(lucrari_sol_parse);
+      let den_piesa_cl = JSON.stringify(den_piesa_cl_parse);
+      let profile_id = req.params.id;
+      let sql =
+        'INSERT INTO jobs(lucrari_sol, den_piesa_cl, profile_id) VALUES(?, ?, ?)';
+      connection.db.query(
+        sql,
+        [lucrari_sol, den_piesa_cl, profile_id],
+        (err, result) => {
+          if (err) {
+            let error = 'Eroare';
+            res.render('errors', {
+              error
+            });
+          } else {
+            res.redirect(`/index/view/${profile_id}`);
+          }
+        }
+      );
     }
   });
 });
