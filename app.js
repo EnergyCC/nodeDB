@@ -8,9 +8,24 @@ const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 
 const app = express();
+//create handlebars options
+const hbs = exphbs.create({
+  defaultLayout: 'main',
+  helpers: {
+    parseDen: function(value) {
+      let parse = JSON.parse(value);
+      // console.log(parse[0]);
+      return parse[0];
+    },
+    parseData: function(value) {
+      let data = value.toLocaleDateString('en-GB').split('/');
+      return `${data[1]}/${data[0]}/${data[2]}`;
+    }
+  }
+});
 
 //set handlebars engine
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 //set body parser

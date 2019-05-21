@@ -25,7 +25,7 @@ router.get('/createtables', checkAuthentication, (req, res) => {
       let sqlP =
         'CREATE TABLE IF NOT EXISTS profile(profile_id INT PRIMARY KEY AUTO_INCREMENT, nume_client VARCHAR(64), tip_auto VARCHAR(48), nr_inmatriculare VARCHAR(15), serie_caroserie VARCHAR(20), serie_motor VARCHAR(20))';
       let sqlJ =
-        'CREATE TABLE IF NOT EXISTS jobs(job_id INT PRIMARY KEY AUTO_INCREMENT, data_adaugare DATE, lucrari_sol VARCHAR(512), den_piesa_cl VARCHAR(255), buc_piesa_cl VARCHAR(24), def_suplim VARCHAR(255), termen_executie VARCHAR(12), denum_operatie VARCHAR(512), timp_operatie VARCHAR(24), tarif_ora INT, valoare_lei VARCHAR(48), denum_piesa VARCHAR(255), cant_piese VARCHAR(24), pret_piesa VARCHAR(24), profile_id INT, kilometri INT, FOREIGN KEY (profile_id) REFERENCES profile(profile_id) ON UPDATE CASCADE ON DELETE CASCADE)';
+        'CREATE TABLE IF NOT EXISTS jobs(job_id INT PRIMARY KEY AUTO_INCREMENT, data_adaugare DATE, lucrari_sol VARCHAR(512), den_piesa_cl VARCHAR(255), buc_piesa_cl VARCHAR(24), def_suplim VARCHAR(255), termen_executie VARCHAR(12), denum_operatie VARCHAR(512), timp_operatie VARCHAR(24), tarif_ora INT, denum_piesa VARCHAR(255), cant_piese VARCHAR(24), pret_piesa VARCHAR(24), profile_id INT, kilometri INT, FOREIGN KEY (profile_id) REFERENCES profile(profile_id) ON UPDATE CASCADE ON DELETE CASCADE)';
       connection.db.query(sqlP, (err, results) => {
         if (err) console.log(err);
         else {
@@ -337,9 +337,6 @@ router.get('/view/:id', checkAuthentication, (req, res) => {
                 error
               });
             } else {
-              let lucrari_sol = JSON.parse(results[0].lucrari_sol);
-              let lucrare_sol_1 = lucrari_sol[0];
-              let job_id = results[0].job_id;
               res.render('view', {
                 results,
                 profile_id,
@@ -416,7 +413,7 @@ router.post('/view/:id/addjobs', checkAuthentication, (req, res) => {
         req.body.denum_operatie4,
         req.body.denum_operatie5
       ];
-      let kilometri = req.body.kilometri;
+      let kilometri = parseInt(req.body.kilometri);
       let timp_operatie_parse = [
         req.body.timp_operatie1,
         req.body.timp_operatie2,
@@ -438,16 +435,51 @@ router.post('/view/:id/addjobs', checkAuthentication, (req, res) => {
         req.body.cant_piese4,
         req.body.cant_piese5
       ];
+      let pret_piesa_parse = [
+        req.body.pret_piesa1,
+        req.body.pret_piesa2,
+        req.body.pret_piesa3,
+        req.body.pret_piesa4,
+        req.body.pret_piese5
+      ];
+      let tarif_ora = req.body.tarif_ora;
       let lucrari_sol = JSON.stringify(lucrari_sol_parse);
       let den_piesa_cl = JSON.stringify(den_piesa_cl_parse);
+      let buc_piesa_cl = JSON.stringify(buc_piesa_cl_parse);
+      let def_suplim = JSON.stringify(def_suplim_parse);
+      let denum_operatie = JSON.stringify(denum_operatie_parse);
+      let timp_operatie = JSON.stringify(timp_operatie_parse);
+      let denum_piesa = JSON.stringify(denum_piesa_parse);
+      let cant_piese = JSON.stringify(cant_piese_parse);
+      let pret_piesa = JSON.stringify(pret_piesa_parse);
       let profile_id = req.params.id;
+      let d = new Date();
+      console.log(lucrari_sol);
+      const data =
+        d.getFullYear() + '-' + parseInt(d.getMonth() + 1) + '-' + d.getDate();
       let sql =
-        'INSERT INTO jobs(lucrari_sol, den_piesa_cl, profile_id) VALUES(?, ?, ?)';
+        'INSERT INTO jobs(data_adaugare, lucrari_sol, den_piesa_cl, buc_piesa_cl, def_suplim, termen_executie, denum_operatie, timp_operatie, tarif_ora, denum_piesa, cant_piese, pret_piesa, profile_id, kilometri) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
       connection.db.query(
         sql,
-        [lucrari_sol, den_piesa_cl, profile_id],
+        [
+          data,
+          lucrari_sol,
+          den_piesa_cl,
+          buc_piesa_cl,
+          def_suplim,
+          termen_executie,
+          denum_operatie,
+          timp_operatie,
+          tarif_ora,
+          denum_piesa,
+          cant_piese,
+          pret_piesa,
+          profile_id,
+          kilometri
+        ],
         (err, result) => {
           if (err) {
+            console.log(err);
             let error = 'Eroare';
             res.render('errors', {
               error
@@ -491,7 +523,7 @@ router.get('/deletejobs/:id/true', checkAuthentication, (req, res) => {
       connection.db.query(sql, jobID, (err, result) => {
         if (err) {
           console.log(err);
-          res.send(403);
+          res.sendStatus(403);
         } else {
           res.redirect(`/index/view/${profile_id}`);
           console.log(`Successfully removed job with the id ${jobID}`);

@@ -30,10 +30,10 @@
             <tbody>
                 {{#each results}}
                 <tr class='table-primary'>
-                    <th scope="row" class='text-center'>{{ job_id}}</th>
-                    <td class='text-center'>{{ data_adaugata }}</td>
+                    <th scope="row" class='text-center'>{{ job_id }}</th>
+                    <td class='text-center'>{{ parseData data_adaugare }}</td>
                     <td class='text-center'>{{ kilometri }}</td>
-                    <td class='text-center'>{{ denum_operatie }}</td>
+                    <td class='text-center'>{{ parseDen denum_operatie }}</td>
                     <td class='text-right'>
                         <a href='/index/deletejobs/{{job_id}}?profile={{profile_id}}' class='btn btn-danger'>Sterge</a>
                         <a href='/index/editjbos/{{job_id}}' class='btn btn-secondary'>Editeaza</a>
@@ -44,8 +44,5 @@
             </tbody>
         </table>
     </div>
-
-
-
 
 </section>
