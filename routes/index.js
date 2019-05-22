@@ -545,6 +545,9 @@ router.get('editjobs/:id', checkAuthentication, (req, res) => {
     if (err) {
       res.redirect('/login');
     } else {
+      let job_id = req.params.id;
+      let sql = 'SELECT * FROM jobs WHERE job_id = ?';
+      connection.db.query(sql, job_id, (err, result) => {});
     }
   });
 });
