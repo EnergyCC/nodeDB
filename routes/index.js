@@ -500,10 +500,12 @@ router.get('/deletejobs/:id', checkAuthentication, (req, res) => {
       res.redirect('/login');
     } else {
       let profile_id = req.query.profile;
-      let jobID = req.params.id;
+      let operatie = req.query.nume;
+      let job_id = req.params.id;
       res.render('removejobs', {
-        jobID,
-        profile_id
+        job_id,
+        profile_id,
+        operatie
       });
     }
   });
@@ -517,20 +519,33 @@ router.get('/deletejobs/:id/true', checkAuthentication, (req, res) => {
       res.redirect('/login');
     } else {
       let profile_id = req.query.profile;
-      let jobID = req.params.id;
-      let sql = 'DELETE FROM jobs WHERE jobID = ?';
-      console.log(`${profile_id} | ${jobID} | ${sql}`);
-      connection.db.query(sql, jobID, (err, result) => {
+      let job_id = req.params.id;
+      let sql = 'DELETE FROM jobs WHERE job_id = ?';
+      // console.log(`${profile_id} | ${jobID} | ${sql}`);
+      connection.db.query(sql, job_id, (err, result) => {
         if (err) {
           console.log(err);
-          res.sendStatus(403);
+          let error = 'Eroare';
+          res.render('errors', {
+            error
+          });
         } else {
           res.redirect(`/index/view/${profile_id}`);
-          console.log(`Successfully removed job with the id ${jobID}`);
+          console.log(`Successfully removed job with the id ${job_id}`);
         }
       });
     }
   });
 });
 
+//route to render edit jobs
+
+router.get('editjobs/:id', checkAuthentication, (req, res) => {
+  jwt.verify(req.token, 'secretkey', (err, authData) => {
+    if (err) {
+      res.redirect('/login');
+    } else {
+    }
+  });
+});
 module.exports = router;

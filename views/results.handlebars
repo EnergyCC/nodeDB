@@ -13,7 +13,8 @@
                 <option value='data'>Date</option>
                 <option value='cost'>Cost</option>
             </select> --}}
-            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Cauta</button>
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit"><i
+                    class="fas fa-search mr-sm-2"></i><b>Cauta</b></button>
         </form>
     </div>
 
@@ -25,7 +26,7 @@
             <div class="card-header float-left">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h3>{{nume_client}}</h3>
+                        <h3>{{firstUpper nume_client}}</h3>
                     </div>
                     <div class="col-sm-6">
                         <a href="/index/delete/{{profile_id}}" class="btn btn-danger float-right mr-3 mt-1">Sterge</a>
@@ -38,7 +39,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h4 class="card-title">Tip auto: {{tip_auto}}</h4>
+                        <h4 class="card-title">Tip auto: {{firstUpper tip_auto}}</h4>
                         <h4 class="card-title">Numar inmatriculare: {{nr_inmatriculare}}</h4>
                     </div>
                     <div class="col-sm-6">
