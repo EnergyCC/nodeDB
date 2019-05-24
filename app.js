@@ -14,12 +14,10 @@ const hbs = exphbs.create({
   helpers: {
     parseDen: function(value) {
       let parse = JSON.parse(value);
-      // console.log(parse[0]);
       return parse[0].charAt(0).toUpperCase() + parse[0].slice(1).toLowerCase();
     },
     parseData: function(value) {
       let data = value.toLocaleDateString('en-GB').split('/');
-      // console.log(data);
       return `${data[1]}/${data[0]}/${data[2]}`;
     },
     firstUpper: function(string) {
