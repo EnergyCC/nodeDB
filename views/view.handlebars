@@ -35,8 +35,8 @@
                     <td class='text-center'>{{ kilometri }}</td>
                     <td class='text-center'>{{ parseDen denum_operatie }}</td>
                     <td class='text-right'>
-                        <a href='/index/viewjobs/{{job_id}}' class='btn btn-secondary'>Vezi mai mult</a>
-                        <a href='/index/editjobs/{{job_id}}' class='btn btn-secondary'>Editeaza</a>
+                        <a href='/index/viewjobs/{{job_id}}?profile={{profile_id}}' class='btn btn-secondary'>Vezi mai mult</a>
+                        <a href='/index/editjobs/{{job_id}}?profile={{profile_id}}&source=view' class='btn btn-secondary'>Editeaza</a>
                         <a href='/index/deletejobs/{{job_id}}?profile={{profile_id}}&nume={{parseDen denum_operatie}}'
                             class='btn btn-danger'>Sterge</a>
                     </td>

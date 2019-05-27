@@ -1,0 +1,59 @@
+<section id='viewjobs'>
+    <div class="jumbotron bg-primary">
+        <a href='/index/view/{{profile_id}}' class='btn btn-secondary btn-lg'>Inapoi</a>
+        <a href='/index/editjobs/{{job_id}}?profile={{profile_id}}&source=jobs' class='btn btn-secondary btn-lg'>Editeaza</a>
+        <div class="row justify-content-center">
+            <div class="col-sm-3">
+                <table style='width:100%;text-align:center'>
+                    <caption style='caption-side:top;text-align:center'>Lucrari solicitate</caption>
+                    {{#if lucrari_sol1}}
+                    <tr style='border:1px solid'>
+                        <td>{{firstUpper lucrari_sol1}}</td>
+                    </tr>
+                    {{/if}}
+                    {{#if lucrari_sol2}}
+                    <tr style='border:1px solid'>
+                        <td>{{firstUpper lucrari_sol2}}</td>
+                    </tr>{{/if}}
+                    {{#if lucrari_sol3}}
+                    <tr style='border:1px solid'>
+                        <td>{{firstUpper lucrari_sol3}}</td>
+                    </tr>{{/if}}
+                    {{#if lucrari_sol4}}
+                    <tr style='border:1px solid'>
+                        <td>{{firstUpper lucrari_sol4}}</td>
+                    </tr>{{/if}}
+                    {{#if lucrari_sol5}}
+                    <tr style='border:1px solid'>
+                        <td>{{firstUpper lucrari_sol5}}</td>
+                    </tr>{{/if}}
+                </table>
+             </div><div class="col-sm-3">
+                <table style='width:100%;text-align:center'>
+                    <caption style='caption-side:top;text-align:center'>Denumire piesa client</caption>
+                    {{#if den_piesa_cl1}}
+                    <tr style='border:1px solid'>
+                        <td>{{firstUpper den_piesa_cl1}}</td>
+                    </tr>
+                    {{/if}}
+                    {{#if den_piesa_cl2}}
+                    <tr style='border:1px solid'>
+                        <td>{{firstUpper den_piesa_cl2}}</td>
+                    </tr>{{/if}}
+                    {{#if den_piesa_cl3}}
+                    <tr style='border:1px solid'>
+                        <td>{{firstUpper den_piesa_cl3}}</td>
+                    </tr>{{/if}}
+                    {{#if den_piesa_cl4}}
+                    <tr style='border:1px solid'>
+                        <td>{{firstUpper den_piesa_cl4}}</td>
+                    </tr>{{/if}}
+                    {{#if den_piesa_cl5}}
+                    <tr style='border:1px solid'>
+                        <td>{{firstUpper den_piesa_cl5}}</td>
+                    </tr>{{/if}}
+                </table>
+             </div>
+        </div>
+    </div>
+</section>
