@@ -545,7 +545,6 @@ router.get('/editjobs/:id', checkAuthentication, (req, res) => {
             let job_id = req.params.id;
             let profile_id = req.query.profile;
             let src=req.query.source;
-            console.log(profile_id);
             let sql = 'SELECT * FROM jobs WHERE job_id = ?';
             connection.db.query(sql, job_id, (err, result) => {
                 let url = `${job_id}?profile=${profile_id}&source=${src}`;
@@ -594,8 +593,6 @@ router.get('/editjobs/:id', checkAuthentication, (req, res) => {
                 let pret_piesa3 = JSON.parse(result[0].pret_piesa)[2];
                 let pret_piesa4 = JSON.parse(result[0].pret_piesa)[3];
                 let pret_piesa5 = JSON.parse(result[0].pret_piesa)[4];
-
-                console.log(lucrari_sol5);
                 res.render('addjobs', {
                     url,
                     mth,
@@ -742,7 +739,6 @@ router.post('/editjobs/:id', checkAuthentication, (req, res) => {
                         error
                     })
                 } else {
-                    // console.log(src, profile_id);
                     if (src == 'view') {
                         res.redirect(`/index/view/${profile_id}`);
                     }
@@ -816,9 +812,11 @@ router.get('/viewjobs/:id', checkAuthentication, (req, res) => {
                     let pret_piesa3 = JSON.parse(result[0].pret_piesa)[2];
                     let pret_piesa4 = JSON.parse(result[0].pret_piesa)[3];
                     let pret_piesa5 = JSON.parse(result[0].pret_piesa)[4];
+                    let data_adaugare = result[0].data_adaugare;
                     res.render('viewjobs', {
                         profile_id,
                         job_id,
+                        data_adaugare,
                         lucrari_sol1,
                         lucrari_sol2,
                         lucrari_sol3,
