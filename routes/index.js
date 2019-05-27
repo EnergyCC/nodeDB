@@ -544,10 +544,11 @@ router.get('/editjobs/:id', checkAuthentication, (req, res) => {
         } else {
             let job_id = req.params.id;
             let profile_id = req.query.profile;
+            let src=req.query.source;
             console.log(profile_id);
             let sql = 'SELECT * FROM jobs WHERE job_id = ?';
             connection.db.query(sql, job_id, (err, result) => {
-                let url = `${job_id}?profile=${profile_id}`;
+                let url = `${job_id}?profile=${profile_id}&source=${src}`;
                 let mth = `POST`;
                 let lucrari_sol1 = JSON.parse(result[0].lucrari_sol)[0];
                 let lucrari_sol2 = JSON.parse(result[0].lucrari_sol)[1];
@@ -741,12 +742,12 @@ router.post('/editjobs/:id', checkAuthentication, (req, res) => {
                         error
                     })
                 } else {
-                    console.log(src, profile_id);
+                    // console.log(src, profile_id);
                     if (src == 'view') {
                         res.redirect(`/index/view/${profile_id}`);
                     }
                     if (src == 'jobs') {
-                        res.redirect(`/index/viewjobs/${job_id}`);
+                        res.redirect(`/index/viewjobs/${job_id}?profile=${profile_id}`);
                     }
                 }
             })

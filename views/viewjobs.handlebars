@@ -1,14 +1,25 @@
 <section id='viewjobs'>
-    <div class="jumbotron bg-primary">
-        <a href='/index/view/{{profile_id}}' class='btn btn-secondary btn-lg'>Inapoi</a>
-        <a href='/index/editjobs/{{job_id}}?profile={{profile_id}}&source=jobs' class='btn btn-secondary btn-lg'>Editeaza</a>
+    <div class="jumbotron bg-primary" style='margin-top:0px;padding-top:0.5rem'>
+        <div class='buttons float-right'>
+            <a href='/index/view/{{profile_id}}' class='btn btn-secondary btn-lg'>Inapoi</a>
+            <a href='/index/editjobs/{{job_id}}?profile={{profile_id}}&source=jobs'
+                class='btn btn-secondary btn-lg'>Editeaza</a>
+            <a href='#' class='btn btn-secondary btn-lg'>Genereaza raport</a>
+        </div>
+        <hr class='mt-lg-5'>
+        <h4>Deviz {{job_id}}</h4>
         <div class="row justify-content-center">
+            {{!-- First col --}}
             <div class="col-sm-3">
                 <table style='width:100%;text-align:center'>
                     <caption style='caption-side:top;text-align:center'>Lucrari solicitate</caption>
                     {{#if lucrari_sol1}}
                     <tr style='border:1px solid'>
                         <td>{{firstUpper lucrari_sol1}}</td>
+                    </tr>
+                    {{else}}
+                    <tr style='border:1px solid'>
+                        <td>Nu exista</td>
                     </tr>
                     {{/if}}
                     {{#if lucrari_sol2}}
@@ -28,12 +39,63 @@
                         <td>{{firstUpper lucrari_sol5}}</td>
                     </tr>{{/if}}
                 </table>
-             </div><div class="col-sm-3">
+                <table style='width:100%;text-align:center'>
+                    <caption style='caption-side:top;text-align:center'>Defecte suplimentare</caption>
+                    {{#if def_suplimentare1}}
+                    <tr style='border:1px solid'>
+                        <td>{{firstUpper def_suplimentare1}}</td>
+                    </tr>
+                    {{else}}
+                    <tr style='border:1px solid'>
+                        <td>Nu exista</td>
+                    </tr>
+                    {{/if}}
+                    {{#if def_suplimentare2}}
+                    <tr style='border:1px solid'>
+                        <td>{{firstUpper def_suplimentare2}}</td>
+                    </tr>{{/if}}
+                </table>
+                <table style='width:100%;text-align:center'>
+                    <caption style='caption-side:top;text-align:center'>Lucrari convenite cu clientul<br>Denumire
+                        operatie</caption>
+                    {{#if denum_operatie1}}
+                    <tr style='border:1px solid'>
+                        <td>{{firstUpper denum_operatie1}}</td>
+                    </tr>
+                    {{else}}
+                    <tr style='border:1px solid'>
+                        <td>Nu exista</td>
+                    </tr>
+                    {{/if}}
+                    {{#if denum_operatie2}}
+                    <tr style='border:1px solid'>
+                        <td>{{firstUpper denum_operatie2}}</td>
+                    </tr>{{/if}}
+                    {{#if denum_operatie3}}
+                    <tr style='border:1px solid'>
+                        <td>{{firstUpper denum_operatie3}}</td>
+                    </tr>{{/if}}
+                    {{#if denum_operatie4}}
+                    <tr style='border:1px solid'>
+                        <td>{{firstUpper denum_operatie4}}</td>
+                    </tr>{{/if}}
+                    {{#if denum_operatie5}}
+                    <tr style='border:1px solid'>
+                        <td>{{firstUpper denum_operatie5}}</td>
+                    </tr>{{/if}}
+                </table>
+            </div>
+            {{!-- second col --}}
+            <div class="col-sm-3">
                 <table style='width:100%;text-align:center'>
                     <caption style='caption-side:top;text-align:center'>Denumire piesa client</caption>
                     {{#if den_piesa_cl1}}
                     <tr style='border:1px solid'>
                         <td>{{firstUpper den_piesa_cl1}}</td>
+                    </tr>
+                    {{else}}
+                    <tr style='border:1px solid'>
+                        <td>Nu exista</td>
                     </tr>
                     {{/if}}
                     {{#if den_piesa_cl2}}
@@ -53,7 +115,91 @@
                         <td>{{firstUpper den_piesa_cl5}}</td>
                     </tr>{{/if}}
                 </table>
-             </div>
+                <table style='width:100%;text-align:center'>
+                    <caption style='caption-side:top;text-align:center'>Termen executie</caption>
+                    {{#if termen_executie}}
+                    <tr style='border:1px solid'>
+                        <td>{{firstUpper termen_executie}} ore</td>
+                    </tr>
+                    {{else}}
+                    <tr style='border:1px solid'>
+                        <td>Nu exista</td>
+                    </tr>
+                    {{/if}}
+                </table>
+                <table style='width:100%;text-align:center'>
+                    <caption style='caption-side:top;text-align:center'>Lucrari convenite cu clientul<br>Timp ore
+                    </caption>
+                    {{#if timp_operatie1}}
+                    <tr style='border:1px solid'>
+                        <td>{{firstUpper timp_operatie1}} ore</td>
+                    </tr>
+                    {{else}}
+                    <tr style='border:1px solid'>
+                        <td>Nu exista</td>
+                    </tr>
+                    {{/if}}
+                    {{#if timp_operatie2}}
+                    <tr style='border:1px solid'>
+                        <td>{{firstUpper timp_operatie2}} ore</td>
+                    </tr>{{/if}}
+                    {{#if timp_operatie3}}
+                    <tr style='border:1px solid'>
+                        <td>{{firstUpper timp_operatie3}} ore</td>
+                    </tr>{{/if}}
+                    {{#if timp_operatie4}}
+                    <tr style='border:1px solid'>
+                        <td>{{firstUpper timp_operatie4}} ore</td>
+                    </tr>{{/if}}
+                    {{#if timp_operatie5}}
+                    <tr style='border:1px solid'>
+                        <td>{{firstUpper timp_operatie5}} ore</td>
+                    </tr>{{/if}}
+                </table>
+            </div>
+            {{!-- third col --}}
+            <div class="col-sm-3">
+                <table style='width:100%;text-align:center'>
+                    <caption style='caption-side:top;text-align:center'>Nr. piese client</caption>
+                    {{#if buc_piesa_cl1}}
+                    <tr style='border:1px solid'>
+                        <td>{{firstUpper buc_piesa_cl1}} buc.</td>
+                    </tr>
+                    {{else}}
+                    <tr style='border:1px solid'>
+                        <td>Nu exista</td>
+                    </tr>
+                    {{/if}}
+                    {{#if buc_piesa_cl2}}
+                    <tr style='border:1px solid'>
+                        <td>{{firstUpper buc_piesa_cl2}} buc.</td>
+                    </tr>{{/if}}
+                    {{#if buc_piesa_cl3}}
+                    <tr style='border:1px solid'>
+                        <td>{{firstUpper buc_piesa_cl3}} buc.</td>
+                    </tr>{{/if}}
+                    {{#if buc_piesa_cl4}}
+                    <tr style='border:1px solid'>
+                        <td>{{firstUpper buc_piesa_cl4}} buc.</td>
+                    </tr>{{/if}}
+                    {{#if buc_piesa_cl5}}
+                    <tr style='border:1px solid'>
+                        <td>{{firstUpper buc_piesa_cl5}} buc.</td>
+                    </tr>{{/if}}
+                </table>
+                <table style='width:100%;text-align:center'>
+                    <caption style='caption-side:top;text-align:center'>Kilometri</caption>
+                    {{#if kilometri}}
+                    <tr style='border:1px solid'>
+                        <td>{{kilometri}} km</td>
+                    </tr>
+                    {{else}}
+                    <tr style='border:1px solid'>
+                        <td>Nu exista</td>
+                    </tr>
+                    {{/if}}
+                </table>
+            </div>
         </div>
     </div>
 </section>
