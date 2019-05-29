@@ -1,11 +1,12 @@
-/* body {
-  margin: 0;
+body {
+  /* margin: 0;
   padding: 0;
   background: rgb(34, 34, 34);
   font-weight: 600;
   font-family: sans-serif;
-  color: white;
-} */
+  color: white; */
+  height: 100%;
+}
 
 /* Navigation css */
 
@@ -49,6 +50,7 @@ nav a {
   margin: 4rem auto;
   position: relative;
   overflow: none;
+  min-height: 100%;
 }
 
 /* .dropdown-toggle::after {
