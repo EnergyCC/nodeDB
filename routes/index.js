@@ -868,4 +868,12 @@ router.get('/viewjobs/:id', checkAuthentication, (req, res) => {
         }
     })
 })
+
+
+// gen raport
+router.get('/raport', (req, res) =>{
+    res.render('raport', {
+        layout: false
+    });
+})
 module.exports = router;
