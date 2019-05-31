@@ -4,7 +4,8 @@
             <a href='/index/view/{{profile_id}}' class='btn btn-secondary btn-lg'>Inapoi</a>
             <a href='/index/editjobs/{{job_id}}?profile={{profile_id}}&source=jobs'
                 class='btn btn-secondary btn-lg'>Editeaza</a>
-            <input type='button' id='btn' value='Genereaza raport' class='btn btn-lg btn-secondary' onclick='genRap()'>
+            <a href='/index/raport/{{job_id}}?profile={{profile_id}}' target='_blank'
+                class='btn btn-secondary btn-lg'>Genereaza raport</a>
         </div>
         <hr class='mt-lg-5'>
         <h4>Deviz {{job_id}}</h4>
@@ -17,7 +18,8 @@
                         exista{{/if}}</td>
                     <th style='border:1px solid;width:15%'>Denumire piese client</th>
 
-                    <td style='border:1px solid;width:35%'>{{#if den_piesa_cl1}}{{firstUpper den_piesa_cl1}}{{else}}Nu
+                    <td style='border:1px solid;width:35%'>
+                        {{#if den_piesa_cl1}}{{firstUpper den_piesa_cl1}}{{else}}Nu
                         exista{{/if}}</td>
                 </tr>
                 <tr>

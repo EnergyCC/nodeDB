@@ -596,6 +596,7 @@ router.get('/editjobs/:id', checkAuthentication, (req, res) => {
                 res.render('addjobs', {
                     url,
                     mth,
+                    profile_id,
                     lucrari_sol1,
                     lucrari_sol2,
                     lucrari_sol3,
@@ -814,6 +815,7 @@ router.get('/viewjobs/:id', checkAuthentication, (req, res) => {
                     let pret_piesa5 = JSON.parse(result[0].pret_piesa)[4];
                     let data_adaugare = result[0].data_adaugare;
                     res.render('viewjobs', {
+                        result,
                         profile_id,
                         job_id,
                         data_adaugare,
@@ -871,9 +873,60 @@ router.get('/viewjobs/:id', checkAuthentication, (req, res) => {
 
 
 // gen raport
-router.get('/raport', (req, res) =>{
-    res.render('raport', {
-        layout: false
-    });
+router.get('/raport/:id', checkAuthentication, (req, res) =>{
+    jwt.verify(req.token, 'secretkey', (err, authData) =>{
+        let job_id = req.params.id;
+        let profile_id = req.query.profile;
+        let pSql = 'SELECT * FROM profile WHERE profile_id = ?';
+        let jSql = 'SELECT * FROM jobs WHERE job_id = ?';
+        connection.db.query(pSql, profile_id, (err, pResult) => {
+            if(err){
+                console.log(err);
+                let error = 'Eroare';
+                res.render('errors', { error} );
+            }else{
+                connection.db.query(jSql, job_id, (err, jResult) => {
+                    if(err){
+                        console.log(err);
+                        let error = 'Eroare';
+                        res.render('errors', {error});
+                    } else{
+                        let valoare_leiEx = [];
+                        let result_timp = JSON.parse(jResult[0].timp_operatie);
+                        for(let i = 0; i <= result_timp.length -1 ; i++){
+                            valoare_leiEx.push(result_timp[i] * jResult[0].tarif_ora);                
+                        }
+                        let total_ore_operatie = 0;
+                        for(let i = 0; i <= result_timp.length - 1 ; i++){
+                            if(result_timp[i].length === 0){
+                                result_timp[i] = 0;
+                            }
+                            total_ore_operatie += parseInt(result_timp[i]);
+                        }
+                        let total_cost_val = total_ore_operatie * jResult[0].tarif_ora;
+                        let cant_piese_unitar = JSON.parse(jResult[0].cant_piese);
+                        let pret_piesa_unitar = JSON.parse(jResult[0].pret_piesa);
+                        let val_totala_piese = [];
+                        for(let i = 0; i <= cant_piese_unitar.length - 1; i++){
+                            if(isNaN(cant_piese_unitar[i])){
+                                val_totala_piese.push('0');
+                            }
+                            val_totala_piese.push(parseInt(cant_piese_unitar[i]) * parseInt(pret_piesa_unitar[i]));
+                        }
+                            res.render('raport', {
+                            layout:false,
+                            valoare_leiEx,
+                            total_ore_operatie,
+                            total_cost_val,
+                            val_totala_piese,
+                            jResult,
+                            pResult
+                        })
+                    }
+                })
+            }
+        })
+    })
+    
 })
 module.exports = router;

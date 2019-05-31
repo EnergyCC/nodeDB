@@ -23,11 +23,9 @@ const hbs = exphbs.create({
     firstUpper: function(string) {
       return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
     },
-    tableRes: function(value) {
-      val = JSON.parse(value);
-      for (let i = val.length; i <= val.length + 1; i++) {
-        console.log(val[i]);
-      }
+    tableRes: function(str, val) {
+      let result = JSON.parse(str)[val];
+      return result.charAt(0).toUpperCase() + result.slice(1).toLowerCase();
     }
   }
 });
