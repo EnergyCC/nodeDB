@@ -76,6 +76,8 @@ router.post('/', checkAuthentication, (req, res) => {
             let sql = `SELECT * FROM profile WHERE ${searchParam} LIKE '%${searchQuery}%'`;
             connection.db.query(sql, (err, results) => {
                 if (err) {
+                    let error = 'Eroare';
+                    console.log(err);
                     res.render('errors', {
                         error
                     });
