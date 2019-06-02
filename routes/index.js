@@ -546,7 +546,7 @@ router.get('/editjobs/:id', checkAuthentication, (req, res) => {
         } else {
             let job_id = req.params.id;
             let profile_id = req.query.profile;
-            let src=req.query.source;
+            let src = req.query.source;
             let sql = 'SELECT * FROM jobs WHERE job_id = ?';
             connection.db.query(sql, job_id, (err, result) => {
                 let url = `${job_id}?profile=${profile_id}&source=${src}`;
@@ -650,7 +650,7 @@ router.get('/editjobs/:id', checkAuthentication, (req, res) => {
     });
 });
 
-// router for edit
+// router for edit jobs
 
 router.post('/editjobs/:id', checkAuthentication, (req, res) => {
     jwt.verify(req.token, 'secretkey', (err, authData) => {
@@ -659,39 +659,12 @@ router.post('/editjobs/:id', checkAuthentication, (req, res) => {
         } else {
             let profile_id = req.query.profile;
             let src = req.query.source;
-            let lucrari_sol_parse = [
-                req.body.lucrari_sol1,
-                req.body.lucrari_sol2,
-                req.body.lucrari_sol3,
-                req.body.lucrari_sol4,
-                req.body.lucrari_sol5
-            ];
-            let den_piesa_cl_parse = [
-                req.body.den_piesa_cl1,
-                req.body.den_piesa_cl2,
-                req.body.den_piesa_cl3,
-                req.body.den_piesa_cl4,
-                req.body.den_piesa_cl5
-            ];
-            let buc_piesa_cl_parse = [
-                req.body.buc_piesa_cl1,
-                req.body.buc_piesa_cl2,
-                req.body.buc_piesa_cl3,
-                req.body.buc_piesa_cl4,
-                req.body.buc_piesa_cl5
-            ];
-            let def_suplim_parse = [
-                req.body.def_suplimentare1,
-                req.body.def_suplimentare2
-            ];
+            let lucrari_sol_parse = [req.body.lucrari_sol1, req.body.lucrari_sol2, req.body.lucrari_sol3, req.body.lucrari_sol4, req.body.lucrari_sol5];
+            let den_piesa_cl_parse = [req.body.den_piesa_cl1, req.body.den_piesa_cl2, req.body.den_piesa_cl3, req.body.den_piesa_cl4, req.body.den_piesa_cl5];
+            let buc_piesa_cl_parse = [req.body.buc_piesa_cl1, req.body.buc_piesa_cl2, req.body.buc_piesa_cl3, req.body.buc_piesa_cl4, req.body.buc_piesa_cl5];
+            let def_suplim_parse = [req.body.def_suplimentare1, req.body.def_suplimentare2];
             let termen_executie = req.body.termen_executie;
-            let denum_operatie_parse = [
-                req.body.denum_operatie1,
-                req.body.denum_operatie2,
-                req.body.denum_operatie3,
-                req.body.denum_operatie4,
-                req.body.denum_operatie5
-            ];
+            let denum_operatie_parse = [req.body.denum_operatie1, req.body.denum_operatie2, req.body.denum_operatie3, req.body.denum_operatie4, req.body.denum_operatie5];
             let kilometri = parseInt(req.body.kilometri);
             let timp_operatie_parse = [
                 req.body.timp_operatie1,
@@ -754,6 +727,8 @@ router.post('/editjobs/:id', checkAuthentication, (req, res) => {
     })
 })
 
+
+// get data for viewjobs to see all the jobs
 router.get('/viewjobs/:id', checkAuthentication, (req, res) => {
     jwt.verify(req.token, 'secretkey', (err, authData) => {
         if (err) {
@@ -771,101 +746,10 @@ router.get('/viewjobs/:id', checkAuthentication, (req, res) => {
                     })
                 } else {
                     let job_id = result[0].job_id;
-                    let lucrari_sol1 = JSON.parse(result[0].lucrari_sol)[0];
-                    let lucrari_sol2 = JSON.parse(result[0].lucrari_sol)[1];
-                    let lucrari_sol3 = JSON.parse(result[0].lucrari_sol)[2];
-                    let lucrari_sol4 = JSON.parse(result[0].lucrari_sol)[3];
-                    let lucrari_sol5 = JSON.parse(result[0].lucrari_sol)[4];
-                    let den_piesa_cl1 = JSON.parse(result[0].den_piesa_cl)[0];
-                    let den_piesa_cl2 = JSON.parse(result[0].den_piesa_cl)[1];
-                    let den_piesa_cl3 = JSON.parse(result[0].den_piesa_cl)[2];
-                    let den_piesa_cl4 = JSON.parse(result[0].den_piesa_cl)[3];
-                    let den_piesa_cl5 = JSON.parse(result[0].den_piesa_cl)[4];
-                    let buc_piesa_cl1 = JSON.parse(result[0].buc_piesa_cl)[0];
-                    let buc_piesa_cl2 = JSON.parse(result[0].buc_piesa_cl)[1];
-                    let buc_piesa_cl3 = JSON.parse(result[0].buc_piesa_cl)[2];
-                    let buc_piesa_cl4 = JSON.parse(result[0].buc_piesa_cl)[3];
-                    let buc_piesa_cl5 = JSON.parse(result[0].buc_piesa_cl)[4];
-                    let def_suplimentare1 = JSON.parse(result[0].def_suplim)[0];
-                    let def_suplimentare2 = JSON.parse(result[0].def_suplim)[1];
-                    let termen_executie = result[0].termen_executie;
-                    let denum_operatie1 = JSON.parse(result[0].denum_operatie)[0];
-                    let denum_operatie2 = JSON.parse(result[0].denum_operatie)[1];
-                    let denum_operatie3 = JSON.parse(result[0].denum_operatie)[2];
-                    let denum_operatie4 = JSON.parse(result[0].denum_operatie)[3];
-                    let denum_operatie5 = JSON.parse(result[0].denum_operatie)[4];
-                    let kilometri = result[0].kilometri;
-                    let timp_operatie1 = JSON.parse(result[0].timp_operatie)[0];
-                    let timp_operatie2 = JSON.parse(result[0].timp_operatie)[1];
-                    let timp_operatie3 = JSON.parse(result[0].timp_operatie)[2];
-                    let timp_operatie4 = JSON.parse(result[0].timp_operatie)[3];
-                    let timp_operatie5 = JSON.parse(result[0].timp_operatie)[4];
-                    let denum_piesa1 = JSON.parse(result[0].denum_piesa)[0];
-                    let denum_piesa2 = JSON.parse(result[0].denum_piesa)[1];
-                    let denum_piesa3 = JSON.parse(result[0].denum_piesa)[2];
-                    let denum_piesa4 = JSON.parse(result[0].denum_piesa)[3];
-                    let denum_piesa5 = JSON.parse(result[0].denum_piesa)[4];
-                    let cant_piese1 = JSON.parse(result[0].cant_piese)[0];
-                    let cant_piese2 = JSON.parse(result[0].cant_piese)[1];
-                    let cant_piese3 = JSON.parse(result[0].cant_piese)[2];
-                    let cant_piese4 = JSON.parse(result[0].cant_piese)[3];
-                    let cant_piese5 = JSON.parse(result[0].cant_piese)[4];
-                    let pret_piesa1 = JSON.parse(result[0].pret_piesa)[0];
-                    let pret_piesa2 = JSON.parse(result[0].pret_piesa)[1];
-                    let pret_piesa3 = JSON.parse(result[0].pret_piesa)[2];
-                    let pret_piesa4 = JSON.parse(result[0].pret_piesa)[3];
-                    let pret_piesa5 = JSON.parse(result[0].pret_piesa)[4];
-                    let data_adaugare = result[0].data_adaugare;
                     res.render('viewjobs', {
                         result,
                         profile_id,
-                        job_id,
-                        data_adaugare,
-                        lucrari_sol1,
-                        lucrari_sol2,
-                        lucrari_sol3,
-                        lucrari_sol4,
-                        lucrari_sol5,
-                        den_piesa_cl1,
-                        den_piesa_cl2,
-                        den_piesa_cl3,
-                        den_piesa_cl4,
-                        den_piesa_cl5,
-                        buc_piesa_cl1,
-                        buc_piesa_cl2,
-                        buc_piesa_cl3,
-                        buc_piesa_cl4,
-                        buc_piesa_cl5,
-                        def_suplimentare1,
-                        def_suplimentare2,
-                        termen_executie,
-                        denum_operatie1,
-                        denum_operatie2,
-                        denum_operatie3,
-                        denum_operatie4,
-                        denum_operatie4,
-                        denum_operatie5,
-                        kilometri,
-                        timp_operatie1,
-                        timp_operatie2,
-                        timp_operatie3,
-                        timp_operatie4,
-                        timp_operatie5,
-                        denum_piesa1,
-                        denum_piesa2,
-                        denum_piesa3,
-                        denum_piesa4,
-                        denum_piesa5,
-                        cant_piese1,
-                        cant_piese2,
-                        cant_piese3,
-                        cant_piese4,
-                        cant_piese5,
-                        pret_piesa1,
-                        pret_piesa2,
-                        pret_piesa3,
-                        pret_piesa4,
-                        pret_piesa5
+                        job_id
                     })
                 }
             })
@@ -875,32 +759,32 @@ router.get('/viewjobs/:id', checkAuthentication, (req, res) => {
 
 
 // gen raport
-router.get('/raport/:id', checkAuthentication, (req, res) =>{
-    jwt.verify(req.token, 'secretkey', (err, authData) =>{
+router.get('/raport/:id', checkAuthentication, (req, res) => {
+    jwt.verify(req.token, 'secretkey', (err, authData) => {
         let job_id = req.params.id;
         let profile_id = req.query.profile;
         let pSql = 'SELECT * FROM profile WHERE profile_id = ?';
         let jSql = 'SELECT * FROM jobs WHERE job_id = ?';
         connection.db.query(pSql, profile_id, (err, pResult) => {
-            if(err){
+            if (err) {
                 console.log(err);
                 let error = 'Eroare';
-                res.render('errors', { error} );
-            }else{
+                res.render('errors', { error });
+            } else {
                 connection.db.query(jSql, job_id, (err, jResult) => {
-                    if(err){
+                    if (err) {
                         console.log(err);
                         let error = 'Eroare';
-                        res.render('errors', {error});
-                    } else{
+                        res.render('errors', { error });
+                    } else {
                         let valoare_leiEx = [];
                         let result_timp = JSON.parse(jResult[0].timp_operatie);
-                        for(let i = 0; i <= result_timp.length -1 ; i++){
-                            valoare_leiEx.push(result_timp[i] * jResult[0].tarif_ora);                
+                        for (let i = 0; i <= result_timp.length - 1; i++) {
+                            valoare_leiEx.push(result_timp[i] * jResult[0].tarif_ora);
                         }
                         let total_ore_operatie = 0;
-                        for(let i = 0; i <= result_timp.length - 1 ; i++){
-                            if(result_timp[i].length === 0){
+                        for (let i = 0; i <= result_timp.length - 1; i++) {
+                            if (result_timp[i].length === 0) {
                                 result_timp[i] = 0;
                             }
                             total_ore_operatie += parseInt(result_timp[i]);
@@ -909,14 +793,14 @@ router.get('/raport/:id', checkAuthentication, (req, res) =>{
                         let cant_piese_unitar = JSON.parse(jResult[0].cant_piese);
                         let pret_piesa_unitar = JSON.parse(jResult[0].pret_piesa);
                         let val_totala_piese = [];
-                        for(let i = 0; i <= cant_piese_unitar.length - 1; i++){
-                            if(isNaN(cant_piese_unitar[i])){
+                        for (let i = 0; i <= cant_piese_unitar.length - 1; i++) {
+                            if (isNaN(cant_piese_unitar[i])) {
                                 val_totala_piese.push('0');
                             }
                             val_totala_piese.push(parseInt(cant_piese_unitar[i]) * parseInt(pret_piesa_unitar[i]));
                         }
-                            res.render('raport', {
-                            layout:false,
+                        res.render('raport', {
+                            layout: false,
                             valoare_leiEx,
                             total_ore_operatie,
                             total_cost_val,
@@ -929,6 +813,6 @@ router.get('/raport/:id', checkAuthentication, (req, res) =>{
             }
         })
     })
-    
+
 })
 module.exports = router;
