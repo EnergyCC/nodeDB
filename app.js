@@ -85,11 +85,11 @@ app.post('/login', (req, res) => {
         jwt.sign(
           { username },
           'secretkey',
-          { expiresIn: '20m' },
+          { expiresIn: '2h' },
           (err, token) => {
             // send cookie
             res.cookie('authorization', token, {
-              maxAge: 1200000,
+              maxAge: 7200000,
               httpOnly: true
             });
             res.redirect('index');

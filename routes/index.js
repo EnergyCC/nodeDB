@@ -778,9 +778,11 @@ router.get('/raport/:id', checkAuthentication, (req, res) => {
                         res.render('errors', { error });
                     } else {
                         let valoare_leiEx = [];
+                        let total_manopera = 0;
                         let result_timp = JSON.parse(jResult[0].timp_operatie);
                         for (let i = 0; i <= result_timp.length - 1; i++) {
                             valoare_leiEx.push(result_timp[i] * jResult[0].tarif_ora);
+                            total_manopera += (result_timp[i] * jResult[0].tarif_ora);
                         }
                         let total_ore_operatie = 0;
                         for (let i = 0; i <= result_timp.length - 1; i++) {
@@ -792,19 +794,29 @@ router.get('/raport/:id', checkAuthentication, (req, res) => {
                         let total_cost_val = total_ore_operatie * jResult[0].tarif_ora;
                         let cant_piese_unitar = JSON.parse(jResult[0].cant_piese);
                         let pret_piesa_unitar = JSON.parse(jResult[0].pret_piesa);
+                        let total_materiale = 0;
                         let val_totala_piese = [];
                         for (let i = 0; i <= cant_piese_unitar.length - 1; i++) {
                             if (isNaN(cant_piese_unitar[i])) {
                                 val_totala_piese.push('0');
                             }
                             val_totala_piese.push(parseInt(cant_piese_unitar[i]) * parseInt(pret_piesa_unitar[i]));
-                        }
+                            if(cant_piese_unitar[i] != null && pret_piesa_unitar[i] !=null){
+                            total_materiale += (parseInt(cant_piese_unitar[i]) * parseInt(pret_piesa_unitar[i]));
+                          }
+                            }
+                            // total_materiale = val_totala_piese.reduce((a,b) => a + b, 0)
+                        console.log(val_totala_piese);
+
+
                         res.render('raport', {
                             layout: false,
                             valoare_leiEx,
                             total_ore_operatie,
                             total_cost_val,
                             val_totala_piese,
+                            total_manopera,
+                            total_materiale,
                             jResult,
                             pResult
                         })

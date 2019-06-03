@@ -15,7 +15,7 @@
 <body style="background-color: white;color:#333">
     <div id="deviz" style="background-color: white">
         <!-- inceput -->
-        <div class="unitate ml-5 mt-4">Unitatea: Service Chris&Jon S.R.L.</div>
+        <div class="unitate ml-5 mt-4">Unitatea: Service Cris&Jon S.R.L.</div>
         <div class="deviz mt-3">
             <h4 class="float-left ml-5">Comanda-Deviz nr.: {{ jResult.0.job_id }}</h4>
             <h4 class="float-right mr-5">DATA: {{ parseData jResult.0.data_adaugare }}</h4>
@@ -299,14 +299,14 @@
                     <td></td>
                     <td></td>
                     <td colspan="2">Total manopera</td>
-                    <td style="border-bottom:1px solid"></td>
+                    <td style="border-bottom:1px solid">{{total_manopera}}</td>
                 </tr>
                 <tr>
                     <td></td>
                     <td></td>
                     <td></td>
                     <td colspan="2">Total materiale</td>
-                    <td style="border-bottom:1px solid"></td>
+                    <td style="border-bottom:1px solid">{{total_materiale}}</td>
                 </tr>
                 <tr>
                     <td></td>
@@ -337,6 +337,16 @@
                     <td colspan="2" style="border:2px solid">Total materiale</td>
                 </tr>
             </table>
+        </div>
+        <div class='text mt-5 mr-5 ml-5'>
+          <p class='text-center'>************CERTIFICAT DE CALITATE SI GARANTIE************</p>
+          <p class='text-left'>Unitatea service garanteaza lucrarea executata*) si conformitatea acesteia**), potrivit L. 449/2003 si L. i 296/2004,</p>
+          <p class='text-left'>* 3 luni de la data receptiei autovehiculului, daca lucrarea nu a necesitat inlocuiri de piese sau daca s-a executat cu piesa clientului</p>
+          <p class='text-left'>** Garantia pieselor furnizate de unitate, in baza L. 449/2003 - conf. declaratiei producatorului prin conventie intre parti conditionat de resp. indicatiilor de exploatare prevazute de producatorul autovehiculului este de <b>3 luni</b></p>
+          <p class='text-left'>*** La cererea beneficiarului unitatea va asigura vizualizarea activitatilor desfasurate si inregistrari care sa dovedeasca efectuarea inspectiilor finale</p>
+          <p class='text-left'> Accept / solicit utilizarea pieselor reconditionate, reparate, reutilizabile   ____</p>
+          <p class='float-left mt-4'>Sef unitate, <br></p>
+          <p class='float-right mt-4'>Client,<br> {{pResult.0.nume_client}}</p>
         </div>
     </div>
     <script>
