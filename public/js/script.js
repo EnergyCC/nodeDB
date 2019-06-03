@@ -6,3 +6,5 @@ if ('serviceWorker' in navigator) {
     })
     .catch(console.error);
 }
+
+function addLucrare() {}

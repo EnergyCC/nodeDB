@@ -797,17 +797,19 @@ router.get('/raport/:id', checkAuthentication, (req, res) => {
                         let total_materiale = 0;
                         let val_totala_piese = [];
                         for (let i = 0; i <= cant_piese_unitar.length - 1; i++) {
-                            if (isNaN(cant_piese_unitar[i])) {
-                                val_totala_piese.push('0');
-                            }
                             val_totala_piese.push(parseInt(cant_piese_unitar[i]) * parseInt(pret_piesa_unitar[i]));
-                            if(cant_piese_unitar[i] != null && pret_piesa_unitar[i] !=null){
-                            total_materiale += (parseInt(cant_piese_unitar[i]) * parseInt(pret_piesa_unitar[i]));
-                          }
+                            val_totala_piese[i] = val_totala_piese[i] || 0;
                             }
-                            // total_materiale = val_totala_piese.reduce((a,b) => a + b, 0)
-                        console.log(val_totala_piese);
+                            for(let i = 0; i< 5; i++){
+                                val_totala_piese[i] = val_totala_piese[i] || 0;
+                                total_materiale += val_totala_piese[i];
 
+                            }
+                            let total_plata = total_materiale + total_manopera;
+                            let total_plata_ftva = (total_plata * 19)/100;
+                            let total_tva = total_plata - total_plata_ftva;
+                            console.log(total_materiale);
+                            console.log(val_totala_piese);
 
                         res.render('raport', {
                             layout: false,
@@ -817,6 +819,9 @@ router.get('/raport/:id', checkAuthentication, (req, res) => {
                             val_totala_piese,
                             total_manopera,
                             total_materiale,
+                            total_plata,
+                            total_plata_ftva,
+                            total_tva,
                             jResult,
                             pResult
                         })

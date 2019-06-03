@@ -26,6 +26,14 @@ const hbs = exphbs.create({
     tableRes: function(str, val) {
       let result = JSON.parse(str)[val];
       return result.charAt(0).toUpperCase() + result.slice(1).toLowerCase();
+    },
+    ifEx: function(str, val) {
+      if (str == 0) {
+        return ' ';
+      } else {
+        let result = JSON.parse(str)[val];
+        return result.charAt(0).toUpperCase() + result.slice(1).toLowerCase();
+      }
     }
   }
 });
@@ -93,11 +101,15 @@ app.post('/login', (req, res) => {
               httpOnly: true
             });
             res.redirect('index');
+            console.log(
+              'Successful login from: ' + req.connection.remoteAddress
+            );
           }
         );
       }
       // response in case user and password is wrong
       else {
+        console.log('Unsuccessful login from: ' + req.connection.remoteAddress);
         errors.push({ text: 'Utilizator sau parola gresite' });
         res.render('login', {
           errors,
