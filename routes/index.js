@@ -806,10 +806,8 @@ router.get('/raport/:id', checkAuthentication, (req, res) => {
 
                             }
                             let total_plata = total_materiale + total_manopera;
-                            let total_plata_ftva = (total_plata * 19)/100;
-                            let total_tva = total_plata - total_plata_ftva;
-                            console.log(total_materiale);
-                            console.log(val_totala_piese);
+                            let total_tva = (total_plata * 19)/100;
+                            let total_plata_ftva = total_plata - total_tva;
 
                         res.render('raport', {
                             layout: false,
