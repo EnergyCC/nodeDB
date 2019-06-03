@@ -426,21 +426,36 @@ router.post('/view/:id/addjobs', checkAuthentication, (req, res) => {
                 req.body.denum_piesa2,
                 req.body.denum_piesa3,
                 req.body.denum_piesa4,
-                req.body.denum_piesa5
+                req.body.denum_piesa5,
+                req.body.denum_piesa6,
+                req.body.denum_piesa7,
+                req.body.denum_piesa8,
+                req.body.denum_piesa9,
+                req.body.denum_piesa10
             ];
             let cant_piese_parse = [
                 req.body.cant_piese1,
                 req.body.cant_piese2,
                 req.body.cant_piese3,
                 req.body.cant_piese4,
-                req.body.cant_piese5
+                req.body.cant_piese5,
+                req.body.cant_piese6,
+                req.body.cant_piese7,
+                req.body.cant_piese8,
+                req.body.cant_piese9,
+                req.body.cant_piese10
             ];
             let pret_piesa_parse = [
                 req.body.pret_piesa1,
                 req.body.pret_piesa2,
                 req.body.pret_piesa3,
                 req.body.pret_piesa4,
-                req.body.pret_piesa5
+                req.body.pret_piesa5,
+                req.body.pret_piesa6,
+                req.body.pret_piesa7,
+                req.body.pret_piesa8,
+                req.body.pret_piesa9,
+                req.body.pret_piesa10
             ];
             let tarif_ora = req.body.tarif_ora;
             let lucrari_sol = JSON.stringify(lucrari_sol_parse);
@@ -585,16 +600,31 @@ router.get('/editjobs/:id', checkAuthentication, (req, res) => {
                 let denum_piesa3 = JSON.parse(result[0].denum_piesa)[2];
                 let denum_piesa4 = JSON.parse(result[0].denum_piesa)[3];
                 let denum_piesa5 = JSON.parse(result[0].denum_piesa)[4];
+                let denum_piesa6 = JSON.parse(result[0].denum_piesa)[5];
+                let denum_piesa7 = JSON.parse(result[0].denum_piesa)[6];
+                let denum_piesa8 = JSON.parse(result[0].denum_piesa)[7];
+                let denum_piesa9 = JSON.parse(result[0].denum_piesa)[8];
+                let denum_piesa10 = JSON.parse(result[0].denum_piesa)[9];
                 let cant_piese1 = JSON.parse(result[0].cant_piese)[0];
                 let cant_piese2 = JSON.parse(result[0].cant_piese)[1];
                 let cant_piese3 = JSON.parse(result[0].cant_piese)[2];
                 let cant_piese4 = JSON.parse(result[0].cant_piese)[3];
                 let cant_piese5 = JSON.parse(result[0].cant_piese)[4];
+                let cant_piese6 = JSON.parse(result[0].cant_piese)[5];
+                let cant_piese7 = JSON.parse(result[0].cant_piese)[6];
+                let cant_piese8 = JSON.parse(result[0].cant_piese)[7];
+                let cant_piese9 = JSON.parse(result[0].cant_piese)[8];
+                let cant_piese10 = JSON.parse(result[0].cant_piese)[9];
                 let pret_piesa1 = JSON.parse(result[0].pret_piesa)[0];
                 let pret_piesa2 = JSON.parse(result[0].pret_piesa)[1];
                 let pret_piesa3 = JSON.parse(result[0].pret_piesa)[2];
                 let pret_piesa4 = JSON.parse(result[0].pret_piesa)[3];
                 let pret_piesa5 = JSON.parse(result[0].pret_piesa)[4];
+                let pret_piesa6 = JSON.parse(result[0].pret_piesa)[5];
+                let pret_piesa7 = JSON.parse(result[0].pret_piesa)[6];
+                let pret_piesa8 = JSON.parse(result[0].pret_piesa)[7];
+                let pret_piesa9 = JSON.parse(result[0].pret_piesa)[8];
+                let pret_piesa10 = JSON.parse(result[0].pret_piesa)[9];
                 res.render('addjobs', {
                     url,
                     mth,
@@ -634,16 +664,31 @@ router.get('/editjobs/:id', checkAuthentication, (req, res) => {
                     denum_piesa3,
                     denum_piesa4,
                     denum_piesa5,
+                    denum_piesa6,
+                    denum_piesa7,
+                    denum_piesa8,
+                    denum_piesa9,
+                    denum_piesa10,
                     cant_piese1,
                     cant_piese2,
                     cant_piese3,
                     cant_piese4,
                     cant_piese5,
+                    cant_piese6,
+                    cant_piese7,
+                    cant_piese8,
+                    cant_piese9,
+                    cant_piese10,
                     pret_piesa1,
                     pret_piesa2,
                     pret_piesa3,
                     pret_piesa4,
-                    pret_piesa5
+                    pret_piesa5,
+                    pret_piesa6,
+                    pret_piesa7,
+                    pret_piesa8,
+                    pret_piesa9,
+                    pret_piesa10
                 });
             });
         }
@@ -678,21 +723,36 @@ router.post('/editjobs/:id', checkAuthentication, (req, res) => {
                 req.body.denum_piesa2,
                 req.body.denum_piesa3,
                 req.body.denum_piesa4,
-                req.body.denum_piesa5
+                req.body.denum_piesa5,
+                req.body.denum_piesa6,
+                req.body.denum_piesa7,
+                req.body.denum_piesa8,
+                req.body.denum_piesa9,
+                req.body.denum_piesa10
             ];
             let cant_piese_parse = [
                 req.body.cant_piese1,
                 req.body.cant_piese2,
                 req.body.cant_piese3,
                 req.body.cant_piese4,
-                req.body.cant_piese5
+                req.body.cant_piese5,
+                req.body.cant_piese6,
+                req.body.cant_piese7,
+                req.body.cant_piese8,
+                req.body.cant_piese9,
+                req.body.cant_piese10
             ];
             let pret_piesa_parse = [
                 req.body.pret_piesa1,
                 req.body.pret_piesa2,
                 req.body.pret_piesa3,
                 req.body.pret_piesa4,
-                req.body.pret_piesa5
+                req.body.pret_piesa5,
+                req.body.pret_piesa6,
+                req.body.pret_piesa7,
+                req.body.pret_piesa8,
+                req.body.pret_piesa9,
+                req.body.pret_piesa10
             ];
             let tarif_ora = req.body.tarif_ora;
             let lucrari_sol = JSON.stringify(lucrari_sol_parse);
@@ -799,15 +859,15 @@ router.get('/raport/:id', checkAuthentication, (req, res) => {
                         for (let i = 0; i <= cant_piese_unitar.length - 1; i++) {
                             val_totala_piese.push(parseInt(cant_piese_unitar[i]) * parseInt(pret_piesa_unitar[i]));
                             val_totala_piese[i] = val_totala_piese[i] || 0;
-                            }
-                            for(let i = 0; i< 5; i++){
-                                val_totala_piese[i] = val_totala_piese[i] || 0;
-                                total_materiale += val_totala_piese[i];
+                        }
+                        for (let i = 0; i <= cant_piese_unitar.length - 1; i++) {
+                            val_totala_piese[i] = val_totala_piese[i] || 0;
+                            total_materiale += val_totala_piese[i];
 
-                            }
-                            let total_plata = total_materiale + total_manopera;
-                            let total_tva = (total_plata * 19)/100;
-                            let total_plata_ftva = total_plata - total_tva;
+                        }
+                        let total_plata = total_materiale + total_manopera;
+                        let total_tva = (total_plata * 19) / 100;
+                        let total_plata_ftva = total_plata - total_tva;
 
                         res.render('raport', {
                             layout: false,
