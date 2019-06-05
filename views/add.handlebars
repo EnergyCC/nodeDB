@@ -2,11 +2,13 @@
     <div class="jumbotron bg-primary text-center">
         <div class="form">
             <h3>Creaza un profil</h3>
+            {{!-- create a div with alerts for errors --}}
             {{#each errors}}
             <div class="alert alert-danger">
                 {{text}}
             </div>
             {{/each}}
+            {{!-- endof errors --}}
             <div class="container">
                 <div class="row justify-content-center">
                     <form action="{{url}}" method="{{mth}}">

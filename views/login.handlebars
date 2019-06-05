@@ -2,6 +2,7 @@
     <div class="jumbotron bg-primary text-center">
         <div class="form">
             <h2>Logare</h2>
+            {{!-- create div to display errors for login --}}
             {{#each errors}}
             <div class="alert alert-danger">
                 {{text}}
@@ -22,9 +23,9 @@
                         </div>
                         <input type="submit" value='Logare' class="btn btn-secondary btn-block" />
                     </form>
-                    
+
                     <a href='{{url}}'>{{text}}</a>
-                    
+
                 </div>
             </div>
         </div>

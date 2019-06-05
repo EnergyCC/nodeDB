@@ -11,7 +11,7 @@ connection.db.connect(err => {
     if (err) {
         console.log(err);
     } else {
-        console.log('Connection successfully made');
+        console.log(new Date() + ' -> Connection successfully made');
     }
 });
 
@@ -25,7 +25,7 @@ router.get('/createtables', checkAuthentication, (req, res) => {
             let sqlP =
                 'CREATE TABLE IF NOT EXISTS profile(profile_id INT PRIMARY KEY AUTO_INCREMENT, nume_client VARCHAR(64), tip_auto VARCHAR(48), nr_inmatriculare VARCHAR(15), serie_caroserie VARCHAR(20), serie_motor VARCHAR(20))';
             let sqlJ =
-                'CREATE TABLE IF NOT EXISTS jobs(job_id INT PRIMARY KEY AUTO_INCREMENT, data_adaugare DATE, lucrari_sol VARCHAR(512), den_piesa_cl VARCHAR(255), buc_piesa_cl VARCHAR(24), def_suplim VARCHAR(255), termen_executie VARCHAR(12), denum_operatie VARCHAR(512), timp_operatie VARCHAR(24), tarif_ora INT, denum_piesa VARCHAR(255), cant_piese VARCHAR(24), pret_piesa VARCHAR(24), profile_id INT, kilometri INT, FOREIGN KEY (profile_id) REFERENCES profile(profile_id) ON UPDATE CASCADE ON DELETE CASCADE)';
+                'CREATE TABLE IF NOT EXISTS jobs(job_id INT PRIMARY KEY AUTO_INCREMENT, data_adaugare DATE, lucrari_sol VARCHAR(512), den_piesa_cl VARCHAR(255), buc_piesa_cl VARCHAR(24), def_suplim VARCHAR(255), termen_executie VARCHAR(12), denum_operatie VARCHAR(512), timp_operatie VARCHAR(24), tarif_ora INT, denum_piesa VARCHAR(512), cant_piese VARCHAR(48), pret_piesa VARCHAR(48), profile_id INT, kilometri INT, FOREIGN KEY (profile_id) REFERENCES profile(profile_id) ON UPDATE CASCADE ON DELETE CASCADE)';
             connection.db.query(sqlP, (err, results) => {
                 if (err) console.log(err);
                 else {
@@ -57,6 +57,7 @@ router.get('/', checkAuthentication, (req, res) => {
                         error
                     });
                 } else {
+                    console.log(new Date() + ' -> retrieved data for index');
                     res.render('results', {
                         results
                     });
@@ -82,6 +83,7 @@ router.post('/', checkAuthentication, (req, res) => {
                         error
                     });
                 } else {
+                    console.log(new Date() + ' -> Successfully executed search function');
                     res.render('results', {
                         results
                     });
@@ -174,6 +176,7 @@ router.post('/add', checkAuthentication, (req, res) => {
                                 error
                             });
                         } else {
+                            console.log(new Date() + ' -> Successfully created database entry');
                             res.redirect('/index');
                         }
                     }
@@ -191,6 +194,7 @@ router.get('/getdb', checkAuthentication, (req, res) => {
             res.sendStatus(403);
         } else {
             connection.db.query(sql, (err, results) => {
+                console.log(new Date() + ' -> accessed raw data /getdb');
                 res.send(results);
             });
         }
@@ -229,6 +233,7 @@ router.get('/delete/:id/true', checkAuthentication, (req, res) => {
             connection.db.query(sql, req.params.id, (err, result) => {
                 if (err) throw err;
                 else {
+                    console.log(new Date() + ' -> removed profile');
                     res.redirect('/index');
                 }
             });
@@ -296,6 +301,7 @@ router.post('/edit/:id', checkAuthentication, (req, res) => {
                 (err, result) => {
                     if (err) console.log(err);
                     else {
+                        console.log(new Date() + ' -> Edited profile');
                         res.redirect('/index');
                     }
                 }
@@ -337,6 +343,7 @@ router.get('/view/:id', checkAuthentication, (req, res) => {
                                 error
                             });
                         } else {
+                            console.log(new Date() + ' -> Successfully retrieved data for viewjobs');
                             res.render('view', {
                                 results,
                                 profile_id,
@@ -499,6 +506,7 @@ router.post('/view/:id/addjobs', checkAuthentication, (req, res) => {
                             error
                         });
                     } else {
+                        console.log(new Date() + ' -> Added job');
                         res.redirect(`/index/view/${profile_id}`);
                     }
                 }
@@ -775,6 +783,7 @@ router.post('/editjobs/:id', checkAuthentication, (req, res) => {
                         error
                     })
                 } else {
+                    console.log(new Date() + ' -> Successfuly edited job');
                     if (src == 'view') {
                         res.redirect(`/index/view/${profile_id}`);
                     }
@@ -806,6 +815,7 @@ router.get('/viewjobs/:id', checkAuthentication, (req, res) => {
                     })
                 } else {
                     let job_id = result[0].job_id;
+                    console.log(new Date() + ' -> Successfully retrieved data for single job');
                     res.render('viewjobs', {
                         result,
                         profile_id,
@@ -868,7 +878,7 @@ router.get('/raport/:id', checkAuthentication, (req, res) => {
                         let total_plata = total_materiale + total_manopera;
                         let total_tva = (total_plata * 19) / 100;
                         let total_plata_ftva = total_plata - total_tva;
-
+                        console.log(new Date() + ' -> Successfully created report');
                         res.render('raport', {
                             layout: false,
                             valoare_leiEx,

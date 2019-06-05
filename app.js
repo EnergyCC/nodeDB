@@ -28,7 +28,7 @@ const hbs = exphbs.create({
       return result.charAt(0).toUpperCase() + result.slice(1).toLowerCase();
     },
     ifEx: function(str, val) {
-      if (str == 0) {
+      if (typeof str === 'null') {
         return ' ';
       } else {
         let result = JSON.parse(str)[val];
@@ -84,6 +84,7 @@ app.post('/login', (req, res) => {
   let sql = 'SELECT password FROM users WHERE username=?';
   let { username, password } = req.body;
   let errors = [];
+  // retrieves password from input users
   connection.db.query(sql, username, (err, result) => {
     if (err) console.log(err);
     else {
