@@ -859,7 +859,7 @@ router.get('/raport/:id', checkAuthentication, (req, res) => {
                             if (result_timp[i].length === 0) {
                                 result_timp[i] = 0;
                             }
-                            total_ore_operatie += parseInt(result_timp[i]);
+                            total_ore_operatie += parseFloat(result_timp[i]);
                         }
                         let total_cost_val = total_ore_operatie * jResult[0].tarif_ora;
                         let cant_piese_unitar = JSON.parse(jResult[0].cant_piese);
@@ -867,7 +867,7 @@ router.get('/raport/:id', checkAuthentication, (req, res) => {
                         let total_materiale = 0;
                         let val_totala_piese = [];
                         for (let i = 0; i <= cant_piese_unitar.length - 1; i++) {
-                            val_totala_piese.push(parseInt(cant_piese_unitar[i]) * parseInt(pret_piesa_unitar[i]));
+                            val_totala_piese.push(parseFloat(cant_piese_unitar[i]) * parseFloat(pret_piesa_unitar[i]));
                             val_totala_piese[i] = val_totala_piese[i] || 0;
                         }
                         for (let i = 0; i <= cant_piese_unitar.length - 1; i++) {
