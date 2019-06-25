@@ -44,15 +44,15 @@ router.get('/createtables', checkAuthentication, (req, res) => {
 //create router for index
 
 router.get('/', checkAuthentication, (req, res) => {
-    let sql = `SELECT * FROM profile LIMIT 50;`;
+    let sql = `SELECT * FROM profile ORDER BY profile_id DESC LIMIT 50;`;
     jwt.verify(req.token, 'secretkey', (err, authData) => {
         if (err) {
             res.redirect('/login');
         } else {
             connection.db.query(sql, (err, results) => {
                 if (err) {
-                    console.log(err);
-                    let error = 'Eroare';
+                    console.log(err.sqlMessage);
+                    let error = err.sqlMessage;
                     res.render('errors', {
                         error
                     });
@@ -69,7 +69,7 @@ router.get('/', checkAuthentication, (req, res) => {
 
 // Search function ↓
 router.post('/', checkAuthentication, (req, res) => {
-    let { searchQuery, searchParam } = req.body;
+    let { searchQuery, searchParam, searchOrder } = req.body;
     jwt.verify(req.token, 'secretkey', (err, authData) => {
         if (err) {
             res.redirect('/login');
@@ -77,8 +77,8 @@ router.post('/', checkAuthentication, (req, res) => {
             let sql = `SELECT * FROM profile WHERE ${searchParam} LIKE '%${searchQuery}%'`;
             connection.db.query(sql, (err, results) => {
                 if (err) {
-                    let error = 'Eroare';
-                    console.log(err);
+                    let error = err.sqlMessage;
+                    console.log(err.sqlMessage);
                     res.render('errors', {
                         error
                     });
@@ -170,8 +170,8 @@ router.post('/add', checkAuthentication, (req, res) => {
                     ],
                     (err, result) => {
                         if (err) {
-                            let error = 'Eroare';
-                            console.log(err);
+                            let error = err.sqlMessage;
+                            console.log(err.sqlMessage);
                             res.render('errors', {
                                 error
                             });
@@ -209,7 +209,13 @@ router.get('/delete/:id', checkAuthentication, (req, res) => {
         } else {
             let sql = 'SELECT * FROM profile WHERE profile_id = ?;';
             connection.db.query(sql, req.params.id, (err, result) => {
-                if (err) throw err;
+                if (err){
+                    let error = err.sqlMessage;
+                    console.log(err.sqlMessage);
+                    res.render('errors', {
+                        error
+                    });
+                }
                 else {
                     let nume_client = result[0].nume_client;
                     let profile_id = result[0].profile_id;
@@ -231,7 +237,14 @@ router.get('/delete/:id/true', checkAuthentication, (req, res) => {
         } else {
             let sql = 'DELETE FROM profile WHERE profile_id = ?;';
             connection.db.query(sql, req.params.id, (err, result) => {
-                if (err) throw err;
+                if (err){
+                    
+                    let error = err.sqlMessage;
+                    console.log(err.sqlMessage);
+                    res.render('errors', {
+                        error
+                    });
+                }
                 else {
                     console.log(new Date() + ' -> removed profile');
                     res.redirect('/index');
@@ -256,7 +269,13 @@ router.get('/edit/:id', checkAuthentication, (req, res) => {
                 let nr_inmatriculare = result[0].nr_inmatriculare;
                 let serie_caroserie = result[0].serie_caroserie;
                 let serie_motor = result[0].serie_motor;
-                if (err) console.log(err);
+                if (err){                    
+                    let error = err.sqlMessage;
+                    console.log(err.sqlMessage);
+                    res.render('errors', {
+                        error
+                    });
+                }
                 else {
                     res.render('add', {
                         url,
@@ -299,7 +318,13 @@ router.post('/edit/:id', checkAuthentication, (req, res) => {
                     req.params.id
                 ],
                 (err, result) => {
-                    if (err) console.log(err);
+                    if (err){                        
+                        let error = err.sqlMessage;
+                        console.log(err.sqlMessage);
+                        res.render('errors', {
+                            error
+                        });
+                    }
                     else {
                         console.log(new Date() + ' -> Edited profile');
                         res.redirect('/index');
@@ -321,8 +346,8 @@ router.get('/view/:id', checkAuthentication, (req, res) => {
             let profile_id = req.params.id;
             connection.db.query(sql, profile_id, (err, result) => {
                 if (err) {
-                    console.log(err.message);
-                    let error = 'Eroare';
+                    console.log(err.sqlMessage);
+                    let error = err.sqlMessage;
                     res.render('errors', {
                         error
                     });
@@ -337,8 +362,8 @@ router.get('/view/:id', checkAuthentication, (req, res) => {
                     let jsql = `SELECT * FROM jobs WHERE profile_id =?`;
                     connection.db.query(jsql, profile_id, (err, results) => {
                         if (err) {
-                            console.log(err);
-                            let error = 'Eroare'; //Errors string temp
+                            console.log(err.sqlMessage);
+                            let error = err.sqlMessage; //Errors string temp
                             res.render('errors', {
                                 error
                             });
@@ -500,8 +525,8 @@ router.post('/view/:id/addjobs', checkAuthentication, (req, res) => {
                 ],
                 (err, result) => {
                     if (err) {
-                        console.log(err);
-                        let error = 'Eroare';
+                        console.log(err.sqlMessage);
+                        let error = err.sqlMessage;
                         res.render('errors', {
                             error
                         });
@@ -546,8 +571,8 @@ router.get('/deletejobs/:id/true', checkAuthentication, (req, res) => {
             // console.log(`${profile_id} | ${jobID} | ${sql}`);
             connection.db.query(sql, job_id, (err, result) => {
                 if (err) {
-                    console.log(err);
-                    let error = 'Eroare';
+                    console.log(err.sqlMessage);
+                    let error = err.sqlMessage;
                     res.render('errors', {
                         error
                     });
@@ -777,8 +802,8 @@ router.post('/editjobs/:id', checkAuthentication, (req, res) => {
 
             connection.db.query(sql, [lucrari_sol, den_piesa_cl, buc_piesa_cl, def_suplim, termen_executie, denum_operatie, timp_operatie, tarif_ora, denum_piesa, cant_piese, pret_piesa, kilometri, job_id], (err, result) => {
                 if (err) {
-                    console.log(err);
-                    let error = 'Eroare';
+                    console.log(err.sqlMessage);
+                    let error = err.sqlMessage;
                     res.render('errors', {
                         error
                     })
@@ -808,8 +833,8 @@ router.get('/viewjobs/:id', checkAuthentication, (req, res) => {
             let profile_id = req.query.profile;
             connection.db.query(sql, job_id, (err, result) => {
                 if (err) {
-                    console.log(err);
-                    let error = 'Eroare';
+                    console.log(err.sqlMessage);
+                    let error = err.sqlMessage;
                     res.render('errors', {
                         error
                     })
@@ -837,14 +862,14 @@ router.get('/raport/:id', checkAuthentication, (req, res) => {
         let jSql = 'SELECT * FROM jobs WHERE job_id = ?';
         connection.db.query(pSql, profile_id, (err, pResult) => {
             if (err) {
-                console.log(err);
-                let error = 'Eroare';
+                console.log(err.sqlMessage);
+                let error = err.sqlMessage;
                 res.render('errors', { error });
             } else {
                 connection.db.query(jSql, job_id, (err, jResult) => {
                     if (err) {
-                        console.log(err);
-                        let error = 'Eroare';
+                        console.log(err.sqlMessage);
+                        let error = err.sqlMessage;
                         res.render('errors', { error });
                     } else {
                         let valoare_leiEx = [];
