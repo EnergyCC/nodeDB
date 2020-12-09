@@ -13,7 +13,7 @@
         </div>
         <hr>
         <div class='text-right'>
-            <a href='/index/view/{{profile_id}}/addjobs' class='btn btn-secondary btn-lg mr-3'>Adauga lucrare
+            <a href='/add/jobs/{{profile_id}}' class='btn btn-secondary btn-lg mr-3'>Adauga lucrare
                 service</a>
         </div>
 
@@ -37,9 +37,9 @@
                     <td class='text-right'>
                         <a href='/index/viewjobs/{{job_id}}?profile={{profile_id}}' class='btn btn-secondary'>Vezi mai
                             mult</a>
-                        <a href='/index/editjobs/{{job_id}}?profile={{profile_id}}&source=view'
+                        <a href='/edit/jobs/{{job_id}}?profile={{profile_id}}&source=view'
                             class='btn btn-secondary'>Editeaza</a>
-                        <a href='/index/deletejobs/{{job_id}}?profile={{profile_id}}&nume={{parseDen denum_operatie}}'
+                        <a href='/remove/jobs/{{job_id}}?profile={{profile_id}}&nume={{parseDen denum_operatie}}'
                             class='btn btn-danger'>Sterge</a>
                     </td>
                 </tr>
