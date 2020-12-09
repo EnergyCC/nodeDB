@@ -32,10 +32,11 @@ router.post('/profile', checkAuthentication, (req, res) => {
         tip_auto,
         nr_inmatriculare,
         serie_caroserie,
-        serie_motor
+        serie_motor,
+        nr_tel
       } = req.body;
       let sql =
-        'INSERT INTO profile(nume_client, tip_auto, nr_inmatriculare, serie_caroserie, serie_motor) VALUES (?, ?, ?, ?, ?);';
+        'INSERT INTO profile(nume_client, tip_auto, nr_inmatriculare, serie_caroserie, serie_motor, nr_tel) VALUES (?, ?, ?, ?, ?, ?);';
       //   let d = new Date();
       //   const data =
       //     d.getFullYear() + '-' + parseInt(d.getMonth() + 1) + '-' + d.getDate();
@@ -79,7 +80,8 @@ router.post('/profile', checkAuthentication, (req, res) => {
             tip_auto.toUpperCase(),
             nr_inmatriculare.toUpperCase(),
             serie_caroserie.toUpperCase(),
-            serie_motor.toUpperCase()
+            serie_motor.toUpperCase(),
+            nr_tel
           ],
           (err, result) => {
             if (err) {

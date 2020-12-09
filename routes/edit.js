@@ -20,6 +20,7 @@ router.get('/profile/:id', checkAuthentication, (req, res) => {
         let nr_inmatriculare = result[0].nr_inmatriculare;
         let serie_caroserie = result[0].serie_caroserie;
         let serie_motor = result[0].serie_motor;
+        let nr_tel = result[0].nr_tel;
         if (err) {
           let error = err.sqlMessage;
           console.log(err.sqlMessage);
@@ -34,7 +35,8 @@ router.get('/profile/:id', checkAuthentication, (req, res) => {
             tip_auto,
             nr_inmatriculare,
             serie_caroserie,
-            serie_motor
+            serie_motor,
+            nr_tel
           });
         }
       });
@@ -50,13 +52,14 @@ router.post('/profile/:id', checkAuthentication, (req, res) => {
       res.redirect('/login');
     } else {
       let sql =
-        'UPDATE profile SET nume_client=?, tip_auto=?, nr_inmatriculare=?, serie_caroserie=?, serie_motor=? WHERE profile_id=?';
+        'UPDATE profile SET nume_client=?, tip_auto=?, nr_inmatriculare=?, serie_caroserie=?, serie_motor=?, nr_tel=? WHERE profile_id=?';
       let {
         nume_client,
         tip_auto,
         nr_inmatriculare,
         serie_caroserie,
-        serie_motor
+        serie_motor,
+        nr_tel
       } = req.body;
       connection.db.query(
         sql,
@@ -66,6 +69,7 @@ router.post('/profile/:id', checkAuthentication, (req, res) => {
           nr_inmatriculare.toUpperCase(),
           serie_caroserie.toUpperCase(),
           serie_motor.toUpperCase(),
+          nr_tel,
           req.params.id
         ],
         (err, result) => {

@@ -13,7 +13,7 @@ router.get('/createtables', checkAuthentication, (req, res) => {
       res.redirect('/login');
     } else {
       let sqlP =
-        'CREATE TABLE IF NOT EXISTS profile(profile_id INT PRIMARY KEY AUTO_INCREMENT, nume_client VARCHAR(64), tip_auto VARCHAR(48), nr_inmatriculare VARCHAR(15), serie_caroserie VARCHAR(20), serie_motor VARCHAR(20))';
+        'CREATE TABLE IF NOT EXISTS profile(profile_id INT PRIMARY KEY AUTO_INCREMENT, nume_client VARCHAR(64), tip_auto VARCHAR(48), nr_inmatriculare VARCHAR(15), serie_caroserie VARCHAR(20), serie_motor VARCHAR(20), nr_tel INT)';
       let sqlJ =
         'CREATE TABLE IF NOT EXISTS jobs(job_id INT PRIMARY KEY AUTO_INCREMENT, data_adaugare DATE, lucrari_sol VARCHAR(512), den_piesa_cl VARCHAR(255), buc_piesa_cl VARCHAR(24), def_suplim VARCHAR(255), termen_executie VARCHAR(12), denum_operatie VARCHAR(512), timp_operatie VARCHAR(24), tarif_ora INT, denum_piesa VARCHAR(512), cant_piese VARCHAR(48), pret_piesa VARCHAR(48), profile_id INT, kilometri INT, FOREIGN KEY (profile_id) REFERENCES profile(profile_id) ON UPDATE CASCADE ON DELETE CASCADE)';
       connection.db.query(sqlP, (err, results) => {
@@ -122,6 +122,7 @@ router.get('/view/:id', checkAuthentication, (req, res) => {
           //   let data_N = result[0].data_adaug.toLocaleDateString('en-GB').split('/');
           //   let data_adaug = `${data_N[1]}/${data_N[0]}/${data_N[2]}`;
           let serie_motor = result[0].serie_motor;
+          let nr_tel = result[0].nr_tel;
           let jsql = `SELECT * FROM jobs WHERE profile_id =?`;
           connection.db.query(jsql, profile_id, (err, results) => {
             if (err) {
@@ -141,7 +142,8 @@ router.get('/view/:id', checkAuthentication, (req, res) => {
                 tip_auto,
                 nr_inmatriculare,
                 serie_caroserie,
-                serie_motor
+                serie_motor,
+                nr_tel
               });
             }
           });
