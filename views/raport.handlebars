@@ -24,7 +24,7 @@
                 <td style="width:50%">Nr. inmatriculare: {{ pResult.0.nr_inmatriculare }}</td>
             </tr>
             <tr>
-                <td>Client: {{ firstUpper pResult.0.nume_client }}</td>
+                <td>Client: {{ firstUpper pResult.0.nume_client }} || Nr. Telefon: {{ pResult.0.nr_tel }}</td>
                 <td>Serie caroserie: {{ pResult.0.serie_caroserie }}</td>
             </tr>
             <tr>
@@ -405,6 +405,13 @@
             <p class='text-left'> Accept / solicit utilizarea pieselor reconditionate, reparate, reutilizabile ____</p>
             <p class='float-left mt-4'>Sef unitate, <br></p>
             <p class='float-right mt-4'>Client,<br> {{pResult.0.nume_client}}</p>
+        </div>
+        <div class='mt-5'>&nbsp;</div>
+        <div class="text mt-5 mr-5 ml-5">
+            <p class='text-left'>Unitatea de service Chris&Jon S.R.L. colecteaza date cu caracter personal (Nume, nr.
+                telefon, date despre masina). Datele colectate sunt salvate si protejate pe un server extern, ele nu
+                sunt disponibile altor compani sau servici. Acestea sunt folosite pentru generarea rapoartelor de
+                service si nu sunt folosite cu un alt scop.</p>
         </div>
     </div>
     <script>
