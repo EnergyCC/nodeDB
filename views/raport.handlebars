@@ -24,7 +24,10 @@
                 <td style="width:50%">Nr. inmatriculare: {{ pResult.0.nr_inmatriculare }}</td>
             </tr>
             <tr>
-                <td>Client: {{ firstUpper pResult.0.nume_client }} || Nr. Telefon: {{ pResult.0.nr_tel }}</td>
+                <td>Client: {{ firstUpper pResult.0.nume_client }}
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Nr.
+                    Telefon:&nbsp;&nbsp; {{
+                    pResult.0.nr_tel }}</td>
                 <td>Serie caroserie: {{ pResult.0.serie_caroserie }}</td>
             </tr>
             <tr>
@@ -227,7 +230,7 @@
                 </tr>
                 <tr>
                     <th style="border:2px solid;width:10%">Nr. crt.</th>
-                    <th style="border:2px solid;width:50%">Denmirea piesa/material</th>
+                    <th style="border:2px solid;width:50%">Denumirea piesa/material</th>
                     <th style="border:2px solid;width:10%">U/M</th>
                     <th style="border:2px solid;width:10%">Cantitate</th>
                     <th style="border:2px solid;width:10%">Pret unitar</th>
@@ -334,6 +337,56 @@
                         {{else}} &nbsp; {{/if}}</td>
                 </tr>
                 <tr>
+                    <td style="border:2px solid;width:10%">11</td>
+                    <td style="border:2px solid;width:50%">{{ tableRes jResult.0.denum_piesa 10 }}</td>
+                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[10]}} BUC
+                        {{else}} &nbsp; {{/if}}</td>
+                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.cant_piese 10}}</td>
+                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.pret_piesa 10}}</td>
+                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[10]}} {{ val_totala_piese.[10] }}
+                        {{else}} &nbsp; {{/if}}</td>
+                </tr>
+                <tr>
+                    <td style="border:2px solid;width:10%">12</td>
+                    <td style="border:2px solid;width:50%">{{ tableRes jResult.0.denum_piesa 11 }}</td>
+                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[11]}} BUC
+                        {{else}} &nbsp; {{/if}}</td>
+                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.cant_piese 11}}</td>
+                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.pret_piesa 11}}</td>
+                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[11]}} {{ val_totala_piese.[11] }}
+                        {{else}} &nbsp; {{/if}}</td>
+                </tr>
+                <tr>
+                    <td style="border:2px solid;width:10%">13</td>
+                    <td style="border:2px solid;width:50%">{{ tableRes jResult.0.denum_piesa 12 }}</td>
+                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[12]}} BUC
+                        {{else}} &nbsp; {{/if}}</td>
+                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.cant_piese 12}}</td>
+                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.pret_piesa 12}}</td>
+                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[12]}} {{ val_totala_piese.[12] }}
+                        {{else}} &nbsp; {{/if}}</td>
+                </tr>
+                <tr>
+                    <td style="border:2px solid;width:10%">14</td>
+                    <td style="border:2px solid;width:50%">{{ tableRes jResult.0.denum_piesa 13 }}</td>
+                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[13]}} BUC
+                        {{else}} &nbsp; {{/if}}</td>
+                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.cant_piese 13}}</td>
+                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.pret_piesa 13}}</td>
+                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[13]}} {{ val_totala_piese.[13] }}
+                        {{else}} &nbsp; {{/if}}</td>
+                </tr>
+                <tr>
+                    <td style="border:2px solid;width:10%">15</td>
+                    <td style="border:2px solid;width:50%">{{ tableRes jResult.0.denum_piesa 14 }}</td>
+                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[14]}} BUC
+                        {{else}} &nbsp; {{/if}}</td>
+                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.cant_piese 14}}</td>
+                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.pret_piesa 14}}</td>
+                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[14]}} {{ val_totala_piese.[14] }}
+                        {{else}} &nbsp; {{/if}}</td>
+                </tr>
+                <tr>
                     <td style="border:2px solid;width:10%" colspan="2">
                         Regie manopera
                     </td>
@@ -407,12 +460,7 @@
             <p class='float-right mt-4'>Client,<br> {{pResult.0.nume_client}}</p>
         </div>
         <div class='mt-5'>&nbsp;</div>
-        <div class="text mt-5 mr-5 ml-5">
-            <p class='text-left'>Unitatea de service Chris&Jon S.R.L. colecteaza date cu caracter personal (Nume, nr.
-                telefon, date despre masina). Datele colectate sunt salvate si protejate pe un server extern, ele nu
-                sunt disponibile altor compani sau servici. Acestea sunt folosite pentru generarea rapoartelor de
-                service si nu sunt folosite cu un alt scop.</p>
-        </div>
+
     </div>
     <script>
         window.onload = () => {

@@ -132,6 +132,7 @@ router.get('/jobs/:id', checkAuthentication, (req, res) => {
         let timp_operatie3 = JSON.parse(result[0].timp_operatie)[2];
         let timp_operatie4 = JSON.parse(result[0].timp_operatie)[3];
         let timp_operatie5 = JSON.parse(result[0].timp_operatie)[4];
+
         let denum_piesa1 = JSON.parse(result[0].denum_piesa)[0];
         let denum_piesa2 = JSON.parse(result[0].denum_piesa)[1];
         let denum_piesa3 = JSON.parse(result[0].denum_piesa)[2];
@@ -142,6 +143,12 @@ router.get('/jobs/:id', checkAuthentication, (req, res) => {
         let denum_piesa8 = JSON.parse(result[0].denum_piesa)[7];
         let denum_piesa9 = JSON.parse(result[0].denum_piesa)[8];
         let denum_piesa10 = JSON.parse(result[0].denum_piesa)[9];
+        let denum_piesa11 = JSON.parse(result[0].denum_piesa)[10];
+        let denum_piesa12 = JSON.parse(result[0].denum_piesa)[11];
+        let denum_piesa13 = JSON.parse(result[0].denum_piesa)[12];
+        let denum_piesa14 = JSON.parse(result[0].denum_piesa)[13];
+        let denum_piesa15 = JSON.parse(result[0].denum_piesa)[14];
+
         let cant_piese1 = JSON.parse(result[0].cant_piese)[0];
         let cant_piese2 = JSON.parse(result[0].cant_piese)[1];
         let cant_piese3 = JSON.parse(result[0].cant_piese)[2];
@@ -152,6 +159,13 @@ router.get('/jobs/:id', checkAuthentication, (req, res) => {
         let cant_piese8 = JSON.parse(result[0].cant_piese)[7];
         let cant_piese9 = JSON.parse(result[0].cant_piese)[8];
         let cant_piese10 = JSON.parse(result[0].cant_piese)[9];
+        let cant_piese11 = JSON.parse(result[0].cant_piese)[10];
+        let cant_piese12 = JSON.parse(result[0].cant_piese)[11];
+        let cant_piese13 = JSON.parse(result[0].cant_piese)[12];
+        let cant_piese14 = JSON.parse(result[0].cant_piese)[13];
+        let cant_piese15 = JSON.parse(result[0].cant_piese)[14];
+
+
         let pret_piesa1 = JSON.parse(result[0].pret_piesa)[0];
         let pret_piesa2 = JSON.parse(result[0].pret_piesa)[1];
         let pret_piesa3 = JSON.parse(result[0].pret_piesa)[2];
@@ -162,6 +176,12 @@ router.get('/jobs/:id', checkAuthentication, (req, res) => {
         let pret_piesa8 = JSON.parse(result[0].pret_piesa)[7];
         let pret_piesa9 = JSON.parse(result[0].pret_piesa)[8];
         let pret_piesa10 = JSON.parse(result[0].pret_piesa)[9];
+        let pret_piesa11 = JSON.parse(result[0].pret_piesa)[10];
+        let pret_piesa12 = JSON.parse(result[0].pret_piesa)[11];
+        let pret_piesa13 = JSON.parse(result[0].pret_piesa)[12];
+        let pret_piesa14 = JSON.parse(result[0].pret_piesa)[13];
+        let pret_piesa15 = JSON.parse(result[0].pret_piesa)[14];
+
         res.render('addjobs', {
           url,
           mth,
@@ -206,6 +226,11 @@ router.get('/jobs/:id', checkAuthentication, (req, res) => {
           denum_piesa8,
           denum_piesa9,
           denum_piesa10,
+          denum_piesa11,
+          denum_piesa12,
+          denum_piesa13,
+          denum_piesa14,
+          denum_piesa15,
           cant_piese1,
           cant_piese2,
           cant_piese3,
@@ -216,6 +241,11 @@ router.get('/jobs/:id', checkAuthentication, (req, res) => {
           cant_piese8,
           cant_piese9,
           cant_piese10,
+          cant_piese11,
+          cant_piese12,
+          cant_piese13,
+          cant_piese14,
+          cant_piese15,
           pret_piesa1,
           pret_piesa2,
           pret_piesa3,
@@ -225,7 +255,12 @@ router.get('/jobs/:id', checkAuthentication, (req, res) => {
           pret_piesa7,
           pret_piesa8,
           pret_piesa9,
-          pret_piesa10
+          pret_piesa10,
+          pret_piesa11,
+          pret_piesa12,
+          pret_piesa13,
+          pret_piesa14,
+          pret_piesa15
         });
       });
     }
@@ -292,7 +327,12 @@ router.post('/jobs/:id', checkAuthentication, (req, res) => {
         req.body.denum_piesa7,
         req.body.denum_piesa8,
         req.body.denum_piesa9,
-        req.body.denum_piesa10
+        req.body.denum_piesa10,
+        req.body.denum_piesa11,
+        req.body.denum_piesa12,
+        req.body.denum_piesa13,
+        req.body.denum_piesa14,
+        req.body.denum_piesa15
       ];
       let cant_piese_parse = [
         req.body.cant_piese1,
@@ -304,7 +344,12 @@ router.post('/jobs/:id', checkAuthentication, (req, res) => {
         req.body.cant_piese7,
         req.body.cant_piese8,
         req.body.cant_piese9,
-        req.body.cant_piese10
+        req.body.cant_piese10,
+        req.body.cant_piese11,
+        req.body.cant_piese12,
+        req.body.cant_piese13,
+        req.body.cant_piese14,
+        req.body.cant_piese15
       ];
       let pret_piesa_parse = [
         req.body.pret_piesa1,
@@ -316,7 +361,12 @@ router.post('/jobs/:id', checkAuthentication, (req, res) => {
         req.body.pret_piesa7,
         req.body.pret_piesa8,
         req.body.pret_piesa9,
-        req.body.pret_piesa10
+        req.body.pret_piesa10,
+        req.body.pret_piesa11,
+        req.body.pret_piesa12,
+        req.body.pret_piesa13,
+        req.body.pret_piesa14,
+        req.body.pret_piesa15
       ];
       let tarif_ora = req.body.tarif_ora;
       let lucrari_sol = JSON.stringify(lucrari_sol_parse);

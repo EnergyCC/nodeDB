@@ -31,11 +31,19 @@ const hbs = exphbs.create({
       return `${data[1]}/${data[0]}/${data[2]}`;
     },
     firstUpper: function(string) {
-      return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+      if(string === undefined){
+        return ' ';
+      }else {
+        return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+      }
     },
     tableRes: function(str, val) {
       let result = JSON.parse(str)[val];
-      return result.charAt(0).toUpperCase() + result.slice(1).toLowerCase();
+      if(result === undefined){
+        return ' ';
+      }else {
+        return result.charAt(0).toUpperCase() + result.slice(1).toLowerCase();
+      }
     },
     ifEx: function(str, val) {
       if (typeof str === 'null') {
