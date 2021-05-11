@@ -34,7 +34,7 @@ const hbs = exphbs.create({
       if(string === undefined){
         return ' ';
       }else {
-        return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+        return string.toUpperCase();
       }
     },
     tableRes: function(str, val) {
@@ -42,7 +42,7 @@ const hbs = exphbs.create({
       if(result === undefined){
         return ' ';
       }else {
-        return result.charAt(0).toUpperCase() + result.slice(1).toLowerCase();
+        return result.toUpperCase();
       }
     },
     ifEx: function(str, val) {
