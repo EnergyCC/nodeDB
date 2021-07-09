@@ -232,10 +232,10 @@ router.post('/jobs/:id', checkAuthentication, (req, res) => {
       let cant_piese = JSON.stringify(cant_piese_parse);
       let pret_piesa = JSON.stringify(pret_piesa_parse);
       let profile_id = req.params.id;
-      let d = new Date();
-      console.log(lucrari_sol);
+      // let d = new Date();
       const data =
-        d.getFullYear() + '-' + parseInt(d.getMonth() + 1) + '-' + d.getDate();
+        new Date();
+      console.log(data);
       let sql =
         'INSERT INTO jobs(data_adaugare, lucrari_sol, den_piesa_cl, buc_piesa_cl, def_suplim, termen_executie, denum_operatie, timp_operatie, tarif_ora, denum_piesa, cant_piese, pret_piesa, profile_id, kilometri) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
       connection.db.query(
