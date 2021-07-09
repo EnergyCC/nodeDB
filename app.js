@@ -27,8 +27,7 @@ const hbs = exphbs.create({
       return parse[0].charAt(0).toUpperCase() + parse[0].slice(1).toLowerCase();
     },
     parseData: function(value) {
-      let data = value.toLocaleDateString('en-GB').split('/');
-      return `${data[1]}/${data[0]}/${data[2]}`;
+      return value.toLocaleDateString('en-GB');
     },
     firstUpper: function(string) {
       if(string === undefined){
