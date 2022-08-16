@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    />
+    <script src="/js/script.js"></script>
+    <link rel="stylesheet" href="../public/css/style.css" />
+    <link rel="stylesheet" href="../public/css/bootstrap.min.css" />
+  </head>
+  <body>
+    <div class="content">
+      <div class="jumbotron bg-primary text-center">
+        <div class="form">
+          <h3>Adauga un profil</h3>
+          <div class="container">
+            <div class="row justify-content-center">
+              <form action="/index/add" method="POST">
+                <div class="form-group">
+                  <label for="nume" class="float-left">Numele companiei</label>
+                  <input
+                    type="text"
+                    name="nume"
+                    class="form-control"
+                    id="nume"
+                    placeholder="Introdu un nume"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="model_masina" class="float-left"
+                    >Modelul masinii</label
+                  >
+                  <input
+                    type="text"
+                    name="model_masina"
+                    class="form-control"
+                    id="model_masina"
+                    placeholder="Introdu modelul masinii"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="nr_inmatriculare" class="float-left"
+                    >Numarul de inmatriculare</label
+                  >
+                  <input
+                    type="text"
+                    name="nr_inmatriculare"
+                    class="form-control"
+                    id="nr_inmatriculare"
+                    placeholder="Introdu nr. de inmatriculare"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="cost" class="float-left">Costul lucrarii</label>
+                  <input
+                    type="text"
+                    name="cost"
+                    class="form-control"
+                    id="cost"
+                    placeholder="Introdu un cost"
+                  />
+                </div>
+                <input
+                  type="submit"
+                  value="Inregistreaza"
+                  class="btn btn-secondary btn-block"
+                />
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

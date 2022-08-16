@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="../public/js/script.js"></script>
+    <link rel="stylesheet" href="../public/css/bootstrap.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
+  </head>
+  <body style="background-color: white;color:#333">
+    <div id="deviz" style="background-color: white">
+      <!-- inceput -->
+      <div class="unitate ml-5 mt-4">Unitatea: Service Chris&Jon S.R.L.</div>
+      <div class="deviz mt-3">
+        <h4 class="float-left ml-5">Comanda-Deviz nr.: {{ nr }}</h4>
+        <h4 class="float-right mr-5">DATA: {{ data }}</h4>
+      </div>
+      <table style="width:100%" class="ml-5">
+        <tr>
+          <td style="width:50%">Tip auto: {{ masina }}</td>
+          <td style="width:50%">Nr. inmatriculare {{ nr }}</td>
+        </tr>
+        <tr>
+          <td>Client: {{ client }}</td>
+          <td>serie caroserie: {{ serie }}</td>
+        </tr>
+        <tr>
+          <td>kilometri: {{ km }}</td>
+          <td>Serie Motor: {{ serie }}</td>
+        </tr>
+      </table>
+
+      <!-- tabel lucrari solicitate -->
+      <div class="row mt-3">
+        <div class="col-sm ml-5">
+          <table style="width:90%">
+            <tr>
+              <th style="border-bottom: 2px solid">
+                Lucrari solicitate de client
+              </th>
+            </tr>
+            <tr>
+              <td style="border-bottom: 2px solid">1. {{ lucrari }}</td>
+            </tr>
+            <tr>
+              <td style="border-bottom: 2px solid">2. {{ lucrari }}</td>
+            </tr>
+            <tr>
+              <td style="border-bottom: 2px solid">3. {{ lucrari }}</td>
+            </tr>
+            <tr>
+              <td style="border-bottom: 2px solid">4.</td>
+            </tr>
+            <tr>
+              <td style="border-bottom: 2px solid">5.</td>
+            </tr>
+          </table>
+        </div>
+        <div class="col-sm mr-5">
+          <table style="width:100%">
+            <tr>
+              <th style="border-bottom: 2px solid">
+                Piese client: (Garantia pieselor este asigurata numai de
+                furnizor)
+              </th>
+            </tr>
+            <tr>
+              <td style="border:2px solid;width:70%">Denumirea</td>
+              <td style="border:2px solid">Bucati</td>
+            </tr>
+            <tr>
+              <td style="border:2px solid;width:70%">{{ denumire 1}}</td>
+              <td style="border:2px solid">{{ nr }}</td>
+            </tr>
+            <tr>
+              <td style="border:2px solid;width:70%">{{ denumire 2}}</td>
+              <td style="border:2px solid">{{ nr }}</td>
+            </tr>
+            <tr>
+              <td style="border:2px solid;width:70%">{{ denumire 3}}</td>
+              <td style="border:2px solid">{{ nr }}</td>
+            </tr>
+            <tr>
+              <td style="border:2px solid;width:70%">{{ denumire 4}}</td>
+              <td style="border:2px solid">{{ nr }}</td>
+            </tr>
+            <tr>
+              <td style="border:2px solid;width:70%">{{ denumire 5}}</td>
+              <td style="border:2px solid">{{ nr }}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- tabel defecte -->
+      <div class="row mt-3">
+        <div class="col-sm ml-5 mr-5">
+          <table style="width:100%">
+            <tr>
+              <th
+                style="width:70%;border-top: 2px solid;border-left:2px solid;border-right:2px solid"
+              >
+                Defecte suplimentare constatate in timpul reparatiei
+              </th>
+              <th
+                style="width:30%; border-top:2px solid;border-right: 2px solid"
+              >
+                Accept client
+              </th>
+            </tr>
+            <tr>
+              <td
+                style="border-right: 2px solid;border-left:2px solid;
+              border-bottom: 1px solid"
+              >
+                {{ Defect }}
+              </td>
+              <td style="border-right:2px solid"></td>
+            </tr>
+            <tr>
+              <td
+                style="border-right: 2px solid;border-left:2px solid;
+                border-bottom: 1px solid"
+              >
+                {{ Defect }}
+              </td>
+              <td style="border-right:2px solid"></td>
+            </tr>
+            <tr>
+              <td
+                style="border-right:2px solid;border-left:2px solid;border-top:2px solid"
+              >
+                &nbsp;
+              </td>
+              <td style="border-top:2px solid;border-right: 2px solid">
+                Accept client/semnatura
+              </td>
+            </tr>
+            <tr>
+              <td
+                style="border-right:2px solid; border-left: 2px solid;border-bottom:2px solid"
+              >
+                Termen de executie(estimativ):
+              </td>
+              <td style="border-bottom:2px solid; border-right:2px solid"></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <!-- tabel lucrari convenite -->
+      <div class="mt-4 mr-5 ml-5">
+        <table style="width: 100%" class="text-center">
+          <tr>
+            <th style="border-bottom:1px solid" colspan="2">
+              Lucrari convenite cu clientul si executate
+            </th>
+          </tr>
+          <tr>
+            <th style="border:2px solid;width:10%">Nr. crt.</th>
+            <th style="border:2px solid;width:60%">Denmirea operatiei</th>
+            <th style="border:2px solid;width:10%">Timp ore</th>
+            <th style="border:2px solid;width:10%">Tarif ora</th>
+            <th style="border:2px solid;width:10%">Valoare lei</th>
+          </tr>
+          <tr>
+            <td style="border:2px solid;width:10%">1</td>
+            <td style="border:2px solid;width:60%">{{ denumire }}</td>
+            <td style="border:2px solid;width:10%">{{ timp }}</td>
+            <td style="border:2px solid;width:10%">80 lei</td>
+            <td style="border:2px solid;width:10%">{{ val }}</td>
+          </tr>
+          <tr>
+            <td style="border:2px solid;width:10%">2</td>
+            <td style="border:2px solid;width:60%">{{ denumire }}</td>
+            <td style="border:2px solid;width:10%">{{ timp }}</td>
+            <td style="border:2px solid;width:10%">80 lei</td>
+            <td style="border:2px solid;width:10%">{{ val }}</td>
+          </tr>
+          <tr>
+            <td style="border:2px solid;width:10%">3</td>
+            <td style="border:2px solid;width:60%">{{ denumire }}</td>
+            <td style="border:2px solid;width:10%">{{ timp }}</td>
+            <td style="border:2px solid;width:10%">80 lei</td>
+            <td style="border:2px solid;width:10%">{{ val }}</td>
+          </tr>
+          <tr>
+            <td style="border:2px solid;width:10%">4</td>
+            <td style="border:2px solid;width:60%">{{ denumire }}</td>
+            <td style="border:2px solid;width:10%">{{ timp }}</td>
+            <td style="border:2px solid;width:10%">80 lei</td>
+            <td style="border:2px solid;width:10%">{{ val }}</td>
+          </tr>
+          <tr>
+            <td style="border:2px solid;width:10%">5</td>
+            <td style="border:2px solid;width:60%">{{ denumire }}</td>
+            <td style="border:2px solid;width:10%">{{ timp }}</td>
+            <td style="border:2px solid;width:10%">80 lei</td>
+            <td style="border:2px solid;width:10%">{{ val }}</td>
+          </tr>
+          <tr>
+            <td style="border:2px solid;width:10%" colspan="2">
+              Regie manopera
+            </td>
+            <td style="border:2px solid;width:10%">{{ total }}</td>
+            <td style="border:2px solid;width:10%"></td>
+            <td style="border:2px solid;width:10%">{{valoare totala}}</td>
+          </tr>
+          <tr>
+            <td style="border:2px solid;width:10%" colspan="2">
+              Total
+            </td>
+            <td style="border:2px solid;width:10%">{{ total }}</td>
+            <td style="border:2px solid;width:10%"></td>
+            <td style="border:2px solid;width:10%">{{valoare totala}}</td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- tabel piese materiale -->
+      <div class="mt-4 mr-5 ml-5">
+        <table style="width:100%" class="text-center">
+          <tr>
+            <th style="border-bottom:1px solid" colspan="2">
+              Piese/materiale
+            </th>
+          </tr>
+          <tr>
+            <th style="border:2px solid;width:10%">Nr. crt.</th>
+            <th style="border:2px solid;width:50%">Denmirea piesa/material</th>
+            <th style="border:2px solid;width:10%">U/M</th>
+            <th style="border:2px solid;width:10%">Cantitate</th>
+            <th style="border:2px solid;width:10%">Pret unitar</th>
+            <th style="border:2px solid;width:10%">Valoare</th>
+          </tr>
+          <tr>
+            <td style="border:2px solid;width:10%">1</td>
+            <td style="border:2px solid;width:50%">{{ denumire }}</td>
+            <td style="border:2px solid;width:10%">BUC</td>
+            <td style="border:2px solid;width:10%">{{ cantitate }}</td>
+            <td style="border:2px solid;width:10%">{{pret unitar}}</td>
+            <td style="border:2px solid;width:10%">{{ valoare }}</td>
+          </tr>
+          <tr>
+            <td style="border:2px solid;width:10%">2</td>
+            <td style="border:2px solid;width:50%">{{ denumire }}</td>
+            <td style="border:2px solid;width:10%">BUC</td>
+            <td style="border:2px solid;width:10%">{{ cantitate }}</td>
+            <td style="border:2px solid;width:10%">{{pret unitar}}</td>
+            <td style="border:2px solid;width:10%">{{ valoare }}</td>
+          </tr>
+          <tr>
+            <td style="border:2px solid;width:10%">3</td>
+            <td style="border:2px solid;width:50%">{{ denumire }}</td>
+            <td style="border:2px solid;width:10%">BUC</td>
+            <td style="border:2px solid;width:10%">{{ cantitate }}</td>
+            <td style="border:2px solid;width:10%">{{pret unitar}}</td>
+            <td style="border:2px solid;width:10%">{{ valoare }}</td>
+          </tr>
+          <tr>
+            <td style="border:2px solid;width:10%">4</td>
+            <td style="border:2px solid;width:50%">{{ denumire }}</td>
+            <td style="border:2px solid;width:10%">BUC</td>
+            <td style="border:2px solid;width:10%">{{ cantitate }}</td>
+            <td style="border:2px solid;width:10%">{{pret unitar}}</td>
+            <td style="border:2px solid;width:10%">{{ valoare }}</td>
+          </tr>
+          <tr>
+            <td style="border:2px solid;width:10%">5</td>
+            <td style="border:2px solid;width:50%">{{ denumire }}</td>
+            <td style="border:2px solid;width:10%">BUC</td>
+            <td style="border:2px solid;width:10%">{{ cantitate }}</td>
+            <td style="border:2px solid;width:10%">{{pret unitar}}</td>
+            <td style="border:2px solid;width:10%">{{ valoare }}</td>
+          </tr>
+          <tr>
+            <td style="border:2px solid;width:10%" colspan="2">
+              Regie manopera
+            </td>
+            <td style="border:2px solid;width:10%"></td>
+            <td style="border:2px solid;width:10%"></td>
+            <td style="border:2px solid;width:10%">{{val totala}}</td>
+            <td style="border:2px solid;width:10%">{{ valoare }}</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td colspan="2">Total manopera</td>
+            <td style="border-bottom:1px solid"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td colspan="2">Total materiale</td>
+            <td style="border-bottom:1px solid"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td colspan="2"></td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td style="border:2px solid">Total:</td>
+            <td colspan="2" style="border:2px solid">Total materiale</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td style="border:2px solid">TVA:</td>
+            <td colspan="2" style="border:2px solid">Total materiale</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td style="border:2px solid">Total plata:</td>
+            <td colspan="2" style="border:2px solid">Total materiale</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <!-- <input
+      type="button"
+      id="btn"
+      value="Genereaza raport"
+      class="btn btn-lg btn-secondary"
+      onclick="genRap()"
+    /> -->
+  </body>
+</html>

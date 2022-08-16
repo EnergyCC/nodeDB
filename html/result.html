@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    />
+    <script src="/js/script.js"></script>
+    <link rel="stylesheet" href="../public/css/style.css" />
+    <link rel="stylesheet" href="../public/css/bootstrap.min.css" />
+  </head>
+  <body>
+    <div class="content">
+      <div class="container-fluid">
+        <div
+          class="card text-white mb-3"
+          style="background:rgba(45, 186, 252, 0.5)"
+        >
+          <div class="card-header float-left">
+            <div class="row">
+              <div class="col-sm-6">
+                <h3>{{ nume }}</h3>
+              </div>
+              <div class="col-sm-6">
+                <a href="#" class="btn btn-danger float-right mr-3 mt-1"
+                  >Sterge</a
+                >
+                <a href="#" class="btn btn-primary float-right mr-3 mt-1"
+                  >Editeaza</a
+                >
+                <a href="#" class="btn btn-primary float-right mr-3 mt-1"
+                  >Vezi mai mult</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <h4 class="card-title">{{ model_masina }}</h4>
+                <h4 class="card-title">{{ nr_inmatriculare }}</h4>
+              </div>
+              <div class="col-sm-3">
+                <h4 class="card-title float-right">{{ cost }}</h4>
+              </div>
+              <div class="col-sm-3">
+                <h4 class="card-title float-right">{{ data_adaug }}</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
