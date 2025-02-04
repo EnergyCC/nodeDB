@@ -185,7 +185,12 @@ router.post('/jobs/:id', checkAuthentication, (req, res) => {
         req.body.denum_piesa12,
         req.body.denum_piesa13,
         req.body.denum_piesa14,
-        req.body.denum_piesa15
+        req.body.denum_piesa15,
+        req.body.denum_piesa16,
+        req.body.denum_piesa17,
+        req.body.denum_piesa18,
+        req.body.denum_piesa19,
+        req.body.denum_piesa20
       ];
       let cant_piese_parse = [
         req.body.cant_piese1,
@@ -202,7 +207,12 @@ router.post('/jobs/:id', checkAuthentication, (req, res) => {
         req.body.cant_piese12,
         req.body.cant_piese13,
         req.body.cant_piese14,
-        req.body.cant_piese15
+        req.body.cant_piese15,
+        req.body.cant_piese16,
+        req.body.cant_piese17,
+        req.body.cant_piese18,
+        req.body.cant_piese19,
+        req.body.cant_piese20
       ];
       let pret_piesa_parse = [
         req.body.pret_piesa1,
@@ -219,7 +229,12 @@ router.post('/jobs/:id', checkAuthentication, (req, res) => {
         req.body.pret_piesa12,
         req.body.pret_piesa13,
         req.body.pret_piesa14,
-        req.body.pret_piesa15
+        req.body.pret_piesa15,
+        req.body.pret_piesa16,
+        req.body.pret_piesa17,
+        req.body.pret_piesa18,
+        req.body.pret_piesa19,
+        req.body.pret_piesa20
       ];
       let tarif_ora = req.body.tarif_ora;
       let lucrari_sol = JSON.stringify(lucrari_sol_parse);
