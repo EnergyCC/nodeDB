@@ -1,49 +1,65 @@
 <section id="add">
-    <div class="jumbotron bg-primary text-center">
-        <div class="form">
-            <h3>Creaza un profil</h3>
-            {{!-- create a div with alerts for errors --}}
-            {{#each errors}}
-            <div class="alert alert-danger">
-                {{text}}
-            </div>
-            {{/each}}
-            {{!-- endof errors --}}
-            <div class="container">
-                <div class="row justify-content-center">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0"><i class="fas fa-user-plus"></i> Creaza un profil</h4>
+                </div>
+                <div class="card-body">
+                    {{#if errors}}
+                    <div class="alert alert-danger">
+                        <h5 class="alert-heading"><i class="fas fa-exclamation-triangle"></i> Eroare la validare</h5>
+                        <ul class="mb-0">
+                            {{#each errors}}
+                            <li>{{text}}</li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                    {{/if}}
+                    
                     <form action="{{url}}" method="{{mth}}">
                         <div class="form-group">
-                            <label for="nume_client" class="float-left">Nume client:</label>
+                            <label for="nume_client">Nume client:</label>
                             <input type="text" name="nume_client" class="form-control" id="nume_client"
-                                placeholder="Introdu nume client" value='{{nume_client}}' maxlength="64" />
+                                placeholder="Introdu nume client" value="{{nume_client}}" maxlength="64" required>
                         </div>
+                        
                         <div class="form-group">
-                            <label for="tip_auto" class="float-left">Tip auto:</label>
+                            <label for="tip_auto">Tip auto:</label>
                             <input type="text" name="tip_auto" class="form-control" id="tip_auto"
-                                placeholder="Introdu tip auto" value='{{tip_auto}}' maxlength="48" />
+                                placeholder="Introdu tip auto" value="{{tip_auto}}" maxlength="48" required>
                         </div>
+                        
                         <div class="form-group">
-                            <label for="nr_inmatriculare" class="float-left">Numar inmatriculare:</label>
+                            <label for="nr_inmatriculare">Numar inmatriculare:</label>
                             <input type="text" name="nr_inmatriculare" class="form-control" id="nr_inmatriculare"
-                                placeholder="Enter a plate number" value='{{nr_inmatriculare}}' maxlength="15" />
+                                placeholder="Introdu numar inmatriculare" value="{{nr_inmatriculare}}" maxlength="15" required>
                         </div>
+                        
                         <div class="form-group">
-                            <label for="serie_caroserie" class="float-left">Serie caroserie:</label>
+                            <label for="serie_caroserie">Serie caroserie:</label>
                             <input type="text" name="serie_caroserie" class="form-control" id="serie_caroserie"
-                                placeholder="Introdu serie caroserie" value='{{serie_caroserie}}' maxlength='20' />
+                                placeholder="Introdu serie caroserie" value="{{serie_caroserie}}" maxlength="20" required>
                         </div>
+                        
                         <div class="form-group">
-                            <label for="serie_motor" class="float-left">Serie motor:</label>
+                            <label for="serie_motor">Serie motor:</label>
                             <input type="text" name="serie_motor" class="form-control" id="serie_motor"
-                                placeholder="Introdu serie motor" value='{{serie_motor}}' maxlength='20' />
+                                placeholder="Introdu serie motor" value="{{serie_motor}}" maxlength="20" required>
                         </div>
-                        <div class='form-group'>
-                            <label for="nr_tel" class='float-left'>Nr. telefon: </label>
-                            <input type='text' name='nr_tel' class='form-control' id='nr_tel'
-                                placeholder='Introdu nr. de telefon' value='{{nr_tel}}' maxlength='12' />
+                        
+                        <div class="form-group">
+                            <label for="nr_tel">Nr. telefon:</label>
+                            <input type="tel" name="nr_tel" class="form-control" id="nr_tel"
+                                placeholder="Introdu nr. de telefon" value="{{nr_tel}}" maxlength="12">
                         </div>
-                        <input type="submit" value="Salveaza profil" class="btn btn-secondary btn-block" />
-                        <a href='/index' class='btn btn-block btn-outline-light'>Anuleaza</a>
+                        
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <i class="fas fa-save"></i> Salveaza profil
+                        </button>
+                        <a href="/index" class="btn btn-secondary btn-block">
+                            <i class="fas fa-times"></i> Anuleaza
+                        </a>
                     </form>
                 </div>
             </div>

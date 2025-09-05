@@ -1,220 +1,549 @@
-<section id='addjobs'>
-    <div class='jumbotron bg-primary text-center'>
-        {{#each errors}}
-        <div class="alert alert-danger">
-            {{text}}
-        </div>
-        {{/each}}
-        <div class="container">
-            <form action='{{url}}' method='{{mth}}'>
-                <div class="row justify-content-center">
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                            <label for="lucrari_sol" class="float-left">Lucrari solicitate:</label>
-                            <input type="text" name="lucrari_sol1" class="form-control" id="lucrari_sol1"
-                                placeholder="Lucrari solicitate" value='{{lucrari_sol1}}' maxlength="100" />
-                            <input type="text" name="lucrari_sol2" class="form-control" id="lucrari_sol2"
-                                placeholder="Lucrari solicitate" value='{{lucrari_sol2}}' maxlength="100" />
-                            <input type="text" name="lucrari_sol3" class="form-control" id="lucrari_sol3"
-                                placeholder="Lucrari solicitate" value='{{lucrari_sol3}}' maxlength="100" />
-                            <input type="text" name="lucrari_sol4" class="form-control" id="lucrari_sol4"
-                                placeholder="Lucrari solicitate" value='{{lucrari_sol4}}' maxlength="100" />
-                            <input type="text" name="lucrari_sol5" class="form-control" id="lucrari_sol5"
-                                placeholder="Lucrari solicitate" value='{{lucrari_sol5}}' maxlength="100" />
-                            <label for='den_piesa_cl' class='float-left mt-3'>Denumire piese client: </label>
-                            <input type='text' name='den_piesa_cl1' class='form-control' id='den_piesa_cl1'
-                                placeholder='Piese client' value='{{den_piesa_cl1}}' maxlength="50" />
-                            <input type='text' name='den_piesa_cl2' class='form-control' id='den_piesa_cl2'
-                                placeholder='Piese client' value='{{den_piesa_cl2}}' maxlength="50" />
-                            <input type='text' name='den_piesa_cl3' class='form-control' id='den_piesa_cl3'
-                                placeholder='Piese client' value='{{den_piesa_cl3}}' maxlength="50" />
-                            <input type='text' name='den_piesa_cl4' class='form-control' id='den_piesa_cl4'
-                                placeholder='Piese client' value='{{den_piesa_cl4}}' maxlength="50" />
-                            <input type='text' name='den_piesa_cl5' class='form-control' id='den_piesa_cl5'
-                                placeholder='Piese client' value='{{den_piesa_cl5}}' maxlength="50" />
-                            <label for='buc_piesa_cl' class='float-left mt-3'>Nr. bucati piese client</label>
-                            <input type='text' name='buc_piesa_cl1' class='form-control' id='buc_piesa_cl1'
-                                placeholder='Buc. piesa client' value='{{buc_piesa_cl1}}' />
-                            <input type='text' name='buc_piesa_cl2' class='form-control' id='buc_piesa_cl2'
-                                placeholder='Buc. piesa client' value='{{buc_piesa_cl2}}' />
-                            <input type='text' name='buc_piesa_cl3' class='form-control' id='buc_piesa_cl3'
-                                placeholder='Buc. piesa client' value='{{buc_piesa_cl3}}' />
-                            <input type='text' name='buc_piesa_cl4' class='form-control' id='buc_piesa_cl4'
-                                placeholder='Buc. piesa client' value='{{buc_piesa_cl4}}' />
-                            <input type='text' name='buc_piesa_cl5' class='form-control' id='buc_piesa_cl5'
-                                placeholder='Buc. piesa client' value='{{buc_piesa_cl5}}' />
-                            <label for='def_suplimentare' class='float-left mt-3'>Defecte suplimentare:</label>
-                            <input type='text' name='def_suplimentare1' class='form-control' id='def_suplimentare1'
-                                placeholder='Defecte suplimentare' value='{{def_suplimentare1}}' />
-                            <input type='text' name='def_suplimentare2' class='form-control' id='def_suplimentare2'
-                                placeholder='Defecte suplimentare' value='{{def_suplimentare2}}' />
-                            <label for='termen_executie' class='float-left mt-3'>Termen de executie:</label>
-                            <input type='text' name='termen_executie' class='form-control' id='termen_executie'
-                                placeholder='Termen de executie' value='{{termen_executie}}' />
-                            <label for="denum_operatie" class="float-left mt-3">Lucrari convenite denumire
-                                operatie:</label>
-                            <input type="text" name="denum_operatie1" class="form-control" id="denum_operatie1"
-                                placeholder="Denumire operatie" value='{{denum_operatie1}}' maxlength="64" />
-                            <input type="text" name="denum_operatie2" class="form-control" id="denum_operatie2"
-                                placeholder="Denumire operatie" value='{{denum_operatie2}}' maxlength="64" />
-                            <input type="text" name="denum_operatie3" class="form-control" id="denum_operatie3"
-                                placeholder="Denumire operatie" value='{{denum_operatie3}}' maxlength="64" />
-                            <input type="text" name="denum_operatie4" class="form-control" id="denum_operatie4"
-                                placeholder="Denumire operatie" value='{{denum_operatie4}}' maxlength="64" />
-                            <input type="text" name="denum_operatie5" class="form-control" id="denum_operatie5"
-                                placeholder="Denumire operatie" value='{{denum_operatie5}}' maxlength="64" />
-                            <label for='kilometri' class='float-left mt-3'>Kilometri: </label>
-                            <input type='text' name='kilometri' class='form-control' id='kilometri'
-                                placeholder='Nr. kilometri' value='{{kilometri}}' />
-                        </div>
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
 
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                            <label for='timp_operatie' class='float-left'>Lucrari convenite, timp operatie: </label>
-                            <input type='text' name='timp_operatie1' class='form-control' id='timp_operatie1'
-                                placeholder='Timp operatie' value='{{timp_operatie1}}' />
-                            <input type='text' name='timp_operatie2' class='form-control' id='timp_operatie2'
-                                placeholder='Timp operatie' value='{{timp_operatie2}}' />
-                            <input type='text' name='timp_operatie3' class='form-control' id='timp_operatie3'
-                                placeholder='Timp operatie' value='{{timp_operatie3}}' />
-                            <input type='text' name='timp_operatie4' class='form-control' id='timp_operatie4'
-                                placeholder='Timp operatie' value='{{timp_operatie4}}' />
-                            <input type='text' name='timp_operatie5' class='form-control' id='timp_operatie5'
-                                placeholder='Timp operatie' value='{{timp_operatie5}}' />
-                            <label for='denum_piesa' class='float-left mt-3'>Denumire piesa:</label>
-                            <input type='text' name='denum_piesa1' class='form-control' id='denum_piesa1'
-                                placeholder='Denumire piesa' value='{{denum_piesa1}}' />
-                            <input type='text' name='denum_piesa2' class='form-control' id='denum_piesa2'
-                                placeholder='Denumire piesa' value='{{denum_piesa2}}' />
-                            <input type='text' name='denum_piesa3' class='form-control' id='denum_piesa3'
-                                placeholder='Denumire piesa' value='{{denum_piesa3}}' />
-                            <input type='text' name='denum_piesa4' class='form-control' id='denum_piesa4'
-                                placeholder='Denumire piesa' value='{{denum_piesa4}}' />
-                            <input type='text' name='denum_piesa5' class='form-control' id='denum_piesa5'
-                                placeholder='Denumire piesa' value='{{denum_piesa5}}' />
-                            <input type='text' name='denum_piesa6' class='form-control' id='denum_piesa6'
-                                placeholder='Denumire piesa' value='{{denum_piesa6}}' />
-                            <input type='text' name='denum_piesa7' class='form-control' id='denum_piesa7'
-                                placeholder='Denumire piesa' value='{{denum_piesa7}}' />
-                            <input type='text' name='denum_piesa8' class='form-control' id='denum_piesa8'
-                                placeholder='Denumire piesa' value='{{denum_piesa8}}' />
-                            <input type='text' name='denum_piesa9' class='form-control' id='denum_piesa9'
-                                placeholder='Denumire piesa' value='{{denum_piesa9}}' />
-                            <input type='text' name='denum_piesa10' class='form-control' id='denum_piesa10'
-                                placeholder='Denumire piesa' value='{{denum_piesa10}}' />
-                            <input type='text' name='denum_piesa11' class='form-control' id='denum_piesa11'
-                                placeholder='Denumire piesa' value='{{denum_piesa11}}' />
-                            <input type='text' name='denum_piesa12' class='form-control' id='denum_piesa12'
-                                placeholder='Denumire piesa' value='{{denum_piesa12}}' />
-                            <input type='text' name='denum_piesa13' class='form-control' id='denum_piesa13'
-                                placeholder='Denumire piesa' value='{{denum_piesa13}}' />
-                            <input type='text' name='denum_piesa14' class='form-control' id='denum_piesa14'
-                                placeholder='Denumire piesa' value='{{denum_piesa14}}' />
-                            <input type='text' name='denum_piesa15' class='form-control' id='denum_piesa15'
-                                placeholder='Denumire piesa' value='{{denum_piesa15}}' />
-                            <input type='text' name='denum_piesa16' class='form-control' id='denum_piesa16'
-                                placeholder='Denumire piesa' value='{{denum_piesa16}}' />
-                            <input type='text' name='denum_piesa17' class='form-control' id='denum_piesa17'
-                                placeholder='Denumire piesa' value='{{denum_piesa17}}' />
-                            <input type='text' name='denum_piesa18' class='form-control' id='denum_piesa18'
-                                placeholder='Denumire piesa' value='{{denum_piesa18}}' />
-                            <input type='text' name='denum_piesa19' class='form-control' id='denum_piesa19'
-                                placeholder='Denumire piesa' value='{{denum_piesa19}}' />
-                            <input type='text' name='denum_piesa20' class='form-control' id='denum_piesa20'
-                                placeholder='Denumire piesa' value='{{denum_piesa20}}' />
-                            <label for='cant_piese' class='float-left mt-3'>Cantitate piese: </label>
-                            <input type='text' name='cant_piese1' class='form-control' id='cant_piese1'
-                                placeholder='Cantitate piese' value='{{cant_piese1}}' />
-                            <input type='text' name='cant_piese2' class='form-control' id='cant_piese2'
-                                placeholder='Cantitate piese' value='{{cant_piese2}}' />
-                            <input type='text' name='cant_piese3' class='form-control' id='cant_piese3'
-                                placeholder='Cantitate piese' value='{{cant_piese3}}' />
-                            <input type='text' name='cant_piese4' class='form-control' id='cant_piese4'
-                                placeholder='Cantitate piese' value='{{cant_piese4}}' />
-                            <input type='text' name='cant_piese5' class='form-control' id='cant_piese5'
-                                placeholder='Cantitate piese' value='{{cant_piese5}}' />
-                            <input type='text' name='cant_piese6' class='form-control' id='cant_piese6'
-                                placeholder='Cantitate piese' value='{{cant_piese6}}' />
-                            <input type='text' name='cant_piese7' class='form-control' id='cant_piese7'
-                                placeholder='Cantitate piese' value='{{cant_piese7}}' />
-                            <input type='text' name='cant_piese8' class='form-control' id='cant_piese8'
-                                placeholder='Cantitate piese' value='{{cant_piese8}}' />
-                            <input type='text' name='cant_piese9' class='form-control' id='cant_piese9'
-                                placeholder='Cantitate piese' value='{{cant_piese9}}' />
-                            <input type='text' name='cant_piese10' class='form-control' id='cant_piese10'
-                                placeholder='Cantitate piese' value='{{cant_piese10}}' />
-                            <input type='text' name='cant_piese11' class='form-control' id='cant_piese11'
-                                placeholder='Cantitate piese' value='{{cant_piese11}}' />
-                            <input type='text' name='cant_piese12' class='form-control' id='cant_piese12'
-                                placeholder='Cantitate piese' value='{{cant_piese12}}' />
-                            <input type='text' name='cant_piese13' class='form-control' id='cant_piese13'
-                                placeholder='Cantitate piese' value='{{cant_piese13}}' />
-                            <input type='text' name='cant_piese14' class='form-control' id='cant_piese14'
-                                placeholder='Cantitate piese' value='{{cant_piese14}}' />
-                            <input type='text' name='cant_piese15' class='form-control' id='cant_piese15'
-                                placeholder='Cantitate piese' value='{{cant_piese15}}' />
-                            <input type='text' name='cant_piese16' class='form-control' id='cant_piese16'
-                                placeholder='Cantitate piese' value='{{cant_piese16}}' />
-                            <input type='text' name='cant_piese17' class='form-control' id='cant_piese17'
-                                placeholder='Cantitate piese' value='{{cant_piese17}}' />
-                            <input type='text' name='cant_piese18' class='form-control' id='cant_piese18'
-                                placeholder='Cantitate piese' value='{{cant_piese18}}' />
-                            <input type='text' name='cant_piese19' class='form-control' id='cant_piese19'
-                                placeholder='Cantitate piese' value='{{cant_piese19}}' />
-                            <input type='text' name='cant_piese20' class='form-control' id='cant_piese20'
-                                placeholder='Cantitate piese' value='{{cant_piese20}}' />
-                            <label for='pret_piesa' class='float-left mt-3'>Pret piesa: </label>
-                            <input type='text' name='pret_piesa1' class='form-control' id='pret_piesa1'
-                                placeholder='Pret piesa' value='{{pret_piesa1}}' />
-                            <input type='text' name='pret_piesa2' class='form-control' id='pret_piesa2'
-                                placeholder='Pret piesa' value='{{pret_piesa2}}' />
-                            <input type='text' name='pret_piesa3' class='form-control' id='pret_piesa3'
-                                placeholder='Pret piesa' value='{{pret_piesa3}}' />
-                            <input type='text' name='pret_piesa4' class='form-control' id='pret_piesa4'
-                                placeholder='Pret piesa' value='{{pret_piesa4}}' />
-                            <input type='text' name='pret_piesa5' class='form-control' id='pret_piesa5'
-                                placeholder='Pret piesa' value='{{pret_piesa5}}' />
-                            <input type='text' name='pret_piesa6' class='form-control' id='pret_piesa6'
-                                placeholder='Pret piesa' value='{{pret_piesa6}}' />
-                            <input type='text' name='pret_piesa7' class='form-control' id='pret_piesa7'
-                                placeholder='Pret piesa' value='{{pret_piesa7}}' />
-                            <input type='text' name='pret_piesa8' class='form-control' id='pret_piesa8'
-                                placeholder='Pret piesa' value='{{pret_piesa8}}' />
-                            <input type='text' name='pret_piesa9' class='form-control' id='pret_piesa9'
-                                placeholder='Pret piesa' value='{{pret_piesa9}}' />
-                            <input type='text' name='pret_piesa10' class='form-control' id='pret_piesa10'
-                                placeholder='Pret piesa' value='{{pret_piesa10}}' />
-                            <input type='text' name='pret_piesa11' class='form-control' id='pret_piesa11'
-                                placeholder='Pret piesa' value='{{pret_piesa11}}' />
-                            <input type='text' name='pret_piesa12' class='form-control' id='pret_piesa12'
-                                placeholder='Pret piesa' value='{{pret_piesa12}}' />
-                            <input type='text' name='pret_piesa13' class='form-control' id='pret_piesa13'
-                                placeholder='Pret piesa' value='{{pret_piesa13}}' />
-                            <input type='text' name='pret_piesa14' class='form-control' id='pret_piesa14'
-                                placeholder='Pret piesa' value='{{pret_piesa14}}' />
-                            <input type='text' name='pret_piesa15' class='form-control' id='pret_piesa15'
-                                placeholder='Pret piesa' value='{{pret_piesa15}}' />
-                            <input type='text' name='pret_piesa16' class='form-control' id='pret_piesa16'
-                                placeholder='Pret piesa' value='{{pret_piesa16}}' />
-                            <input type='text' name='pret_piesa17' class='form-control' id='pret_piesa17'
-                                placeholder='Pret piesa' value='{{pret_piesa17}}' />
-                            <input type='text' name='pret_piesa18' class='form-control' id='pret_piesa18'
-                                placeholder='Pret piesa' value='{{pret_piesa18}}' />
-                            <input type='text' name='pret_piesa19' class='form-control' id='pret_piesa19'
-                                placeholder='Pret piesa' value='{{pret_piesa19}}' />
-                            <input type='text' name='pret_piesa20' class='form-control' id='pret_piesa20'
-                                placeholder='Pret piesa' value='{{pret_piesa20}}' />
-                            <label for='tarif_ora' class='float-left mt-3'>Tarif ora:</label>
-                            <input type='text' name='tarif_ora' class='form-control' id='tarif_ora'
-                                placeholder="Tarif/ora" value='150' />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Adauga lucrare service</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/dark-mode.css" />
+</head>
+
+<body style="background-color: #121212; color: #e0e0e0">
+    <div class="container-fluid mt-4">
+        <div class="row">
+            <div class="col-12">
+                <!-- Back button to return to the profile view -->
+                <a href="/index/view/{{profile_id}}" class="btn btn-secondary mb-3">
+                    <i class="fas fa-arrow-left"></i> Inapoi
+                </a>
+            </div>
+        </div>
+        
+        <!-- Main form for adding job data -->
+        <!-- The action and method are dynamically set by the backend -->
+        <form action="{{url}}" method="{{mth}}" id="jobsForm">
+            <div class="card" style="background-color: #1e1e1e; border: 1px solid #333;">
+                <div class="card-header bg-dark text-white">
+                    <h4 class="mb-0"><i class="fas fa-cogs"></i> Adauga lucrare service</h4>
+                </div>
+                <div class="card-body">
+                    <!-- Header information -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h4 class="text-center">Comanda-Deviz nr.: _____</h4>
+                            <div class="float-right">DATA: {{currentDate}}</div>
                         </div>
                     </div>
-                    <input type='submit' value='Salveaza' class='btn btn-block btn-secondary' />
-                    <a href='/index/view/{{profile_id}}' class='btn btn-block btn-outline-secondary'>Anuleaza</a>
+                    
+                    <!-- Client information section -->
+                    <!-- Displays client details from the database -->
+                    <div class="row mb-4">
+                        <div class="col-6">
+                            <div>Client: {{firstUpper pResult.0.nume_client}}</div>
+                            <div>Nr. Telefon: {{pResult.0.nr_tel}}</div>
+                        </div>
+                        <div class="col-6">
+                            <div>Tip auto: {{firstUpper pResult.0.tip_auto}}</div>
+                            <div>Nr. inmatriculare: {{pResult.0.nr_inmatriculare}}</div>
+                            <div>Serie caroserie: {{pResult.0.serie_caroserie}}</div>
+                            <div>Serie Motor: {{pResult.0.serie_motor}}</div>
+                            <!-- Kilometers input field - simple numeric input -->
+                            <div>
+                                <label for="kilometri">Kilometri:</label>
+                                <input type="number" class="form-control" id="kilometri" name="kilometri">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Lucrari solicitate section -->
+                    <!-- Dynamic table where users can add/remove rows -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h5>Lucrari solicitate de client</h5>
+                            <table class="table table-bordered" style="background-color: #2d2d2d; color: #e0e0e0;">
+                                <!-- Container for dynamic rows - populated by JavaScript -->
+                                <tbody id="lucrari_sol_container">
+                                    <!-- Default 5 rows will be added by JavaScript -->
+                                </tbody>
+                            </table>
+                            <!-- Button to add more rows -->
+                            <button type="button" class="btn btn-outline-primary btn-sm" onclick="addRows('lucrari_sol', 1)">
+                                <i class="fas fa-plus"></i> Adauga rand
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Piese client section -->
+                    <!-- Two-column table for part names and quantities -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h5>Piese client: (Garantia pieselor este asigurata numai de furnizor)</h5>
+                            <table class="table table-bordered" style="background-color: #2d2d2d; color: #e0e0e0;">
+                                <thead>
+                                    <tr>
+                                        <th>Denumirea</th>
+                                        <th>Bucati</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="piese_client_container">
+                                    <!-- Default 5 rows will be added by JavaScript -->
+                                </tbody>
+                            </table>
+                            <button type="button" class="btn btn-outline-primary btn-sm" onclick="addRows('piese_client', 1, true)">
+                                <i class="fas fa-plus"></i> Adauga rand
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Defecte suplimentare section -->
+                    <!-- Two-column table for defects and client acceptance -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h5>Defecte suplimentare constatate in timpul reparatiei</h5>
+                            <table class="table table-bordered" style="background-color: #2d2d2d; color: #e0e0e0;">
+                                <thead>
+                                    <tr>
+                                        <th style="width:70%">Defect</th>
+                                        <th style="width:30%">Accept client</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="defecte_container">
+                                    <!-- Default 2 rows will be added by JavaScript -->
+                                </tbody>
+                            </table>
+                            <button type="button" class="btn btn-outline-primary btn-sm" onclick="addRows('defecte', 1, true)">
+                                <i class="fas fa-plus"></i> Adauga rand
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Termen executie section -->
+                    <!-- Simple text input for estimated completion time -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="termen_executie">Termen de executie (estimativ):</label>
+                                <input type="text" class="form-control" id="termen_executie" name="termen_executie" placeholder="Ore">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Lucrari convenite section -->
+                    <!-- Five-column table with special tarif_ora handling -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h5>Lucrari convenite cu clientul si executate</h5>
+                            <table class="table table-bordered text-center" style="background-color: #2d2d2d; color: #e0e0e0;">
+                                <thead>
+                                    <tr>
+                                        <th>Nr. crt.</th>
+                                        <th>Denmirea operatiei</th>
+                                        <th>Timp ore</th>
+                                        <!-- Tarif ora input in the header - affects all rows -->
+                                        <th>Tarif ora: <input type="number" id="tarif_ora_header" name="tarif_ora" value="150" style="width: 80px; display: inline-block;" onchange="updateTarifOra()"></th>
+                                        <th>Valoare lei</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="lucrari_convenite_container">
+                                    <!-- Default 5 rows will be added by JavaScript -->
+                                </tbody>
+                            </table>
+                            <button type="button" class="btn btn-outline-primary btn-sm" onclick="addRows('lucrari_convenite', 1)">
+                                <i class="fas fa-plus"></i> Adauga rand
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Piese materiale section -->
+                    <!-- Six-column table for parts details -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h5>Piese/materiale</h5>
+                            <table class="table table-bordered text-center" style="background-color: #2d2d2d; color: #e0e0e0;">
+                                <thead>
+                                    <tr>
+                                        <th>Nr. crt.</th>
+                                        <th>Denumirea piesa/material</th>
+                                        <th>U/M</th>
+                                        <th>Cantitate</th>
+                                        <th>Pret unitar</th>
+                                        <th>Valoare</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="piese_materiale_container">
+                                    <!-- Default 5 rows will be added by JavaScript -->
+                                </tbody>
+                            </table>
+                            <button type="button" class="btn btn-outline-primary btn-sm" onclick="addRows('piese_materiale', 1)">
+                                <i class="fas fa-plus"></i> Adauga rand
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Submit buttons -->
+                    <div class="row">
+                        <div class="col-12">
+                            <!-- Submit button to save the job -->
+                            <button type="submit" class="btn btn-primary btn-block">
+                                <i class="fas fa-save"></i> Salveaza lucrare
+                            </button>
+                            <!-- Cancel button to return to profile view -->
+                            <a href="/index/view/{{profile_id}}" class="btn btn-secondary btn-block">
+                                <i class="fas fa-times"></i> Anuleaza
+                            </a>
+                        </div>
+                    </div>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
 
-</section>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Data for editing (if available) -->
+    {{#if lucrari_sol_parse}}
+    <script>
+        window.lucrari_sol_parse = {{{json lucrari_sol_parse}}};
+        window.den_piesa_cl_parse = {{{json den_piesa_cl_parse}}};
+        window.buc_piesa_cl_parse = {{{json buc_piesa_cl_parse}}};
+        window.def_suplim_parse = {{{json def_suplim_parse}}};
+        window.denum_operatie_parse = {{{json denum_operatie_parse}}};
+        window.timp_operatie_parse = {{{json timp_operatie_parse}}};
+        window.denum_piesa_parse = {{{json denum_piesa_parse}}};
+        window.cant_piese_parse = {{{json cant_piese_parse}}};
+        window.pret_piesa_parse = {{{json pret_piesa_parse}}};
+        window.existingJobData = {
+            termen_executie: "{{jResult.0.termen_executie}}",
+            kilometri: "{{jResult.0.kilometri}}",
+            tarif_ora: "{{jResult.0.tarif_ora}}",
+            tva_percent: "{{jResult.0.tva_percent}}"
+        };
+    </script>
+    {{/if}}
+    
+    <script>
+        // Function to add rows dynamically to different sections
+        // section: the section name (e.g., 'lucrari_sol')
+        // count: number of rows to add
+        // hasMultipleColumns: whether the section has multiple columns
+        function addRows(section, count, hasMultipleColumns = false) {
+            const container = document.getElementById(section + '_container');
+            const currentCount = container.children.length;
+            
+            for (let i = 0; i < count; i++) {
+                const rowIndex = currentCount + i + 1;
+                const row = document.createElement('tr');
+                
+                // Different HTML structure for each section
+                if (section === 'lucrari_sol') {
+                    // Single column for requested work
+                    row.innerHTML = `
+                        <td>
+                            <!-- IMPORTANT: Using array notation [] for field names -->
+                            <!-- This allows multiple values to be sent with the same name -->
+                            <input type="text" class="form-control" name="lucrari_sol[]" placeholder="Lucrare solicitata" style="background-color: #2d2d2d; border: 1px solid #444; color: #e0e0e0;">
+                        </td>
+                    `;
+                } else if (section === 'piese_client') {
+                    // Two columns for part names and quantities
+                    row.innerHTML = `
+                        <td>
+                            <input type="text" class="form-control" name="den_piesa_cl[]" placeholder="Denumire piesa" style="background-color: #2d2d2d; border: 1px solid #444; color: #e0e0e0;">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="buc_piesa_cl[]" placeholder="Bucati" style="background-color: #2d2d2d; border: 1px solid #444; color: #e0e0e0;">
+                        </td>
+                    `;
+                } else if (section === 'defecte') {
+                    // Two columns for defects and client acceptance
+                    row.innerHTML = `
+                        <td>
+                            <input type="text" class="form-control" name="def_suplimentare[]" placeholder="Defect suplimentar" style="background-color: #2d2d2d; border: 1px solid #444; color: #e0e0e0;">
+                        </td>
+                        <td></td>
+                    `;
+                } else if (section === 'lucrari_convenite') {
+                    // Five columns with row numbering
+                    row.innerHTML = `
+                        <td>${rowIndex}</td>
+                        <td>
+                            <input type="text" class="form-control" name="denum_operatie[]" placeholder="Operatie" style="background-color: #2d2d2d; border: 1px solid #444; color: #e0e0e0;">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="timp_operatie[]" placeholder="Timp" style="background-color: #2d2d2d; border: 1px solid #444; color: #e0e0e0;">
+                        </td>
+                        <td></td>
+                        <td></td>
+                    `;
+                } else if (section === 'piese_materiale') {
+                    // Six columns with row numbering
+                    row.innerHTML = `
+                        <td>${rowIndex}</td>
+                        <td>
+                            <input type="text" class="form-control" name="denum_piesa[]" placeholder="Denumire piesa" style="background-color: #2d2d2d; border: 1px solid #444; color: #e0e0e0;">
+                        </td>
+                        <td>BUC</td>
+                        <td>
+                            <input type="text" class="form-control" name="cant_piese[]" placeholder="Cantitate" style="background-color: #2d2d2d; border: 1px solid #444; color: #e0e0e0;">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="pret_piesa[]" placeholder="Pret" style="background-color: #2d2d2d; border: 1px solid #444; color: #e0e0e0;">
+                        </td>
+                        <td></td>
+                    `;
+                }
+                
+                container.appendChild(row);
+            }
+        }
+        
+        // Function to update tarif_ora in all rows (currently not implemented)
+        function updateTarifOra() {
+            const tarifOraValue = document.getElementById('tarif_ora_header').value;
+            // This value will be used in the form submission
+        }
+        
+        // Function to remove a row (currently not used in the template)
+        function removeRow(button) {
+            button.closest('tr').remove();
+            renumberRows();
+        }
+        
+        // Function to renumber rows after removal (currently not used in the template)
+        function renumberRows() {
+            const sections = ['lucrari_sol', 'piese_client', 'defecte', 'lucrari_convenite', 'piese_materiale'];
+            
+            sections.forEach(section => {
+                const container = document.getElementById(section + '_container');
+                const rows = container.querySelectorAll('tr');
+                
+                rows.forEach((row, index) => {
+                    const rowIndex = index + 1;
+                    
+                    // Update row numbers for specific sections
+                    if (section === 'lucrari_convenite' || section === 'piese_materiale') {
+                        row.cells[0].textContent = rowIndex;
+                    }
+                    
+                    // Update input names to maintain array notation
+                    const inputs = row.querySelectorAll('input');
+                    inputs.forEach(input => {
+                        const name = input.name;
+                        if (name) {
+                            const prefix = name.replace(/\[\]$/, '');
+                            input.name = prefix + '[]';
+                            // Remove ID to avoid duplicates
+                            input.removeAttribute('id');
+                        }
+                    });
+                });
+            });
+        }
+        
+        // Function to populate existing data when editing
+        function populateExistingData() {
+            // Populate lucrari_sol
+            if (typeof window.lucrari_sol_parse !== 'undefined' && Array.isArray(window.lucrari_sol_parse)) {
+                const container = document.getElementById('lucrari_sol_container');
+                if (container) {
+                    window.lucrari_sol_parse.forEach((value, index) => {
+                        if (value) {
+                            const row = document.createElement('tr');
+                            row.innerHTML = `
+                                <td>
+                                    <input type="text" class="form-control" name="lucrari_sol[]" 
+                                           value="${value}" placeholder="Lucrare solicitata" 
+                                           style="background-color: #2d2d2d; border: 1px solid #444; color: #e0e0e0;">
+                                </td>
+                            `;
+                            container.appendChild(row);
+                        }
+                    });
+                }
+            }
+            
+            // Populate piese_client
+            if (typeof window.den_piesa_cl_parse !== 'undefined' && typeof window.buc_piesa_cl_parse !== 'undefined' && 
+                Array.isArray(window.den_piesa_cl_parse) && Array.isArray(window.buc_piesa_cl_parse)) {
+                const container = document.getElementById('piese_client_container');
+                if (container) {
+                    const maxLength = Math.max(window.den_piesa_cl_parse.length, window.buc_piesa_cl_parse.length);
+                    for (let i = 0; i < maxLength; i++) {
+                        const denValue = window.den_piesa_cl_parse[i] || '';
+                        const bucValue = window.buc_piesa_cl_parse[i] || '';
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>
+                                <input type="text" class="form-control" name="den_piesa_cl[]" 
+                                       value="${denValue}" placeholder="Denumire piesa" 
+                                       style="background-color: #2d2d2d; border: 1px solid #444; color: #e0e0e0;">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" name="buc_piesa_cl[]" 
+                                       value="${bucValue}" placeholder="Bucati" 
+                                       style="background-color: #2d2d2d; border: 1px solid #444; color: #e0e0e0;">
+                            </td>
+                        `;
+                        container.appendChild(row);
+                    }
+                }
+            }
+            
+            // Populate defecte
+            if (typeof window.def_suplim_parse !== 'undefined' && Array.isArray(window.def_suplim_parse)) {
+                const container = document.getElementById('defecte_container');
+                if (container) {
+                    window.def_suplim_parse.forEach((value, index) => {
+                        if (value) {
+                            const row = document.createElement('tr');
+                            row.innerHTML = `
+                                <td>
+                                    <input type="text" class="form-control" name="def_suplimentare[]" 
+                                           value="${value}" placeholder="Defect suplimentar" 
+                                           style="background-color: #2d2d2d; border: 1px solid #444; color: #e0e0e0;">
+                                </td>
+                                <td></td>
+                            `;
+                            container.appendChild(row);
+                        }
+                    });
+                }
+            }
+            
+            // Populate lucrari_convenite
+            if (typeof window.denum_operatie_parse !== 'undefined' && typeof window.timp_operatie_parse !== 'undefined' &&
+                Array.isArray(window.denum_operatie_parse) && Array.isArray(window.timp_operatie_parse)) {
+                const container = document.getElementById('lucrari_convenite_container');
+                if (container) {
+                    const maxLength = Math.max(window.denum_operatie_parse.length, window.timp_operatie_parse.length);
+                    for (let i = 0; i < maxLength; i++) {
+                        const rowIndex = i + 1;
+                        const denValue = window.denum_operatie_parse[i] || '';
+                        const timpValue = window.timp_operatie_parse[i] || '';
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${rowIndex}</td>
+                            <td>
+                                <input type="text" class="form-control" name="denum_operatie[]" 
+                                       value="${denValue}" placeholder="Operatie" 
+                                       style="background-color: #2d2d2d; border: 1px solid #444; color: #e0e0e0;">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" name="timp_operatie[]" 
+                                       value="${timpValue}" placeholder="Timp" 
+                                       style="background-color: #2d2d2d; border: 1px solid #444; color: #e0e0e0;">
+                            </td>
+                            <td></td>
+                            <td></td>
+                        `;
+                        container.appendChild(row);
+                    }
+                }
+            }
+            
+            // Populate piese_materiale
+            if (typeof window.denum_piesa_parse !== 'undefined' && typeof window.cant_piese_parse !== 'undefined' && typeof window.pret_piesa_parse !== 'undefined' &&
+                Array.isArray(window.denum_piesa_parse) && Array.isArray(window.cant_piese_parse) && Array.isArray(window.pret_piesa_parse)) {
+                const container = document.getElementById('piese_materiale_container');
+                if (container) {
+                    const maxLength = Math.max(window.denum_piesa_parse.length, window.cant_piese_parse.length, window.pret_piesa_parse.length);
+                    for (let i = 0; i < maxLength; i++) {
+                        const rowIndex = i + 1;
+                        const denValue = window.denum_piesa_parse[i] || '';
+                        const cantValue = window.cant_piese_parse[i] || '';
+                        const pretValue = window.pret_piesa_parse[i] || '';
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${rowIndex}</td>
+                            <td>
+                                <input type="text" class="form-control" name="denum_piesa[]" 
+                                       value="${denValue}" placeholder="Denumire piesa" 
+                                       style="background-color: #2d2d2d; border: 1px solid #444; color: #e0e0e0;">
+                            </td>
+                            <td>BUC</td>
+                            <td>
+                                <input type="text" class="form-control" name="cant_piese[]" 
+                                       value="${cantValue}" placeholder="Cantitate" 
+                                       style="background-color: #2d2d2d; border: 1px solid #444; color: #e0e0e0;">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" name="pret_piesa[]" 
+                                       value="${pretValue}" placeholder="Pret" 
+                                       style="background-color: #2d2d2d; border: 1px solid #444; color: #e0e0e0;">
+                            </td>
+                            <td></td>
+                        `;
+                        container.appendChild(row);
+                    }
+                }
+            }
+            
+            // Populate existing job data
+            if (typeof window.existingJobData !== 'undefined') {
+                if (window.existingJobData.termen_executie) {
+                    const termenField = document.getElementById('termen_executie');
+                    if (termenField) termenField.value = window.existingJobData.termen_executie;
+                }
+                if (window.existingJobData.kilometri) {
+                    const kmField = document.getElementById('kilometri');
+                    if (kmField) kmField.value = window.existingJobData.kilometri;
+                }
+                if (window.existingJobData.tarif_ora) {
+                    const tarifField = document.getElementById('tarif_ora_header');
+                    if (tarifField) tarifField.value = window.existingJobData.tarif_ora;
+                }
+                if (window.existingJobData.tva_percent) {
+                    const tvaField = document.getElementById('tva_percent');
+                    if (tvaField) tvaField.value = window.existingJobData.tva_percent;
+                }
+            }
+        }
+        
+        // Initialize with default rows when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if we have existing data for editing
+            // If we do, the form should already be populated by the server
+            // If not, add default empty rows
+            
+            // Check if any of the data arrays exist and have content
+            const hasExistingData = 
+                (typeof window.lucrari_sol_parse !== 'undefined' && Array.isArray(window.lucrari_sol_parse) && window.lucrari_sol_parse.length > 0) ||
+                (typeof window.den_piesa_cl_parse !== 'undefined' && Array.isArray(window.den_piesa_cl_parse) && window.den_piesa_cl_parse.length > 0) ||
+                (typeof window.def_suplim_parse !== 'undefined' && Array.isArray(window.def_suplim_parse) && window.def_suplim_parse.length > 0) ||
+                (typeof window.denum_operatie_parse !== 'undefined' && Array.isArray(window.denum_operatie_parse) && window.denum_operatie_parse.length > 0) ||
+                (typeof window.denum_piesa_parse !== 'undefined' && Array.isArray(window.denum_piesa_parse) && window.denum_piesa_parse.length > 0);
+            
+            if (hasExistingData) {
+                // Populate form with existing data
+                populateExistingData();
+            } else {
+                // Add default 5 rows for most sections when creating new job
+                const sectionsWithFiveRows = ['lucrari_sol', 'lucrari_convenite', 'piese_materiale'];
+                sectionsWithFiveRows.forEach(section => {
+                    addRows(section, 5);
+                });
+                
+                // Add default 5 rows for piese_client (2 columns)
+                addRows('piese_client', 5, true);
+                
+                // Add default 2 rows for defecte (2 columns)
+                addRows('defecte', 2, true);
+            }
+            
+            // Set current date or existing date
+            const today = new Date();
+            const dateString = today.toLocaleDateString('ro-RO');
+            const dateElements = document.querySelectorAll('div[class*="float-right"]');
+            if (dateElements.length > 0) {
+                dateElements[0].innerHTML = `DATA: ${dateString}`;
+            }
+        });
+    </script>
+</body>
+
+</html>

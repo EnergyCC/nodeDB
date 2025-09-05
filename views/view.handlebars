@@ -1,52 +1,196 @@
-<section id='viewJob'>
-    <div class="jumbotron bg-primary" style='padding-left:0px; padding-right:0px; padding-bottom:1rem'>
-        <div class="row justify-content-center text-center">
-            <div class="col-sm-6">
-                <h4 class='text-left ml-sm-2'>Nume client: {{ firstUpper nume_client }}</h4>
-                <h4 class='text-left ml-sm-2'>Tip auto: {{ firstUpper tip_auto }}</h4>
-                <h4 class='text-left ml-sm-2'>Numar inmatriculare: {{ nr_inmatriculare}}</h4>
+<section id="viewJob">
+    <div class="container-fluid mt-4">
+        <!-- Client Info Card -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-primary text-white">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0"><i class="fas fa-user mr-2"></i>Detalii Client</h5>
+                    <a href="/index" class="btn btn-light btn-sm">
+                        <i class="fas fa-arrow-left mr-1"></i>Înapoi
+                    </a>
+                </div>
             </div>
-            <div class="col-sm-6">
-                <h4 class='text-left ml-sm-2'> Serie caroserie: {{ serie_caroserie }}</h4>
-                <h4 class='text-left ml-sm-2'> Serie motor: {{ serie_motor }}</h4>
-                <h4 class='text-left ml-sm-2'> Nr. Telefon: {{ nr_tel }}</h4>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="info-item mb-3">
+                            <small class="text-muted">Nume client</small>
+                            <h6 class="mb-0">{{firstUpper nume_client}}</h6>
+                        </div>
+                        <div class="info-item mb-3">
+                            <small class="text-muted">Tip auto</small>
+                            <h6 class="mb-0">{{firstUpper tip_auto}}</h6>
+                        </div>
+                        <div class="info-item">
+                            <small class="text-muted">Număr înmatriculare</small>
+                            <h6 class="mb-0">{{nr_inmatriculare}}</h6>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-item mb-3">
+                            <small class="text-muted">Serie caroserie</small>
+                            <h6 class="mb-0">{{serie_caroserie}}</h6>
+                        </div>
+                        <div class="info-item mb-3">
+                            <small class="text-muted">Serie motor</small>
+                            <h6 class="mb-0">{{serie_motor}}</h6>
+                        </div>
+                        <div class="info-item">
+                            <small class="text-muted">Nr. Telefon</small>
+                            <h6 class="mb-0">{{nr_tel}}</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <a href="/add/jobs/{{profile_id}}" class="btn btn-success">
+                        <i class="fas fa-plus-circle mr-1"></i>Adaugă lucrare service
+                    </a>
+                </div>
             </div>
-        </div>
-        <hr>
-        <div class='text-right'>
-            <a href='/add/jobs/{{profile_id}}' class='btn btn-secondary btn-lg mr-3'>Adauga lucrare
-                service</a>
         </div>
 
-        <table class='table table-hover'>
-            <thead>
-                <tr class='table-primary'>
-                    <th scope='col' class='text-center'>Deviz</th>
-                    <th scope='col' class='text-center'>Data</th>
-                    <th scope='col' class='text-center'>Kilometri</th>
-                    <th scope='col' class='text-center'>Operatie</th>
-                    <th scope='col' class='text-center'>Actiuni</th>
-                </tr>
-            </thead>
-            <tbody>
-                {{#each results}}
-                <tr class='table-primary'>
-                    <th scope="row" class='text-center'>{{ job_id }}</th>
-                    <td class='text-center'>{{ parseData data_adaugare }}</td>
-                    <td class='text-center'>{{ kilometri }}</td>
-                    <td class='text-center'>{{ parseDen denum_operatie }}</td>
-                    <td class='text-right'>
-                        <a href='/index/viewjobs/{{job_id}}?profile={{profile_id}}' class='btn btn-secondary'>Vezi mai
-                            mult</a>
-                        <a href='/edit/jobs/{{job_id}}?profile={{profile_id}}&source=view'
-                            class='btn btn-secondary'>Editeaza</a>
-                        <a href='/remove/jobs/{{job_id}}?profile={{profile_id}}&nume={{parseDen denum_operatie}}'
-                            class='btn btn-danger'>Sterge</a>
-                    </td>
-                </tr>
-                {{/each}}
-            </tbody>
-        </table>
+        <!-- Jobs Section -->
+        <div class="card shadow-sm">
+            <div class="card-header bg-secondary text-white">
+                <h5 class="mb-0"><i class="fas fa-cogs mr-2"></i>Lucrări Service</h5>
+            </div>
+            <div class="card-body p-0">
+                {{#if results}}
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead class="thead-light">
+                            <tr>
+                                <th class="text-center" style="width: 8%">Deviz</th>
+                                <th class="text-center" style="width: 15%">Data</th>
+                                <th class="text-center" style="width: 12%">Kilometri</th>
+                                <th class="text-center" style="width: 25%">Operație</th>
+                                <th class="text-center" style="width: 40%">Acțiuni</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each results}}
+                            <tr>
+                                <td class="text-center align-middle"><strong>{{job_id}}</strong></td>
+                                <td class="text-center align-middle">{{parseData data_adaugare}}</td>
+                                <td class="text-center align-middle">{{kilometri}}</td>
+                                <td class="text-center align-middle">{{parseDen denum_operatie}}</td>
+                                <td class="text-center">
+                                    <div class="d-flex justify-content-center">
+                                        <a href="/index/viewjobs/{{job_id}}?profile={{profile_id}}" 
+                                           class="btn btn-primary btn-sm mr-1" title="Vezi detalii">
+                                            <i class="fas fa-eye" style="margin-right: 0;"></i>
+                                        </a>
+                                        <a href="/edit/jobs/{{job_id}}?profile={{profile_id}}" 
+                                           class="btn btn-warning btn-sm mr-1" title="Editează">
+                                            <i class="fas fa-edit" style="margin-right: 0;"></i>
+                                        </a>
+                                        <a href="/remove/job/{{job_id}}?profile={{profile_id}}" 
+                                           class="btn btn-danger btn-sm mr-1" title="Șterge">
+                                            <i class="fas fa-trash" style="margin-right: 0;"></i>
+                                        </a>
+                                        <button class="btn btn-info btn-sm" 
+                                                onclick="printReport({{job_id}}, {{profile_id}})" 
+                                                title="Printează raport">
+                                            <i class="fas fa-print" style="margin-right: 0;"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+                {{else}}
+                <div class="text-center py-5">
+                    <div class="mb-3">
+                        <i class="fas fa-info-circle fa-2x text-muted"></i>
+                    </div>
+                    <h5 class="text-muted">Nu există lucrări</h5>
+                    <p class="text-muted">Nu s-au adăugat încă lucrări pentru acest client.</p>
+                </div>
+                {{/if}}
+            </div>
+        </div>
     </div>
-
 </section>
+
+<script>
+    function printReport(jobId, profileId) {
+        // Show loading state
+        const buttons = document.querySelectorAll(`button[onclick="printReport(${jobId}, ${profileId})"]`);
+        buttons.forEach(btn => {
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+            btn.disabled = true;
+        });
+        
+        // Fetch the report content via AJAX
+        fetch(`/index/raport/${encodeURIComponent(jobId)}?profile=${encodeURIComponent(profileId)}`)
+            .then(response => response.text())
+            .then(html => {
+                // Create a new window for printing
+                const printWindow = window.open('', '_blank');
+                printWindow.document.write(`
+                    <!DOCTYPE html>
+                    <html>
+                        <head>
+                            <title>Raport Deviz ${jobId}</title>
+                            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+                            <link rel="stylesheet" href="/css/print.css" media="print">
+                            <style>
+                                @media print {
+                                    body {
+                                        font-size: 12px;
+                                        line-height: 1.4;
+                                        color: black;
+                                        background-color: white;
+                                        margin: 0;
+                                        padding: 0;
+                                    }
+                                    
+                                    @page {
+                                        size: A4;
+                                        margin: 10mm;
+                                    }
+                                    
+                                    body, html {
+                                        page-break-after: avoid;
+                                    }
+                                }
+                            </style>
+                        </head>
+                        <body>
+                            ${html}
+                            <script>
+                                window.onload = function() {
+                                    window.print();
+                                    window.onafterprint = function() {
+                                        window.close();
+                                    };
+                                };
+                            <\/script>
+                        </body>
+                    </html>
+                `);
+                printWindow.document.close();
+                
+                // Restore button state
+                buttons.forEach(btn => {
+                    btn.innerHTML = '<i class="fas fa-print"></i>';
+                    btn.disabled = false;
+                });
+            })
+            .catch(error => {
+                console.error('Error loading report:', error);
+                alert('Eroare la încărcarea raportului. Vă rugăm încercați din nou.');
+                
+                // Restore button state
+                buttons.forEach(btn => {
+                    btn.innerHTML = '<i class="fas fa-print"></i>';
+                    btn.disabled = false;
+                });
+            });
+    }
+</script>
+</body>
+
+</html>
