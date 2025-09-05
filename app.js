@@ -300,9 +300,205 @@ app.get('/create-ip-logs-table', (req, res) => {
   });
 });
 
+// Create database tables route
+app.get('/create-tables', (req, res) => {
+  // SQL statements to create tables with proper schema
+  const createProfileTable = `
+    CREATE TABLE IF NOT EXISTS profile (
+      profile_id INT PRIMARY KEY AUTO_INCREMENT,
+      nume_client VARCHAR(64) NOT NULL,
+      tip_auto VARCHAR(48) NOT NULL,
+      nr_inmatriculare VARCHAR(15) NOT NULL,
+      serie_caroserie VARCHAR(20) NOT NULL,
+      serie_motor VARCHAR(20) NOT NULL,
+      nr_tel VARCHAR(12) NULL,
+      is_active TINYINT(1) NULL DEFAULT 1,
+      created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+      updated_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+      INDEX idx_is_active (is_active)
+    )
+  `;
+  
+  const createJobsTable = `
+    CREATE TABLE IF NOT EXISTS jobs (
+      job_id INT PRIMARY KEY AUTO_INCREMENT,
+      data_adaugare DATE NULL,
+      lucrari_sol VARCHAR(512) NULL,
+      den_piesa_cl TEXT NULL,
+      buc_piesa_cl TEXT NULL,
+      def_suplim VARCHAR(255) NULL,
+      termen_executie VARCHAR(12) NULL,
+      denum_operatie TEXT NULL,
+      timp_operatie TEXT NULL,
+      tarif_ora INT NULL,
+      denum_piesa TEXT NULL,
+      cant_piese TEXT NULL,
+      pret_piesa TEXT NULL,
+      profile_id INT NULL,
+      kilometri INT NULL,
+      is_active TINYINT(1) NULL DEFAULT 1,
+      tva_percent DECIMAL(5,2) NULL,
+      created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+      updated_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+      INDEX idx_data_adaugare (data_adaugare),
+      INDEX idx_is_active (is_active),
+      INDEX idx_profile_id (profile_id),
+      FOREIGN KEY (profile_id) REFERENCES profile(profile_id) ON UPDATE CASCADE ON DELETE CASCADE
+    )
+  `;
+  
+  const createUsersTable = `
+    CREATE TABLE IF NOT EXISTS users (
+      user_id INT PRIMARY KEY AUTO_INCREMENT,
+      username VARCHAR(50) NOT NULL,
+      password VARCHAR(255) NOT NULL,
+      created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP
+    )
+  `;
+  
+  const createIpLogsTable = `
+    CREATE TABLE IF NOT EXISTS ip_logs (
+      id INT PRIMARY KEY AUTO_INCREMENT,
+      ip_address VARCHAR(45) NULL,
+      user_agent TEXT NULL,
+      timestamp DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+      action VARCHAR(255) NULL
+    )
+  `;
+  
+  // Execute the queries in order
+  connection.pool.query(createProfileTable, (err, result) => {
+    if (err) {
+      console.error('Error creating profile table:', err);
+      return res.status(500).send('Failed to create profile table: ' + err.message);
+    }
+    
+    console.log('Profile table created successfully');
+    
+    connection.pool.query(createJobsTable, (err, result) => {
+      if (err) {
+        console.error('Error creating jobs table:', err);
+        return res.status(500).send('Failed to create jobs table: ' + err.message);
+      }
+      
+      console.log('Jobs table created successfully');
+      
+      connection.pool.query(createUsersTable, (err, result) => {
+        if (err) {
+          console.error('Error creating users table:', err);
+          return res.status(500).send('Failed to create users table: ' + err.message);
+        }
+        
+        console.log('Users table created successfully');
+        
+        connection.pool.query(createIpLogsTable, (err, result) => {
+          if (err) {
+            console.error('Error creating ip_logs table:', err);
+            return res.status(500).send('Failed to create ip_logs table: ' + err.message);
+          }
+          
+          console.log('IP logs table created successfully');
+          res.send(`
+            <h2>Database Tables Created Successfully</h2>
+            <p>All database tables have been created successfully:</p>
+            <ul>
+              <li>profile</li>
+              <li>jobs</li>
+              <li>users</li>
+              <li>ip_logs</li>
+            </ul>
+            <a href="/">Go to Home</a>
+          `);
+        });
+      });
+    });
+  });
+});
+
+// Migration route to add missing columns to existing tables
+app.get('/migrate-database', (req, res) => {
+  // Check and add missing columns to profile table
+  const profileMigrations = [
+    "ALTER TABLE profile ADD COLUMN IF NOT EXISTS nr_tel VARCHAR(12) NULL",
+    "ALTER TABLE profile ADD COLUMN IF NOT EXISTS is_active TINYINT(1) NULL DEFAULT 1",
+    "ALTER TABLE profile ADD COLUMN IF NOT EXISTS created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP",
+    "ALTER TABLE profile ADD COLUMN IF NOT EXISTS updated_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP",
+    "CREATE INDEX IF NOT EXISTS idx_is_active ON profile(is_active)"
+  ];
+  
+  // Check and add missing columns to jobs table
+  const jobsMigrations = [
+    "ALTER TABLE jobs ADD COLUMN IF NOT EXISTS den_piesa_cl TEXT NULL",
+    "ALTER TABLE jobs ADD COLUMN IF NOT EXISTS buc_piesa_cl TEXT NULL",
+    "ALTER TABLE jobs ADD COLUMN IF NOT EXISTS timp_operatie TEXT NULL",
+    "ALTER TABLE jobs ADD COLUMN IF NOT EXISTS cant_piese TEXT NULL",
+    "ALTER TABLE jobs ADD COLUMN IF NOT EXISTS pret_piesa TEXT NULL",
+    "ALTER TABLE jobs ADD COLUMN IF NOT EXISTS is_active TINYINT(1) NULL DEFAULT 1",
+    "ALTER TABLE jobs ADD COLUMN IF NOT EXISTS tva_percent DECIMAL(5,2) NULL",
+    "ALTER TABLE jobs ADD COLUMN IF NOT EXISTS created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP",
+    "ALTER TABLE jobs ADD COLUMN IF NOT EXISTS updated_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP",
+    "CREATE INDEX IF NOT EXISTS idx_data_adaugare ON jobs(data_adaugare)",
+    "CREATE INDEX IF NOT EXISTS idx_is_active ON jobs(is_active)"
+  ];
+  
+  // Check and add missing columns to ip_logs table
+  const ipLogsMigrations = [
+    "ALTER TABLE ip_logs MODIFY COLUMN IF EXISTS timestamp DATETIME NULL DEFAULT CURRENT_TIMESTAMP"
+  ];
+  
+  // Execute all migrations
+  let migrations = [...profileMigrations, ...jobsMigrations, ...ipLogsMigrations];
+  let completed = 0;
+  let errors = [];
+  
+  if (migrations.length === 0) {
+    return res.send('<h2>No migrations needed</h2><p>All tables are up to date.</p><a href="/">Go to Home</a>');
+  }
+  
+  migrations.forEach(migration => {
+    connection.pool.query(migration, (err, result) => {
+      completed++;
+      
+      if (err) {
+        console.error('Migration error:', err);
+        errors.push({
+          query: migration,
+          error: err.message
+        });
+      } else {
+        console.log('Migration completed:', migration);
+      }
+      
+      // Check if all migrations are done
+      if (completed === migrations.length) {
+        if (errors.length > 0) {
+          console.log('Some migrations failed:');
+          errors.forEach(error => {
+            console.error('Query:', error.query);
+            console.error('Error:', error.error);
+          });
+          
+          res.status(500).send(`
+            <h2>Database Migration Completed with Errors</h2>
+            <p>Some migrations failed. Please check the console for details.</p>
+            <a href="/">Go to Home</a>
+          `);
+        } else {
+          res.send(`
+            <h2>Database Migration Completed Successfully</h2>
+            <p>All database tables have been updated with the latest schema.</p>
+            <a href="/">Go to Home</a>
+          `);
+        }
+      }
+    });
+  });
+});
+
 app.listen(connection.PORT, () => {
   console.log(
     `${new Date()} -> Application listening to port ${connection.PORT}`
   );
-  console.log(`Visit http://localhost:${connection.PORT}/create-ip-logs-table to create the IP logs table`);
+  console.log(`Visit http://localhost:${connection.PORT}/create-tables to create the database tables`);
+  console.log(`Visit http://localhost:${connection.PORT}/migrate-database to update existing tables`);
 });
