@@ -1,57 +1,160 @@
-<section id='results content'>
-    <div class=''>
-        <form class="form-inline my-2 my-lg-0 mb-lg-5 align-right" action='/index/' method="POST">
-            <input class="form-control mr-sm-5" type="text" placeholder="Cauta" name='searchQuery'>
-            <label class='mr-2'>Cautare dupa: </label>
-            <select class="custom-select mr-sm-5" name='searchParam'>
-                <option value="nume_client">Nume</option>
-                <option value="nr_inmatriculare">Nr. inmatriculare</option>
-                <option value="tip_auto">Tip auto</option>
-            </select>
-            {{!-- <label class='mr-2'>Aranjare dupa: </label>
-            <select class='custom-select mr-sm-2' name='orderParam'>
-                <option value='data'>Date</option>
-                <option value='cost'>Cost</option>
-            </select> --}}
-            <button class="btn btn-secondary my-2 my-sm-0" type="submit"><i
-                    class="fas fa-search mr-sm-2"></i><b>Cauta</b></button>
-        </form>
+<section id="results-content">
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5 class="card-title mb-0"><i class="fas fa-search"></i> Cautare</h5>
+        </div>
+        <div class="card-body">
+            <form class="form-inline" action="/index/" method="POST">
+                <div class="form-group mb-2 mr-sm-3">
+                    <label for="searchQuery" class="sr-only">Cauta</label>
+                    <input type="text" class="form-control" id="searchQuery" placeholder="Cauta" name="searchQuery">
+                </div>
+                <div class="form-group mb-2 mr-sm-3">
+                    <label for="searchParam" class="sr-only">Cautare dupa</label>
+                    <select class="custom-select" id="searchParam" name="searchParam">
+                        <option value="nume_client">Nume</option>
+                        <option value="nr_inmatriculare">Nr. inmatriculare</option>
+                        <option value="tip_auto">Tip auto</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary mb-2"><i class="fas fa-search mr-1"></i> Cauta</button>
+            </form>
+        </div>
     </div>
 
-    <h1 class=''>Rezultate</h1>
-    {{#each results}}
-
-    <div class="container-fluid">
-        <div class="card text-white mb-3 " style="background:rgba(45, 186, 252, 0.5)">
-            <div class="card-header float-left">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h3>{{firstUpper nume_client}}</h3>
-                    </div>
-                    <div class="col-sm-6">
-                        <a href="/remove/profile/{{profile_id}}" class="btn btn-danger float-right mr-3 mt-1">Sterge</a>
-                        <a href="/edit/profile/{{profile_id}}" class="btn btn-primary float-right mr-3 mt-1">Editare</a>
-                        <a href="/index/view/{{profile_id}}" class="btn btn-primary float-right mr-3 mt-1">Vezi
-                            lucrari</a>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="mb-0"><i class="fas fa-list"></i> Rezultate</h2>
+        <button id="toggleView" class="btn btn-secondary" data-view="detailed">
+            <i class="fas fa-th-large"></i> Vizualizare Compacta
+        </button>
+    </div>
+    
+    {{#if results}}
+        <div id="detailedView" class="view-container">
+            <div class="row">
+                {{#each results}}
+                <div class="col-lg-6 mb-4">
+                    <div class="card">
+                        <div class="card-header bg-primary text-white">
+                            <div class="row align-items-center">
+                                <div class="col-sm-6">
+                                    <h5 class="mb-0">{{firstUpper nume_client}}</h5>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <a href="/index/view/{{profile_id}}" class="btn btn-light btn-sm mr-1" title="Vezi lucrari">
+                                        <i class="fas fa-eye" style="margin-right: 0;"></i>
+                                    </a>
+                                    <a href="/edit/profile/{{profile_id}}" class="btn btn-light btn-sm mr-1" title="Editare">
+                                        <i class="fas fa-edit" style="margin-right: 0;"></i>
+                                    </a>
+                                    <a href="/remove/profile/{{profile_id}}" class="btn btn-danger btn-sm" title="Sterge">
+                                        <i class="fas fa-trash" style="margin-right: 0;"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p class="card-text"><strong>Tip auto:</strong> {{firstUpper tip_auto}}</p>
+                                    <p class="card-text"><strong>Numar inmatriculare:</strong> {{nr_inmatriculare}}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="card-text"><strong>Serie caroserie:</strong> {{serie_caroserie}}</p>
+                                    <p class="card-text"><strong>Serie motor:</strong> {{serie_motor}}</p>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12">
+                                    <a href="/add/jobs/{{profile_id}}" class="btn btn-success btn-block">
+                                        <i class="fas fa-plus-circle"></i> Adauga lucrare
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                {{/each}}
             </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h4 class="card-title">Tip auto: {{firstUpper tip_auto}}</h4>
-                        <h4 class="card-title">Numar inmatriculare: {{nr_inmatriculare}}</h4>
-                    </div>
-                    <div class="col-sm-6">
-                        <h4 class="card-title">Serie caroserie: {{serie_caroserie}}</h4>
-                        <h4 class="card-title">Serie motor: {{serie_motor}}</h4>
+        </div>
+        
+        <div id="compactView" class="view-container" style="display: none;">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table table-hover mb-0">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th scope="col">Client</th>
+                                            <th scope="col">Auto</th>
+                                            <th scope="col">Nr. Inmatriculare</th>
+                                            <th scope="col" class="text-center">Actiuni</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each results}}
+                                        <tr>
+                                            <td>{{firstUpper nume_client}}</td>
+                                            <td>{{firstUpper tip_auto}}</td>
+                                            <td>{{nr_inmatriculare}}</td>
+                                            <td class="text-center">
+                                                <a href="/index/view/{{profile_id}}" class="btn btn-primary btn-sm mr-1" title="Vezi lucrari">
+                                                    <i class="fas fa-eye" style="margin-right: 0;"></i>
+                                                </a>
+                                                <a href="/edit/profile/{{profile_id}}" class="btn btn-warning btn-sm mr-1" title="Editare">
+                                                    <i class="fas fa-edit" style="margin-right: 0;"></i>
+                                                </a>
+                                                <a href="/add/jobs/{{profile_id}}" class="btn btn-success btn-sm mr-1" title="Adauga lucrare">
+                                                    <i class="fas fa-plus" style="margin-right: 0;"></i>
+                                                </a>
+                                                <a href="/remove/profile/{{profile_id}}" class="btn btn-danger btn-sm" title="Sterge">
+                                                    <i class="fas fa-trash" style="margin-right: 0;"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
     {{else}}
-    <p>Nu sunt rezultate</p>
-    {{/each}}
+        <div class="alert alert-info">
+            <h4 class="alert-heading"><i class="fas fa-info-circle"></i> Nu sunt rezultate</h4>
+            <p>Nu s-au gasit inregistrari care sa corespunda criteriilor de cautare.</p>
+            <hr>
+            <a href="/add/profile" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Adauga un nou profil</a>
+        </div>
+    {{/if}}
 </section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const toggleButton = document.getElementById('toggleView');
+    const detailedView = document.getElementById('detailedView');
+    const compactView = document.getElementById('compactView');
+    
+    toggleButton.addEventListener('click', function() {
+        const currentView = toggleButton.getAttribute('data-view');
+        
+        if (currentView === 'detailed') {
+            // Switch to compact view
+            detailedView.style.display = 'none';
+            compactView.style.display = 'block';
+            toggleButton.setAttribute('data-view', 'compact');
+            toggleButton.innerHTML = '<i class="fas fa-th-large"></i> Vizualizare Detaliata';
+        } else {
+            // Switch to detailed view
+            compactView.style.display = 'none';
+            detailedView.style.display = 'block';
+            toggleButton.setAttribute('data-view', 'detailed');
+            toggleButton.innerHTML = '<i class="fas fa-th-large"></i> Vizualizare Compacta';
+        }
+    });
+});
+</script>

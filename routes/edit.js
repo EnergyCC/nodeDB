@@ -3,6 +3,7 @@ const router = express.Router();
 const connection = require('../db');
 const checkAuthentication = require('./authentication');
 const { handleDatabaseError, handleValidationErrors } = require('../utils/errorHandler');
+const { processArrayField, processPairedArrays, processTripleArrays } = require('../utils/arrayProcessor');
 
 //Add edit route with data -> send it to app.handlebars
 router.get('/profile/:id', checkAuthentication, (req, res) => {
@@ -260,96 +261,6 @@ router.post('/jobs/:id', checkAuthentication, (req, res) => {
     tarif_ora,
     tva_percent
   } = req.body;
-  
-  // Process arrays like in simple.js - the correct way
-  function processArrayField(body, fieldName) {
-    // NOTE: Express bodyParser automatically removes [] suffix from field names
-    const fieldKey = fieldName;  // Look for field WITHOUT [] suffix
-    
-    if (Array.isArray(body[fieldKey])) {
-      // Filter out truly empty values (null, undefined, empty strings after trim)
-      const filtered = body[fieldKey].filter(item => {
-        if (item === null || item === undefined) return false;
-        return item.toString().trim() !== '';
-      });
-      const result = JSON.stringify(filtered);
-      return result;
-    } else if (body[fieldKey] !== undefined && body[fieldKey] !== null) {
-      // Single value case
-      const value = body[fieldKey].toString().trim();
-      const result = value !== '' ? JSON.stringify([value]) : JSON.stringify([]);
-      return result;
-    }
-    const result = JSON.stringify([]);
-    return result;
-  }
-  
-  // Process paired arrays (like piese client)
-  function processPairedArrays(body, field1, field2) {
-    // NOTE: Express bodyParser automatically removes [] suffix from field names
-    const key1 = field1;  // Look for field WITHOUT [] suffix
-    const key2 = field2;  // Look for field WITHOUT [] suffix
-    
-    let arr1 = [];
-    let arr2 = [];
-    
-    if (Array.isArray(body[key1]) && Array.isArray(body[key2])) {
-      // Both are arrays
-      const maxLength = Math.max(body[key1].length, body[key2].length);
-      for (let i = 0; i < maxLength; i++) {
-        const val1 = (body[key1][i] || '').toString().trim();
-        const val2 = (body[key2][i] || '').toString().trim();
-        arr1.push(val1);
-        arr2.push(val2);
-      }
-    } else if (body[key1] !== undefined && body[key2] !== undefined) {
-      // Both are single values
-      const val1 = body[key1].toString().trim();
-      const val2 = body[key2].toString().trim();
-      arr1.push(val1);
-      arr2.push(val2);
-    }
-    // If one exists and the other doesn't, we still need to handle it
-    
-    const result = [JSON.stringify(arr1), JSON.stringify(arr2)];
-    return result;
-  }
-  
-  // Process triple arrays (like piese materiale)
-  function processTripleArrays(body, field1, field2, field3) {
-    // NOTE: Express bodyParser automatically removes [] suffix from field names
-    const key1 = field1;  // Look for field WITHOUT [] suffix
-    const key2 = field2;  // Look for field WITHOUT [] suffix
-    const key3 = field3;  // Look for field WITHOUT [] suffix
-    
-    let arr1 = [];
-    let arr2 = [];
-    let arr3 = [];
-    
-    if (Array.isArray(body[key1]) && Array.isArray(body[key2]) && Array.isArray(body[key3])) {
-      // All are arrays
-      const maxLength = Math.max(body[key1].length, body[key2].length, body[key3].length);
-      for (let i = 0; i < maxLength; i++) {
-        const val1 = (body[key1][i] || '').toString().trim();
-        const val2 = (body[key2][i] || '').toString().trim();
-        const val3 = (body[key3][i] || '').toString().trim();
-        arr1.push(val1);
-        arr2.push(val2);
-        arr3.push(val3);
-      }
-    } else if (body[key1] !== undefined && body[key2] !== undefined && body[key3] !== undefined) {
-      // All are single values
-      const val1 = body[key1].toString().trim();
-      const val2 = body[key2].toString().trim();
-      const val3 = body[key3].toString().trim();
-      arr1.push(val1);
-      arr2.push(val2);
-      arr3.push(val3);
-    }
-    
-    const result = [JSON.stringify(arr1), JSON.stringify(arr2), JSON.stringify(arr3)];
-    return result;
-  }
   
   // Process all arrays correctly
   const lucrari_sol = processArrayField(req.body, 'lucrari_sol');

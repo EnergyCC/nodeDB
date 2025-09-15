@@ -1,22 +1,12 @@
+/* General styles that work with both light and dark modes */
+
 body {
-  /* margin: 0;
-  padding: 0;
-  background: rgb(34, 34, 34);
-  font-weight: 600;
-  font-family: sans-serif;
-  color: white; */
   height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Navigation css */
-
-.bgcolor {
-  background: rgba(27, 173, 180, 0.8);
-  position: fixed;
-}
-
 nav a {
-  color: white;
   text-decoration: none;
   font-size: 1.5rem;
   text-transform: uppercase;
@@ -24,15 +14,10 @@ nav a {
   position: relative;
 }
 
-.navBtn a:hover {
-  color: #000;
-}
-
 .navBtn a::before {
   content: '';
   display: block;
   height: 5px;
-  background: black;
   position: absolute;
   top: -0.3em;
   left: 0;
@@ -41,96 +26,172 @@ nav a {
   transition: transform ease-in-out 250ms;
 }
 
-.navBtn a:hover::before {
-  transform: scale(1, 1);
-}
-
 .content {
-  width: 80%;
+  width: 100%;
   margin: 4rem auto;
   position: relative;
   overflow: none;
   min-height: 100%;
 }
 
-/* .dropdown-toggle::after {
-  display: none !important;
-} */
-/* end of navigation css */
-
-/* start of card */
-
-.content {
-  width: 1200px;
-  margin: 10rem auto;
+/* Cards */
+.card {
+  margin-bottom: 1.5rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
 }
 
-.card-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  background: rgba(45, 186, 252, 0.651);
-  box-shadow: 5px 5px 10px rgba(118, 212, 243, 0.521);
-  color: #fff;
-  padding: 0.6rem 0 0 2.5rem;
-  margin-top: 2rem;
-  border-radius: 10px;
+.card-header {
+  font-weight: 600;
 }
 
-.actionBtn li {
-  display: block;
-  /* margin: 0.5rem; */
-  text-decoration: none;
+/* Forms */
+.form-group label {
+  font-weight: 500;
 }
 
-.actionBtn a {
-  display: block;
-  text-decoration: none;
-  text-align: center;
-  font-size: 1rem;
-  font-weight: 800;
-  list-style: none;
-  color: white;
-  padding: 0.5rem;
-  width: 150px;
-  border-radius: 10px;
-  box-shadow: inset 4px 5px rgba(255, 255, 255, 0.5);
-  /* background-color: darkgray; */
+/* Buttons */
+.btn {
+  font-weight: 500;
+  border-radius: 0.375rem;
+  padding: 0.5rem 1rem;
+  transition: all 0.2s ease-in-out;
 }
 
-.actionBtn a:hover {
-  color: black;
-  background-color: rgba(0, 0, 0, 0.3);
+.btn-block {
+  margin-bottom: 0.5rem;
 }
 
-.textContent {
-  grid-column: 1/2;
+.btn i {
+  margin-right: 0.5rem;
 }
 
-.viewBtn {
-  background-color: gray;
+/* Tables */
+.table {
+  margin-bottom: 0;
 }
 
-.editBtn {
-  background-color: gray;
+.table-responsive {
+  border-radius: 0.5rem;
+  overflow: hidden;
 }
 
-.deleteBtn {
-  background-color: red;
+/* Alerts */
+.alert ul {
+  margin-bottom: 0;
+  padding-left: 1.5rem;
 }
 
-.jumbotron {
-  padding: 0;
-  margin: 0;
+/* Input groups */
+.input-group-append .btn {
+  margin-bottom: 0;
 }
 
-@media screen and (max-width: 1200px) {
+/* Responsive fixes */
+@media screen and (max-width: 768px) {
   .content {
     width: 100%;
+    padding: 0 1rem;
+  }
+  
+  .card-body .row > div {
+    margin-bottom: 1rem;
+  }
+  
+  /* Improve form layout on mobile */
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .form-control {
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+  
+  /* Adjust button sizes for better touch targets */
+  .btn {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    min-height: 44px; /* Minimum touch target size */
+  }
+  
+  /* Improve table display on mobile */
+  .table-responsive {
+    font-size: 0.9rem;
+  }
+  
+  .table th,
+  .table td {
+    padding: 0.5rem;
   }
 }
 
 @media screen and (max-width: 600px) {
   .showBrand {
     display: none !important;
+  }
+  
+  .navbar-brand h3 {
+    font-size: 1.25rem;
+  }
+  
+  .navBtn .nav-link {
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
+  
+  /* Stack form elements on very small screens */
+  .form-row > .col,
+  .form-row > [class*="col-"] {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  
+  /* Improve readability on small screens */
+  body {
+    font-size: 0.95rem;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.2;
+  }
+  
+  /* Ensure proper spacing for mobile */
+  .mt-3, .my-3 {
+    margin-top: 0.75rem !important;
+  }
+  
+  .mb-3, .my-3 {
+    margin-bottom: 0.75rem !important;
+  }
+  
+  /* Adjust card padding for mobile */
+  .card-body {
+    padding: 1rem;
+  }
+  
+  /* Improve button spacing on mobile */
+  .btn-block {
+    margin-bottom: 0.75rem;
+  }
+}
+
+/* Additional responsive improvements for very small screens */
+@media screen and (max-width: 400px) {
+  .content {
+    padding: 0 0.5rem;
+  }
+  
+  .card {
+    margin-bottom: 1rem;
+  }
+  
+  /* Further reduce padding on tiny screens */
+  .card-body {
+    padding: 0.75rem;
+  }
+  
+  .btn {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.9rem;
   }
 }

@@ -18,40 +18,71 @@
                     {{/if}}
                     
                     <form action="{{url}}" method="{{mth}}">
+                        <input type="hidden" name="_csrf" value="{{csrfToken}}" />
                         <div class="form-group">
                             <label for="nume_client">Nume client:</label>
-                            <input type="text" name="nume_client" class="form-control" id="nume_client"
+                            <input type="text" name="nume_client" class="form-control {{#if (hasError 'nume_client')}}is-invalid{{/if}}" id="nume_client"
                                 placeholder="Introdu nume client" value="{{nume_client}}" maxlength="64" required>
+                            {{#if (hasError 'nume_client')}}
+                            <div class="invalid-feedback">
+                                {{getError 'nume_client'}}
+                            </div>
+                            {{/if}}
                         </div>
                         
                         <div class="form-group">
                             <label for="tip_auto">Tip auto:</label>
-                            <input type="text" name="tip_auto" class="form-control" id="tip_auto"
+                            <input type="text" name="tip_auto" class="form-control {{#if (hasError 'tip_auto')}}is-invalid{{/if}}" id="tip_auto"
                                 placeholder="Introdu tip auto" value="{{tip_auto}}" maxlength="48" required>
+                            {{#if (hasError 'tip_auto')}}
+                            <div class="invalid-feedback">
+                                {{getError 'tip_auto'}}
+                            </div>
+                            {{/if}}
                         </div>
                         
                         <div class="form-group">
                             <label for="nr_inmatriculare">Numar inmatriculare:</label>
-                            <input type="text" name="nr_inmatriculare" class="form-control" id="nr_inmatriculare"
+                            <input type="text" name="nr_inmatriculare" class="form-control {{#if (hasError 'nr_inmatriculare')}}is-invalid{{/if}}" id="nr_inmatriculare"
                                 placeholder="Introdu numar inmatriculare" value="{{nr_inmatriculare}}" maxlength="15" required>
+                            {{#if (hasError 'nr_inmatriculare')}}
+                            <div class="invalid-feedback">
+                                {{getError 'nr_inmatriculare'}}
+                            </div>
+                            {{/if}}
                         </div>
                         
                         <div class="form-group">
                             <label for="serie_caroserie">Serie caroserie:</label>
-                            <input type="text" name="serie_caroserie" class="form-control" id="serie_caroserie"
+                            <input type="text" name="serie_caroserie" class="form-control {{#if (hasError 'serie_caroserie')}}is-invalid{{/if}}" id="serie_caroserie"
                                 placeholder="Introdu serie caroserie" value="{{serie_caroserie}}" maxlength="20" required>
+                            {{#if (hasError 'serie_caroserie')}}
+                            <div class="invalid-feedback">
+                                {{getError 'serie_caroserie'}}
+                            </div>
+                            {{/if}}
                         </div>
                         
                         <div class="form-group">
                             <label for="serie_motor">Serie motor:</label>
-                            <input type="text" name="serie_motor" class="form-control" id="serie_motor"
+                            <input type="text" name="serie_motor" class="form-control {{#if (hasError 'serie_motor')}}is-invalid{{/if}}" id="serie_motor"
                                 placeholder="Introdu serie motor" value="{{serie_motor}}" maxlength="20" required>
+                            {{#if (hasError 'serie_motor')}}
+                            <div class="invalid-feedback">
+                                {{getError 'serie_motor'}}
+                            </div>
+                            {{/if}}
                         </div>
                         
                         <div class="form-group">
                             <label for="nr_tel">Nr. telefon:</label>
-                            <input type="tel" name="nr_tel" class="form-control" id="nr_tel"
+                            <input type="tel" name="nr_tel" class="form-control {{#if (hasError 'nr_tel')}}is-invalid{{/if}}" id="nr_tel"
                                 placeholder="Introdu nr. de telefon" value="{{nr_tel}}" maxlength="12">
+                            {{#if (hasError 'nr_tel')}}
+                            <div class="invalid-feedback">
+                                {{getError 'nr_tel'}}
+                            </div>
+                            {{/if}}
                         </div>
                         
                         <button type="submit" class="btn btn-primary btn-block">

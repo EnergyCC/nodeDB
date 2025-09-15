@@ -1,12 +1,12 @@
 <section id='remove-result'>
-
-    <div class="card text-white bg-secondary mb-3">
-        <div class="card-header">Sterge profil</div>
-        <div class="card-body">
-            <h4 class="card-title">Esti sigur ca vrei sa stergi: {{ nume_client }} ?</h4>
-            <a href="/remove/profile/{{ profile_id }}/true" class="btn btn-block btn-danger">Da</a>
-            <a href='/index' class='btn btn-block btn-outline-primary'>Nu</a>
-        </div>
+  <div class="card text-white bg-secondary mb-3">
+    <div class="card-header">Sterge profil</div>
+    <div class="card-body">
+      <h4 class="card-title">Esti sigur ca vrei sa stergi: {{ nume_client }} ?</h4>
+      <form method="POST" action="{{ url }}" style="display: inline;">
+        <button type="submit" class="btn btn-block btn-danger">Da</button>
+      </form>
+      <a href='/index' class='btn btn-block btn-outline-primary'>Nu</a>
     </div>
-
+  </div>
 </section>

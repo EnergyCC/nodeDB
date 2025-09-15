@@ -1,355 +1,813 @@
-<section id='viewjobs'>
-    <div class="jumbotron bg-primary" style='margin-top:0px;padding-top:0.5rem'>
-        <div class='buttons float-right'>
-            <a href='/index/view/{{profile_id}}' class='btn btn-secondary btn-lg'>Inapoi</a>
-            <a href='/edit/jobs/{{job_id}}?profile={{profile_id}}&source=jobs'
-                class='btn btn-secondary btn-lg'>Editeaza</a>
-            <a href='/index/raport/{{job_id}}?profile={{profile_id}}' target='_blank'
-                class='btn btn-secondary btn-lg'>Genereaza raport</a>
-        </div>
-        <hr class='mt-lg-5'>
-        <h4>Deviz {{job_id}}</h4>
-        <h4>{{parseData result.0.data_adaugare}}</h4>
-        <div class="row justify-content-center" id='canvas'>
-            <table style='width:100%;text-align:center'>
-                <tr>
-                    <th style='border:2px solid;width:15%'>Lucrari solicitate</th>
-                    <td style='border:2px solid;width:35%'>{{tableRes result.[0].lucrari_sol 0}} &nbsp;</td>
-                    <th style='border:2px solid;width:15%'>Denumire piese client</th>
+<!DOCTYPE html>
+<html lang="en">
 
-                    <td style='border:2px solid;width:35%'>{{tableRes result.[0].den_piesa_cl 0}}</td>
-                </tr>
-                <tr>
-                    <td style='border:1px solid'></td>
-                    <td style="border:1px solid">{{tableRes result.[0].lucrari_sol 1}} &nbsp;</td>
-                    <td style="border:1px solid"> </td>
-                    <td style="border:1px solid">{{tableRes result.[0].den_piesa_cl 1}}</td>
-                </tr>
-                <tr>
-                    <td style="border:1px solid"></td>
-                    <td style="border:1px solid">{{tableRes result.[0].lucrari_sol 2}} &nbsp;</td>
-                    <td style="border:1px solid"></td>
-                    <td style="border:1px solid">{{tableRes result.[0].den_piesa_cl 2}}</td>
-                </tr>
-                <tr>
-                    <td style="border:1px solid"></td>
-                    <td style="border:1px solid">{{tableRes result.[0].lucrari_sol 3}} &nbsp;</td>
-                    <td style='border:1px solid'></td>
-                    <td style='border:1px solid'>{{tableRes result.[0].den_piesa_cl 3}}</td>
-                </tr>
-                <tr>
-                    <td style="border:1px solid"></td>
-                    <td style="border:1px solid">{{tableRes result.[0].lucrari_sol 4}} &nbsp;</td>
-                    <td style='border:1px solid'></td>
-                    <td style='border:1px solid'>{{tableRes result.[0].den_piesa_cl 4}}</td>
-                </tr>
-                <tr>
-                    <th style="border:2px solid">Nr. piese client(buc)</td>
-                    <td style="border:2px solid">{{tableRes result.[0].buc_piesa_cl 0}} &nbsp;</td>
-                    <th style='border:2px solid'>Defecte suplimentare</td>
-                    <td style='border:2px solid'>{{tableRes result.[0].def_suplim 0}}</td>
-                </tr>
-                <tr>
-                    <td style="border:1px solid"></td>
-                    <td style="border:1px solid">{{tableRes result.0.buc_piesa_cl 1}} &nbsp;</td>
-                    <td style='border:1px solid'></td>
-                    <td style='border:1px solid'>{{tableRes result.[0].def_suplim 1}}</td>
-                </tr>
-                <tr>
-                    <td style="border:1px solid"></td>
-                    <td style="border:1px solid">{{tableRes result.0.buc_piesa_cl 2}} &nbsp;</td>
-                    <td style='border:1px solid'></td>
-                    <td style='border:1px solid'>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td style="border:1px solid"></td>
-                    <td style="border:1px solid">{{tableRes result.0.buc_piesa_cl 3}} &nbsp;</td>
-                    <td style='border:1px solid'></td>
-                    <td style='border:1px solid'>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td style="border:1px solid"></td>
-                    <td style="border:1px solid">{{tableRes result.0.buc_piesa_cl 4}} &nbsp;</td>
-                    <td style='border:1px solid'></td>
-                    <td style='border:1px solid'>&nbsp;</td>
-                </tr>
-                <tr>
-                    <th style="border:2px solid">Termen executie</th>
-                    <td style="border:2px solid">{{result.0.termen_executie}} ore</td>
-                    <th style='border:2px solid'>Kilometri</th>
-                    <td style='border:2px solid'>{{result.0.kilometri}}</td>
-                </tr>
-                <tr>
-                    <th style="border:2px solid">Lucrari convenite<br>Denumire operatie</th>
-                    <td style="border:2px solid">{{tableRes result.0.denum_operatie 0}} &nbsp;</td>
-                    <th style='border:2px solid'>Lucrari convenite<br>Timp operatie(ore)</th>
-                    <td style='border:2px solid'>{{tableRes result.0.timp_operatie 0}}</td>
-                </tr>
-                <tr>
-                    <th style="border:1px solid"></th>
-                    <td style="border:1px solid">{{tableRes result.0.denum_operatie 1}} &nbsp;</td>
-                    <th style='border:1px solid'></th>
-                    <td style='border:1px solid'>{{tableRes result.0.timp_operatie 1}}</td>
-                </tr>
-                <tr>
-                    <th style="border:1px solid"></th>
-                    <td style="border:1px solid">{{tableRes result.0.denum_operatie 2}} &nbsp;</td>
-                    <th style='border:1px solid'></th>
-                    <td style='border:1px solid'>{{tableRes result.0.timp_operatie 2}}</td>
-                </tr>
-                <tr>
-                    <th style="border:1px solid"></th>
-                    <td style="border:1px solid">{{tableRes result.0.denum_operatie 3}} &nbsp;</td>
-                    <th style='border:1px solid'></th>
-                    <td style='border:1px solid'>{{tableRes result.0.timp_operatie 3}}</td>
-                </tr>
-                <tr>
-                    <th style="border:1px solid"></th>
-                    <td style="border:1px solid">{{tableRes result.0.denum_operatie 4}} &nbsp;</td>
-                    <th style='border:1px solid'></th>
-                    <td style='border:1px solid'>{{tableRes result.0.timp_operatie 4}}</td>
-                </tr>
-                <tr>
-                    <th style="border:2px solid">Denumire piesa</th>
-                    <td style="border:2px solid">{{tableRes result.0.denum_piesa 0}} &nbsp;</td>
-                    <th style='border:2px solid'>Cantitate piese</th>
-                    <td style='border:2px solid'>{{tableRes result.0.cant_piese 0}}</td>
-                </tr>
-                <tr>
-                    <th style="border:1px solid"></th>
-                    <td style="border:1px solid">{{tableRes result.0.denum_piesa 1}} &nbsp;</td>
-                    <th style='border:1px solid'></th>
-                    <td style='border:1px solid'>{{tableRes result.0.cant_piese 1}}</td>
-                </tr>
-                <tr>
-                    <th style="border:1px solid"></th>
-                    <td style="border:1px solid">{{tableRes result.0.denum_piesa 2}} &nbsp;</td>
-                    <th style='border:1px solid'></th>
-                    <td style='border:1px solid'>{{tableRes result.0.cant_piese 2}}</td>
-                </tr>
-                <tr>
-                    <th style="border:1px solid"></th>
-                    <td style="border:1px solid">{{tableRes result.0.denum_piesa 3}} &nbsp;</td>
-                    <th style='border:1px solid'></th>
-                    <td style='border:1px solid'>{{tableRes result.0.cant_piese 3}}</td>
-                </tr>
-                <tr>
-                    <th style="border:1px solid"></th>
-                    <td style="border:1px solid">{{tableRes result.0.denum_piesa 4}} &nbsp;</td>
-                    <th style='border:1px solid'></th>
-                    <td style='border:1px solid'>{{tableRes result.0.cant_piese 4}}</td>
-                </tr>
-                <tr>
-                    <th style="border:1px solid"></th>
-                    <td style="border:1px solid">{{tableRes result.0.denum_piesa 5}} &nbsp;</td>
-                    <th style='border:1px solid'></th>
-                    <td style='border:1px solid'>{{tableRes result.0.cant_piese 5}}</td>
-                </tr>
-                <tr>
-                    <th style="border:1px solid"></th>
-                    <td style="border:1px solid">{{tableRes result.0.denum_piesa 6}} &nbsp;</td>
-                    <th style='border:1px solid'></th>
-                    <td style='border:1px solid'>{{tableRes result.0.cant_piese 6}}</td>
-                </tr>
-                <tr>
-                    <th style="border:1px solid"></th>
-                    <td style="border:1px solid">{{tableRes result.0.denum_piesa 7}} &nbsp;</td>
-                    <th style='border:1px solid'></th>
-                    <td style='border:1px solid'>{{tableRes result.0.cant_piese 7}}</td>
-                </tr>
-                <tr>
-                    <th style="border:1px solid"></th>
-                    <td style="border:1px solid">{{tableRes result.0.denum_piesa 8}} &nbsp;</td>
-                    <th style='border:1px solid'></th>
-                    <td style='border:1px solid'>{{tableRes result.0.cant_piese 8}}</td>
-                </tr>
-                <tr>
-                    <th style="border:1px solid"></th>
-                    <td style="border:1px solid">{{tableRes result.0.denum_piesa 9}} &nbsp;</td>
-                    <th style='border:1px solid'></th>
-                    <td style='border:1px solid'>{{tableRes result.0.cant_piese 9}}</td>
-                </tr>
-                <tr>
-                    <th style="border:1px solid"></th>
-                    <td style="border:1px solid">{{tableRes result.0.denum_piesa 10}} &nbsp;</td>
-                    <th style='border:1px solid'></th>
-                    <td style='border:1px solid'>{{tableRes result.0.cant_piese 10}}</td>
-                </tr>
-                <tr>
-                    <th style="border:1px solid"></th>
-                    <td style="border:1px solid">{{tableRes result.0.denum_piesa 11}} &nbsp;</td>
-                    <th style='border:1px solid'></th>
-                    <td style='border:1px solid'>{{tableRes result.0.cant_piese 11}}</td>
-                </tr>
-                <tr>
-                    <th style="border:1px solid"></th>
-                    <td style="border:1px solid">{{tableRes result.0.denum_piesa 12}} &nbsp;</td>
-                    <th style='border:1px solid'></th>
-                    <td style='border:1px solid'>{{tableRes result.0.cant_piese 12}}</td>
-                </tr>
-                <tr>
-                    <th style="border:1px solid"></th>
-                    <td style="border:1px solid">{{tableRes result.0.denum_piesa 13}} &nbsp;</td>
-                    <th style='border:1px solid'></th>
-                    <td style='border:1px solid'>{{tableRes result.0.cant_piese 13}}</td>
-                </tr>
-                <tr>
-                    <th style="border:1px solid"></th>
-                    <td style="border:1px solid">{{tableRes result.0.denum_piesa 14}} &nbsp;</td>
-                    <th style='border:1px solid'></th>
-                    <td style='border:1px solid'>{{tableRes result.0.cant_piese 14}}</td>
-                </tr>
-                <tr>
-                    <th style="border:1px solid"></th>
-                    <td style="border:1px solid">{{tableRes result.0.denum_piesa 15}} &nbsp;</td>
-                    <th style='border:1px solid'></th>
-                    <td style='border:1px solid'>{{tableRes result.0.cant_piese 15}}</td>
-                </tr>
-                <tr>
-                    <th style="border:1px solid"></th>
-                    <td style="border:1px solid">{{tableRes result.0.denum_piesa 16}} &nbsp;</td>
-                    <th style='border:1px solid'></th>
-                    <td style='border:1px solid'>{{tableRes result.0.cant_piese 16}}</td>
-                </tr>
-                <tr>
-                    <th style="border:1px solid"></th>
-                    <td style="border:1px solid">{{tableRes result.0.denum_piesa 17}} &nbsp;</td>
-                    <th style='border:1px solid'></th>
-                    <td style='border:1px solid'>{{tableRes result.0.cant_piese 17}}</td>
-                </tr>
-                <tr>
-                    <th style="border:1px solid"></th>
-                    <td style="border:1px solid">{{tableRes result.0.denum_piesa 18}} &nbsp;</td>
-                    <th style='border:1px solid'></th>
-                    <td style='border:1px solid'>{{tableRes result.0.cant_piese 18}}</td>
-                </tr>
-                <tr>
-                    <th style="border:1px solid"></th>
-                    <td style="border:1px solid">{{tableRes result.0.denum_piesa 19}} &nbsp;</td>
-                    <th style='border:1px solid'></th>
-                    <td style='border:1px solid'>{{tableRes result.0.cant_piese 19}}</td>
-                </tr>
-                <tr>
-                    <th style="border:2px solid">Pret piesa</th>
-                    <td style="border:2px solid">{{tableRes result.0.pret_piesa 0}} &nbsp;</td>
-                    <th style='border:2px solid'></th>
-                    <td style='border:2px solid'></td>
-                </tr>
-                <tr>
-                    <th style="border:1px solid"></th>
-                    <td style="border:1px solid">{{tableRes result.0.pret_piesa 1}} &nbsp;</td>
-                    <th style='border:1px solid'></th>
-                    <td style='border:1px solid'></td>
-                </tr>
-                <tr>
-                    <th style="border:1px solid"></th>
-                    <td style="border:1px solid">{{tableRes result.0.pret_piesa 2}} &nbsp;</td>
-                    <th style='border:1px solid'></th>
-                    <td style='border:1px solid'></td>
-                </tr>
-                <tr>
-                    <th style="border:1px solid"></th>
-                    <td style="border:1px solid">{{tableRes result.0.pret_piesa 3}} &nbsp;</td>
-                    <th style='border:1px solid'></th>
-                    <td style='border:1px solid'></td>
-                </tr>
-                <tr>
-                    <th style="border:1px solid"></th>
-                    <td style="border:1px solid">{{tableRes result.0.pret_piesa 4}} &nbsp;</td>
-                    <th style='border:1px solid'></th>
-                    <td style='border:1px solid'></td>
-                </tr>
-                <tr>
-                    <th style="border:1px solid"></th>
-                    <td style="border:1px solid">{{tableRes result.0.pret_piesa 5}} &nbsp;</td>
-                    <th style='border:1px solid'></th>
-                    <td style='border:1px solid'></td>
-                </tr>
-                <tr>
-                    <th style="border:1px solid"></th>
-                    <td style="border:1px solid">{{tableRes result.0.pret_piesa 6}} &nbsp;</td>
-                    <th style='border:1px solid'></th>
-                    <td style='border:1px solid'></td>
-                </tr>
-                <tr>
-                    <th style="border:1px solid"></th>
-                    <td style="border:1px solid">{{tableRes result.0.pret_piesa 7}} &nbsp;</td>
-                    <th style='border:1px solid'></th>
-                    <td style='border:1px solid'></td>
-                </tr>
-                <tr>
-                    <th style="border:1px solid"></th>
-                    <td style="border:1px solid">{{tableRes result.0.pret_piesa 8}} &nbsp;</td>
-                    <th style='border:1px solid'></th>
-                    <td style='border:1px solid'></td>
-                </tr>
-                <tr>
-                    <th style="border:1px solid"></th>
-                    <td style="border:1px solid">{{tableRes result.0.pret_piesa 9}} &nbsp;</td>
-                    <th style='border:1px solid'></th>
-                    <td style='border:1px solid'></td>
-                </tr>
-                <tr>
-                    <th style="border:1px solid"></th>
-                    <td style="border:1px solid">{{tableRes result.0.pret_piesa 10}} &nbsp;</td>
-                    <th style='border:1px solid'></th>
-                    <td style='border:1px solid'></td>
-                </tr>
-                <tr>
-                    <th style="border:1px solid"></th>
-                    <td style="border:1px solid">{{tableRes result.0.pret_piesa 11}} &nbsp;</td>
-                    <th style='border:1px solid'></th>
-                    <td style='border:1px solid'></td>
-                </tr>
-                <tr>
-                    <th style="border:1px solid"></th>
-                    <td style="border:1px solid">{{tableRes result.0.pret_piesa 12}} &nbsp;</td>
-                    <th style='border:1px solid'></th>
-                    <td style='border:1px solid'></td>
-                </tr>
-                <tr>
-                    <th style="border:1px solid"></th>
-                    <td style="border:1px solid">{{tableRes result.0.pret_piesa 13}} &nbsp;</td>
-                    <th style='border:1px solid'></th>
-                    <td style='border:1px solid'></td>
-                </tr>
-                <tr>
-                    <th style="border:1px solid"></th>
-                    <td style="border:1px solid">{{tableRes result.0.pret_piesa 14}} &nbsp;</td>
-                    <th style='border:1px solid'></th>
-                    <td style='border:1px solid'></td>
-                </tr>
-                <tr>
-                    <th style="border:1px solid"></th>
-                    <td style="border:1px solid">{{tableRes result.0.pret_piesa 15}} &nbsp;</td>
-                    <th style='border:1px solid'></th>
-                    <td style='border:1px solid'></td>
-                </tr>
-                <tr>
-                    <th style="border:1px solid"></th>
-                    <td style="border:1px solid">{{tableRes result.0.pret_piesa 16}} &nbsp;</td>
-                    <th style='border:1px solid'></th>
-                    <td style='border:1px solid'></td>
-                </tr>
-                <tr>
-                    <th style="border:1px solid"></th>
-                    <td style="border:1px solid">{{tableRes result.0.pret_piesa 17}} &nbsp;</td>
-                    <th style='border:1px solid'></th>
-                    <td style='border:1px solid'></td>
-                </tr>
-                <tr>
-                    <th style="border:1px solid"></th>
-                    <td style="border:1px solid">{{tableRes result.0.pret_piesa 18}} &nbsp;</td>
-                    <th style='border:1px solid'></th>
-                    <td style='border:1px solid'></td>
-                </tr>
-                <tr>
-                    <th style="border:1px solid"></th>
-                    <td style="border:1px solid">{{tableRes result.0.pret_piesa 19}} &nbsp;</td>
-                    <th style='border:1px solid'></th>
-                    <td style='border:1px solid'></td>
-                </tr>
-            </table>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Deviz {{job_id}}</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/dark-mode.css" />
+    <link rel="stylesheet" href="/css/print.css" media="print" />
+    <style>
+        /* Carousel Styles */
+        .carousel-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(3px);
+        }
+        
+        .carousel-content {
+            position: relative;
+            width: 95%;
+            max-width: 1400px;
+            height: 95vh;
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .carousel-header {
+            padding: 15px 20px;
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        
+        .carousel-body {
+            padding: 20px;
+            flex-grow: 1;
+            overflow-y: auto;
+            background-color: white;
+            color: #333;
+        }
+        
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 20px;
+            box-sizing: border-box;
+            z-index: 10;
+        }
+        
+        .carousel-btn {
+            background-color: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: white;
+            font-size: 24px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .carousel-btn:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+            transform: scale(1.1);
+        }
+        
+        .carousel-close {
+            background: none;
+            border: none;
+            color: #333;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .carousel-close:hover {
+            color: #dc3545;
+        }
+        
+        /* Navigation dots */
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-top: 1px solid #dee2e6;
+            flex-shrink: 0;
+        }
+        
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #ccc;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .dot.active {
+            background-color: #007bff;
+        }
+        
+        /* Hide print-only styles in carousel */
+        @media print {
+            .carousel-container {
+                display: none !important;
+            }
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .carousel-content {
+                width: 98%;
+                height: 98vh;
+            }
+        }
+        
+        /* A4 Page Styles for Report - match print layout exactly */
+        .carousel-body {
+            background-color: white;
+            color: #333;
+        }
+        
+        .carousel-body #deviz {
+            background-color: white;
+            width: 100%;
+        }
+        
+        /* Page splitting styles - match print layout exactly */
+        .report-page {
+            width: 100%;
+            min-height: 250mm; /* Slightly smaller for screen view */
+            margin: 0 auto;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .page-1 {
+            /* First page content - exactly what will be printed on page 1 */
+        }
+        
+        .page-2 {
+            /* Second page content - exactly what will be printed on page 2 */
+            margin-top: 20px;
+        }
+        
+        /* Ensure carousel view matches print view */
+        .carousel-body .text.mt-5.mr-5.ml-5 {
+            margin-top: 3rem !important;
+        }
+        
+        /* Preserve original raport styles */
+        .carousel-body .unitate.ml-5.mt-4 {
+            margin-left: 3rem !important;
+            margin-top: 1.5rem !important;
+        }
+        
+        .carousel-body .deviz.mt-3 {
+            margin-top: 1rem !important;
+        }
+        
+        .carousel-body .ml-5 {
+            margin-left: 3rem !important;
+        }
+        
+        .carousel-body .mr-5 {
+            margin-right: 3rem !important;
+        }
+        
+        .carousel-body .mt-3 {
+            margin-top: 1rem !important;
+        }
+        
+        .carousel-body .mt-4 {
+            margin-top: 1.5rem !important;
+        }
+        
+        .carousel-body .mt-5 {
+            margin-top: 3rem !important;
+        }
+        
+        .carousel-body .float-left.ml-5 {
+            margin-left: 3rem !important;
+        }
+        
+        .carousel-body .float-right.mr-5 {
+            margin-right: 3rem !important;
+        }
+        
+        /* Simulate print page breaks in carousel view */
+        .carousel-body .page-2 {
+            border-top: 1px dashed #ccc;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+
+<body style="background-color: #121212; color: #e0e0e0">
+    <!-- Carousel Modal -->
+    <div id="reportCarousel" class="carousel-container">
+        <div class="carousel-content">
+                <div class="carousel-header">
+                    <h4 class="mb-0"><i class="fas fa-file-alt"></i> Previzualizare Raport</h4>
+                    <button class="carousel-close" id="closeCarousel">&times;</button>
+                </div>
+                <div class="carousel-body">
+                    <div id="reportContent">
+                        <!-- Report content will be loaded here -->
+                    </div>
+                </div>
+                <div class="carousel-dots">
+                    <div class="dot active" data-index="0"></div>
+                </div>
+                <div class="carousel-controls">
+                    <button class="carousel-btn" id="prevBtn"><i class="fas fa-chevron-left" style="margin-right: 0;"></i></button>
+                    <button class="carousel-btn" id="nextBtn"><i class="fas fa-chevron-right" style="margin-right: 0;"></i></button>
+                </div>
+            </div>
+    </div>
+    
+    <div class="container-fluid mt-4">
+        <div class="row">
+            <div class="col-12">
+                <a href="/index/view/{{profile_id}}" class="btn btn-secondary mb-3">
+                    <i class="fas fa-arrow-left"></i> Inapoi
+                </a>
+                <a href="/edit/jobs/{{job_id}}?profile={{profile_id}}" class="btn btn-primary mb-3">
+                    <i class="fas fa-edit"></i> Editeaza
+                </a>
+                <button id="generateReportBtn" class="btn btn-success mb-3" data-loading>
+                    <i class="fas fa-file-alt"></i> Genereaza raport
+                </button>
+                <button id="printReportBtn" class="btn btn-info mb-3" data-loading>
+                    <i class="fas fa-print"></i> Printeaza
+                </button>
+            </div>
+        </div>
+        
+        <div class="card" style="background-color: #1e1e1e; border: 1px solid #333;">
+            <div class="card-header bg-dark text-white">
+                <h4 class="mb-0"><i class="fas fa-file-alt"></i> Deviz {{job_id}}</h4>
+            </div>
+            <div class="card-body">
+                <!-- Header information -->
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <h4 class="text-center">Comanda-Deviz nr.: {{job_id}}</h4>
+                        <div class="float-right">DATA: {{parseData result.0.data_adaugare}}</div>
+                    </div>
+                </div>
+                
+                <!-- Client information -->
+                <div class="row mb-4">
+                    <div class="col-6">
+                        <div>Client: {{firstUpper pResult.0.nume_client}}</div>
+                        <div>Nr. Telefon: {{pResult.0.nr_tel}}</div>
+                    </div>
+                    <div class="col-6">
+                        <div>Tip auto: {{firstUpper pResult.0.tip_auto}}</div>
+                        <div>Nr. inmatriculare: {{pResult.0.nr_inmatriculare}}</div>
+                        <div>Serie caroserie: {{pResult.0.serie_caroserie}}</div>
+                        <div>Serie Motor: {{pResult.0.serie_motor}}</div>
+                        <div>Kilometri: {{result.0.kilometri}}</div>
+                    </div>
+                </div>
+                
+                <!-- Lucrari solicitate -->
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <h5>Lucrari solicitate de client</h5>
+                        <table class="table table-bordered" style="background-color: #2d2d2d; color: #e0e0e0;">
+                            <tbody>
+                                {{#if lucrari_sol_data}}
+                                    {{#each lucrari_sol_data}}
+                                        {{#if this}}
+                                        <tr>
+                                            <td>{{this}}</td>
+                                        </tr>
+                                        {{/if}}
+                                    {{/each}}
+                                {{/if}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Piese client -->
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <h5>Piese client: (Garantia pieselor este asigurata numai de furnizor)</h5>
+                        <table class="table table-bordered" style="background-color: #2d2d2d; color: #e0e0e0;">
+                            <thead>
+                                <tr>
+                                    <th>Denumirea</th>
+                                    <th>Bucati</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#if piese_client_data}}
+                                    {{#each piese_client_data}}
+                                        {{#if (or this.denumire this.bucati)}}
+                                        <tr>
+                                            <td>{{this.denumire}}</td>
+                                            <td>{{this.bucati}}</td>
+                                        </tr>
+                                        {{/if}}
+                                    {{/each}}
+                                {{/if}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Defecte suplimentare -->
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <h5>Defecte suplimentare constatate in timpul reparatiei</h5>
+                        <table class="table table-bordered" style="background-color: #2d2d2d; color: #e0e0e0;">
+                            <thead>
+                                <tr>
+                                    <th style="width:70%">Defect</th>
+                                    <th style="width:30%">Accept client</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#if defecte_data}}
+                                    {{#each defecte_data}}
+                                        {{#if this}}
+                                        <tr>
+                                            <td>{{this}}</td>
+                                            <td></td>
+                                        </tr>
+                                        {{/if}}
+                                    {{/each}}
+                                {{else}}
+                                    <!-- Default row when no data -->
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                {{/if}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Termen executie -->
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <div>Termen de executie (estimativ): {{result.0.termen_executie}} Ore</div>
+                    </div>
+                </div>
+                
+                <!-- Lucrari convenite -->
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <h5>Lucrari convenite cu clientul si executate</h5>
+                        <table class="table table-bordered text-center" style="background-color: #2d2d2d; color: #e0e0e0;">
+                            <thead>
+                                <tr>
+                                    <th>Nr. crt.</th>
+                                    <th>Denmirea operatiei</th>
+                                    <th>Timp ore</th>
+                                    <th>Tarif ora</th>
+                                    <th>Valoare lei</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#if lucrari_convenite_data}}
+                                    {{#each lucrari_convenite_data}}
+                                        {{#if this.operatie}}
+                                        <tr>
+                                            <td>{{this.index}}</td>
+                                            <td>{{this.operatie}}</td>
+                                            <td>{{this.timp}}</td>
+                                            <td>{{../result.0.tarif_ora}} lei</td>
+                                            <td>{{this.valoare}} lei</td>
+                                        </tr>
+                                        {{/if}}
+                                    {{/each}}
+                                {{/if}}
+                                <tr>
+                                    <td colspan="2">Regie manopera</td>
+                                    <td>{{total_ore_operatie}} ore</td>
+                                    <td></td>
+                                    <td>{{total_cost_val}} lei</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Piese materiale -->
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <h5>Piese/materiale</h5>
+                        <table class="table table-bordered text-center" style="background-color: #2d2d2d; color: #e0e0e0;">
+                            <thead>
+                                <tr>
+                                    <th>Nr. crt.</th>
+                                    <th>Denumirea piesa/material</th>
+                                    <th>U/M</th>
+                                    <th>Cantitate</th>
+                                    <th>Pret unitar</th>
+                                    <th>Valoare</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#if piese_materiale_data}}
+                                    {{#each piese_materiale_data}}
+                                        {{#if this.denumire}}
+                                        <tr>
+                                            <td>{{this.index}}</td>
+                                            <td>{{this.denumire}}</td>
+                                            <td>BUC</td>
+                                            <td>{{this.cantitate}}</td>
+                                            <td>{{this.pret}}</td>
+                                            <td>{{this.valoare}}</td>
+                                        </tr>
+                                        {{/if}}
+                                    {{/each}}
+                                {{/if}}
+                                <tr>
+                                    <td colspan="2">Regie materiale</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>{{total_materiale}} lei</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Total -->
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <table class="table table-bordered" style="background-color: #2d2d2d; color: #e0e0e0;">
+                            <tbody>
+                                <tr>
+                                    <td>Total manopera</td>
+                                    <td>{{total_manopera}} lei</td>
+                                </tr>
+                                <tr>
+                                    <td>Total materiale</td>
+                                    <td>{{total_materiale}} lei</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Total plata</strong></td>
+                                    <td><strong>{{total_plata}} lei</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</section>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousel = document.getElementById('reportCarousel');
+            const generateBtn = document.getElementById('generateReportBtn');
+            const closeBtn = document.getElementById('closeCarousel');
+            const reportContent = document.getElementById('reportContent');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const dotsContainer = document.querySelector('.carousel-dots');
+            let currentPage = 0;
+            
+            // Open carousel when Generate Report button is clicked
+            generateBtn.addEventListener('click', function() {
+                // Fetch the report content via AJAX
+                fetch(`/index/raport/${encodeURIComponent('{{job_id}}')}?profile=${encodeURIComponent('{{profile_id}}')}`)
+                    .then(response => response.text())
+                    .then(html => {
+                        // Hide loading indicator
+                        hideLoading();
+                        
+                        // Create a temporary container to parse the HTML
+                        const tempDiv = document.createElement('div');
+                        tempDiv.innerHTML = html;
+                        
+                        // Extract the #deviz content
+                        const devizContent = tempDiv.querySelector('#deviz');
+                        
+                        if (devizContent) {
+                            // Split the content into two pages
+                            splitReportIntoPages(devizContent);
+                        } else {
+                            // Fallback: use the entire HTML if #deviz not found
+                            reportContent.innerHTML = html;
+                        }
+                        
+                        // Show the carousel
+                        carousel.style.display = 'flex';
+                        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                        
+                        // Add print button inside carousel
+                        const printBtn = document.createElement('button');
+                        printBtn.className = 'btn btn-info ml-3';
+                        printBtn.innerHTML = '<i class="fas fa-print"></i> Printeaza';
+                        printBtn.onclick = function() {
+                            printReport();
+                        };
+                        
+                        // Add the print button right after the header title
+                        const header = document.querySelector('.carousel-header');
+                        const headerTitle = header.querySelector('h4');
+                        header.insertBefore(printBtn, headerTitle.nextSibling);
+                    })
+                    .catch(error => {
+                        console.error('Error loading report:', error);
+                        hideLoading(); // Hide loading indicator on error
+                        alert('Eroare la încărcarea raportului. Vă rugăm încercați din nou.');
+                    });
+            });
+            
+            // Function to split report into pages based on content overflow
+            function splitReportIntoPages(devizElement) {
+                // Clear previous content
+                reportContent.innerHTML = '';
+                
+                // Clone the deviz element for page 1
+                const devizPage1 = devizElement.cloneNode(true);
+                
+                // Find the certification section in the original content
+                const certificationDiv = devizElement.querySelector('.text.mt-5.mr-5.ml-5');
+                
+                // Create page containers that match print layout
+                const page1 = document.createElement('div');
+                page1.className = 'report-page page-1';
+                
+                // Add content to page 1
+                page1.appendChild(devizPage1);
+                reportContent.appendChild(page1);
+                
+                // Check if we have certification content
+                if (certificationDiv) {
+                    // Remove certification from page 1
+                    const certClone = devizPage1.querySelector('.text.mt-5.mr-5.ml-5');
+                    if (certClone) {
+                        certClone.remove();
+                    }
+                    
+                    // Create page 2 for certification
+                    const page2 = document.createElement('div');
+                    page2.className = 'report-page page-2';
+                    
+                    // Add certification to page 2
+                    page2.appendChild(certificationDiv.cloneNode(true));
+                    
+                    reportContent.appendChild(page2);
+                    
+                    // Update navigation dots
+                    updateNavigationDots(2);
+                    
+                    // Show first page by default
+                    page2.style.display = 'none';
+                } else {
+                    // No certification, single page
+                    updateNavigationDots(1);
+                }
+            }
+            
+            // Function to update navigation dots
+            function updateNavigationDots(totalPages) {
+                dotsContainer.innerHTML = '';
+                for (let i = 0; i < totalPages; i++) {
+                    const dot = document.createElement('div');
+                    dot.className = `dot ${i === 0 ? 'active' : ''}`;
+                    dot.dataset.index = i;
+                    dot.addEventListener('click', () => goToPage(i));
+                    dotsContainer.appendChild(dot);
+                }
+            }
+            
+            // Function to go to a specific page
+            function goToPage(pageIndex) {
+                const pages = reportContent.querySelectorAll('.report-page');
+                pages.forEach((page, index) => {
+                    page.style.display = index === pageIndex ? 'block' : 'none';
+                });
+                
+                // Update active dot
+                const dots = dotsContainer.querySelectorAll('.dot');
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === pageIndex);
+                });
+                
+                currentPage = pageIndex;
+            }
+            
+            // Function to print the entire report - print exactly what's in the carousel
+            function printReport() {
+                // Get the content from the carousel exactly as shown
+                const pages = reportContent.querySelectorAll('.report-page');
+                let printContent = '';
+                
+                pages.forEach((page, index) => {
+                    // Clone the page content
+                    const pageClone = page.cloneNode(true);
+                    
+                    // Make sure all pages are visible for printing
+                    pageClone.style.display = 'block';
+                    
+                    printContent += pageClone.outerHTML;
+                });
+                
+                const printWindow = window.open('', '_blank');
+                printWindow.document.write(`
+                    <!DOCTYPE html>
+                    <html>
+                        <head>
+                            <title>Raport Deviz {{job_id}}</title>
+                            <link rel="stylesheet" href="/css/bootstrap.min.css">
+                            <link rel="stylesheet" href="/css/print.css" media="print">
+                            <style>
+                                @page {
+                                    size: A4;
+                                    margin: 10mm;
+                                }
+                                body {
+                                    background-color: white;
+                                    color: #333;
+                                    font-family: Arial, sans-serif;
+                                    font-size: 14px;
+                                    margin: 0;
+                                    padding: 0;
+                                }
+                                #deviz {
+                                    background-color: white;
+                                    width: 100%;
+                                }
+                                .report-page {
+                                    width: 100%;
+                                    min-height: 297mm;
+                                    margin: 0 auto;
+                                    padding: 0;
+                                    box-sizing: border-box;
+                                }
+                                /* Certification section should always be on a new page */
+                                .text.mt-5.mr-5.ml-5 {
+                                    page-break-before: always;
+                                }
+                                /* Prevent extra blank pages */
+                                body, html {
+                                    page-break-after: avoid;
+                                }
+                            </style>
+                        </head>
+                        <body>
+                            ${printContent}
+                            <script>
+                                window.onload = function() {
+                                    window.print();
+                                    window.onafterprint = function() {
+                                        window.close();
+                                    };
+                                };
+                            <\/script>
+                        </body>
+                    </html>
+                `);
+                printWindow.document.close();
+            }
+            
+            // Close carousel
+            closeBtn.addEventListener('click', function() {
+                carousel.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Enable scrolling
+                
+                // Remove print button if it exists
+                const printBtn = document.querySelector('.carousel-header .btn-info');
+                if (printBtn) {
+                    printBtn.remove();
+                }
+            });
+            
+            // Close carousel when clicking outside content
+            carousel.addEventListener('click', function(e) {
+                if (e.target === carousel) {
+                    carousel.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                    
+                    // Remove print button if it exists
+                    const printBtn = document.querySelector('.carousel-header .btn-info');
+                    if (printBtn) {
+                        printBtn.remove();
+                    }
+                }
+            });
+            
+            // Navigation buttons
+            prevBtn.addEventListener('click', function() {
+                const pages = reportContent.querySelectorAll('.report-page');
+                if (currentPage > 0) {
+                    goToPage(currentPage - 1);
+                }
+            });
+            
+            nextBtn.addEventListener('click', function() {
+                const pages = reportContent.querySelectorAll('.report-page');
+                if (currentPage < pages.length - 1) {
+                    goToPage(currentPage + 1);
+                }
+            });
+            
+            // Print Report Button Functionality
+            const printReportBtn = document.getElementById('printReportBtn');
+            if (printReportBtn) {
+                printReportBtn.addEventListener('click', function() {
+                    // Fetch the report content via AJAX
+                    fetch(`/index/raport/${encodeURIComponent('{{job_id}}')}?profile=${encodeURIComponent('{{profile_id}}')}`)
+                        .then(response => response.text())
+                        .then(html => {
+                            // Hide loading indicator
+                            hideLoading();
+                            
+                            // Create a new window for printing
+                            const printWindow = window.open('', '_blank');
+                            printWindow.document.write(`
+                                <!DOCTYPE html>
+                                <html>
+                                    <head>
+                                        <title>Raport Deviz {{job_id}}</title>
+                                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+                                        <link rel="stylesheet" href="/css/print.css" media="print">
+                                        <style>
+                                            @media print {
+                                                body {
+                                                    font-size: 12px;
+                                                    line-height: 1.4;
+                                                    color: black;
+                                                    background-color: white;
+                                                    margin: 0;
+                                                    padding: 0;
+                                                }
+                                                
+                                                @page {
+                                                    size: A4;
+                                                    margin: 10mm;
+                                                }
+                                                
+                                                body, html {
+                                                    page-break-after: avoid;
+                                                }
+                                            }
+                                        </style>
+                                    </head>
+                                    <body>
+                                        ${html}
+                                        <script>
+                                            window.onload = function() {
+                                                window.print();
+                                                window.onafterprint = function() {
+                                                    window.close();
+                                                };
+                                            };
+                                        <\/script>
+                                    </body>
+                                </html>
+                            `);
+                            printWindow.document.close();
+                        })
+                        .catch(error => {
+                            console.error('Error loading report:', error);
+                            hideLoading(); // Hide loading indicator on error
+                            alert('Eroare la încărcarea raportului. Vă rugăm încercați din nou.');
+                        });
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

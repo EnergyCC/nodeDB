@@ -8,6 +8,7 @@ const { handleDatabaseError, handleJsonError } = require('../utils/errorHandler'
 const puppeteer = require('puppeteer');
 const PDFDocument = require('pdfkit');
 const fs = require('fs');
+const { cacheMiddleware } = require('../middleware/cache');
 
 //temporary route to create profile and jobs tables
 
@@ -94,7 +95,7 @@ router.post('/', checkAuthentication, (req, res) => {
 });
 
 //Just raw(dog) data
-router.get('/getdb', checkAuthentication, (req, res) => {
+router.get('/getdb', checkAuthentication, cacheMiddleware(300), (req, res) => {
   let sql = 'SELECT * FROM profile WHERE is_active = TRUE LIMIT 50';
   connection.pool.query(sql, (err, results) => {
     if (err) {
@@ -501,6 +502,8 @@ router.get('/raport-pdf/:id', checkAuthentication, async (req, res) => {
   
   // First, get the job data to get the profile_id
   let jSql = 'SELECT * FROM jobs WHERE job_id = ?';
+  
+  // Note: Loading indicator is shown on client-side before request and hidden after response
   
   try {
     console.log(`Fetching job data for job_id: ${job_id}`);

@@ -45,21 +45,11 @@
                             Lucrari solicitate de client
                         </th>
                     </tr>
+                    {{#each lucrari_sol_data}}
                     <tr>
-                        <td style="border-bottom: 2px solid">1. {{ tableRes jResult.0.lucrari_sol 0 }}</td>
+                        <td style="border-bottom: 2px solid">{{this}}</td>
                     </tr>
-                    <tr>
-                        <td style="border-bottom: 2px solid">2. {{ tableRes jResult.0.lucrari_sol 1 }}</td>
-                    </tr>
-                    <tr>
-                        <td style="border-bottom: 2px solid">3. {{ tableRes jResult.0.lucrari_sol 2 }}</td>
-                    </tr>
-                    <tr>
-                        <td style="border-bottom: 2px solid">4. {{ tableRes jResult.0.lucrari_sol 3 }}</td>
-                    </tr>
-                    <tr>
-                        <td style="border-bottom: 2px solid">5. {{ tableRes jResult.0.lucrari_sol 4 }}</td>
-                    </tr>
+                    {{/each}}
                 </table>
             </div>
             <div class="col-sm mr-5">
@@ -74,26 +64,12 @@
                         <td style="border:2px solid;width:70%">Denumirea</td>
                         <td style="border:2px solid">Bucati</td>
                     </tr>
+                    {{#each piese_client_data}}
                     <tr>
-                        <td style="border:2px solid;width:70%">{{ tableRes jResult.0.den_piesa_cl 0 }}</td>
-                        <td style="border:2px solid">{{ tableRes jResult.0.buc_piesa_cl 0 }} &nbsp;</td>
+                        <td style="border:2px solid;width:70%">{{this.denumire}}</td>
+                        <td style="border:2px solid">{{this.bucati}} &nbsp;</td>
                     </tr>
-                    <tr>
-                        <td style="border:2px solid;width:70%">{{ tableRes jResult.0.den_piesa_cl 1 }}</td>
-                        <td style="border:2px solid">{{ tableRes jResult.0.buc_piesa_cl 1 }} &nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td style="border:2px solid;width:70%">{{ tableRes jResult.0.den_piesa_cl 2 }}</td>
-                        <td style="border:2px solid">{{ tableRes jResult.0.buc_piesa_cl 2 }} &nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td style="border:2px solid;width:70%">{{ tableRes jResult.0.den_piesa_cl 3 }}</td>
-                        <td style="border:2px solid">{{ tableRes jResult.0.buc_piesa_cl 3 }} &nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td style="border:2px solid;width:70%">{{ tableRes jResult.0.den_piesa_cl 4 }}</td>
-                        <td style="border:2px solid">{{ tableRes jResult.0.buc_piesa_cl 4 }} &nbsp;</td>
-                    </tr>
+                    {{/each}}
                 </table>
             </div>
         </div>
@@ -110,20 +86,15 @@
                             Accept client
                         </th>
                     </tr>
+                    {{#each defecte_data}}
                     <tr>
                         <td style="border-right: 2px solid;border-left:2px solid;
               border-bottom: 1px solid">
-                            {{ tableRes jResult.0.def_suplim 0 }}&nbsp;
+                            {{this}}&nbsp;
                         </td>
                         <td style="border-right:2px solid"></td>
                     </tr>
-                    <tr>
-                        <td style="border-right: 2px solid;border-left:2px solid;
-                border-bottom: 1px solid">
-                            {{ tableRes jResult.0.def_suplim 1 }}&nbsp;
-                        </td>
-                        <td style="border-right:2px solid"></td>
-                    </tr>
+                    {{/each}}
                     <tr>
                         <td style="border-right:2px solid;border-left:2px solid;border-top:2px solid">
                             &nbsp;
@@ -156,51 +127,15 @@
                     <th style="border:2px solid;width:10%">Tarif ora</th>
                     <th style="border:2px solid;width:10%">Valoare lei</th>
                 </tr>
+                {{#each lucrari_convenite_data}}
                 <tr>
-                    <td style="border:2px solid;width:10%">1</td>
-                    <td style="border:2px solid;width:60%">{{ tableRes jResult.0.denum_operatie 0 }}</td>
-                    <td style="border:2px solid;width:10%">{{ tableRes jResult.0.timp_operatie 0 }}</td>
-                    <td style="border:2px solid;width:10%">{{#if valoare_leiEx.[0]}}{{ jResult.0.tarif_ora }} lei
-                        {{else}} &nbsp; {{/if}}</td>
-                    <td style="border:2px solid;width:10%">{{#if valoare_leiEx.[0] }}{{ valoare_leiEx.[0] }} lei
-                        {{else}} &nbsp; {{/if}}</td>
+                    <td style="border:2px solid;width:10%">{{this.index}}</td>
+                    <td style="border:2px solid;width:60%">{{this.operatie}}</td>
+                    <td style="border:2px solid;width:10%">{{this.timp}}</td>
+                    <td style="border:2px solid;width:10%">{{../jResult.0.tarif_ora}} lei</td>
+                    <td style="border:2px solid;width:10%">{{this.valoare}} lei</td>
                 </tr>
-                <tr>
-                    <td style="border:2px solid;width:10%">2</td>
-                    <td style="border:2px solid;width:60%">{{ tableRes jResult.0.denum_operatie 1 }}</td>
-                    <td style="border:2px solid;width:10%">{{ tableRes jResult.0.timp_operatie 1 }}</td>
-                    <td style="border:2px solid;width:10%">{{#if valoare_leiEx.[1]}}{{ jResult.0.tarif_ora }} lei
-                        {{else}} &nbsp; {{/if}}</td>
-                    <td style="border:2px solid;width:10%">{{#if valoare_leiEx.[1] }}{{ valoare_leiEx.[1] }} lei
-                        {{else}} &nbsp; {{/if}}</td>
-                </tr>
-                <tr>
-                    <td style="border:2px solid;width:10%">3</td>
-                    <td style="border:2px solid;width:60%">{{ tableRes jResult.0.denum_operatie 2 }}</td>
-                    <td style="border:2px solid;width:10%">{{ tableRes jResult.0.timp_operatie 2 }}</td>
-                    <td style="border:2px solid;width:10%">{{#if valoare_leiEx.[2]}}{{ jResult.0.tarif_ora }} lei
-                        {{else}} &nbsp; {{/if}}</td>
-                    <td style="border:2px solid;width:10%">{{#if valoare_leiEx.[2] }}{{ valoare_leiEx.[2] }} lei
-                        {{else}} &nbsp; {{/if}}</td>
-                </tr>
-                <tr>
-                    <td style="border:2px solid;width:10%">4</td>
-                    <td style="border:2px solid;width:60%">{{ tableRes jResult.0.denum_operatie 3 }}</td>
-                    <td style="border:2px solid;width:10%">{{ tableRes jResult.0.timp_operatie 3 }}</td>
-                    <td style="border:2px solid;width:10%">{{#if valoare_leiEx.[3]}}{{ jResult.0.tarif_ora }} lei
-                        {{else}} &nbsp; {{/if}}</td>
-                    <td style="border:2px solid;width:10%">{{#if valoare_leiEx.[3] }}{{ valoare_leiEx.[3] }} lei
-                        {{else}} &nbsp; {{/if}}</td>
-                </tr>
-                <tr>
-                    <td style="border:2px solid;width:10%">5</td>
-                    <td style="border:2px solid;width:60%">{{ tableRes jResult.0.denum_operatie 4 }}</td>
-                    <td style="border:2px solid;width:10%">{{ tableRes jResult.0.timp_operatie 4 }}</td>
-                    <td style="border:2px solid;width:10%">{{#if valoare_leiEx.[4]}}{{ jResult.0.tarif_ora }} lei
-                        {{else}} &nbsp; {{/if}}</td>
-                    <td style="border:2px solid;width:10%">{{#if valoare_leiEx.[4] }}{{ valoare_leiEx.[4] }} lei
-                        {{else}} &nbsp; {{/if}}</td>
-                </tr>
+                {{/each}}
                 <tr>
                     <td style="border:2px solid;width:10%" colspan="2">
                         Regie manopera
@@ -213,16 +148,15 @@
                     <td style="border:2px solid;width:10%" colspan="2">
                         Total
                     </td>
-                    <td style="border:2px solid;width:10%">- {{!- Aici lipseste ceva}}</td>
                     <td style="border:2px solid;width:10%"></td>
-                    <td style="border:2px solid;width:10%">- {{!- Aici lipseste ceva}}</td>
+                    <td style="border:2px solid;width:10%"></td>
+                    <td style="border:2px solid;width:10%">{{total_manopera}} lei</td>
                 </tr>
             </table>
         </div>
 
         <!-- tabel piese materiale -->
-        <div class="mt-1">&nbsp;</div>
-        <div class="mt-5 mr-5 ml-5">
+        <div class="mt-4 mr-5 ml-5">
             <table style="width:100%" class="text-center">
                 <tr>
                     <th style="border-bottom:1px solid" colspan="2">
@@ -237,257 +171,66 @@
                     <th style="border:2px solid;width:10%">Pret unitar</th>
                     <th style="border:2px solid;width:10%">Valoare</th>
                 </tr>
+                {{#each piese_materiale_data}}
                 <tr>
-                    <td style="border:2px solid;width:10%">1</td>
-                    <td style="border:2px solid;width:50%">{{ tableRes jResult.0.denum_piesa 0 }}</td>
-                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[0]}} BUC
-                        {{else}} &nbsp; {{/if}}</td>
-                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.cant_piese 0}}</td>
-                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.pret_piesa 0}}</td>
-                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[0]}} {{ val_totala_piese.[0] }}
-                        {{else}} &nbsp; {{/if}}</td>
+                    <td style="border:2px solid;width:10%">{{this.index}}</td>
+                    <td style="border:2px solid;width:50%">{{this.denumire}}</td>
+                    <td style="border:2px solid;width:10%">BUC</td>
+                    <td style="border:2px solid;width:10%">{{this.cantitate}}</td>
+                    <td style="border:2px solid;width:10%">{{this.pret}}</td>
+                    <td style="border:2px solid;width:10%">{{this.valoare}}</td>
                 </tr>
-                <tr>
-                    <td style="border:2px solid;width:10%">2</td>
-                    <td style="border:2px solid;width:50%">{{ tableRes jResult.0.denum_piesa 1 }}</td>
-                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[1]}} BUC
-                        {{else}} &nbsp; {{/if}}</td>
-                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.cant_piese 1}}</td>
-                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.pret_piesa 1}}</td>
-                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[1]}} {{ val_totala_piese.[1] }}
-                        {{else}} &nbsp; {{/if}}</td>
-                </tr>
-                <tr>
-                    <td style="border:2px solid;width:10%">3</td>
-                    <td style="border:2px solid;width:50%">{{ tableRes jResult.0.denum_piesa 2 }}</td>
-                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[2]}} BUC
-                        {{else}} &nbsp; {{/if}}</td>
-                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.cant_piese 2}}</td>
-                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.pret_piesa 2}}</td>
-                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[2]}} {{ val_totala_piese.[2] }}
-                        {{else}} &nbsp; {{/if}}</td>
-                </tr>
-                <tr>
-                    <td style="border:2px solid;width:10%">4</td>
-                    <td style="border:2px solid;width:50%">{{ tableRes jResult.0.denum_piesa 3 }}</td>
-                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[3]}} BUC
-                        {{else}} &nbsp; {{/if}}</td>
-                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.cant_piese 3}}</td>
-                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.pret_piesa 3}}</td>
-                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[3]}} {{ val_totala_piese.[3] }}
-                        {{else}} &nbsp; {{/if}}</td>
-                </tr>
-                <tr>
-                    <td style="border:2px solid;width:10%">5</td>
-                    <td style="border:2px solid;width:50%">{{ tableRes jResult.0.denum_piesa 4 }}</td>
-                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[4]}} BUC
-                        {{else}} &nbsp; {{/if}}</td>
-                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.cant_piese 4}}</td>
-                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.pret_piesa 4}}</td>
-                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[4]}} {{ val_totala_piese.[4] }}
-                        {{else}} &nbsp; {{/if}}</td>
-                </tr>
-                <tr>
-                    <td style="border:2px solid;width:10%">6</td>
-                    <td style="border:2px solid;width:50%">{{ tableRes jResult.0.denum_piesa 5 }}</td>
-                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[5]}} BUC
-                        {{else}} &nbsp; {{/if}}</td>
-                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.cant_piese 5}}</td>
-                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.pret_piesa 5}}</td>
-                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[5]}} {{ val_totala_piese.[5] }}
-                        {{else}} &nbsp; {{/if}}</td>
-                </tr>
-                <tr>
-                    <td style="border:2px solid;width:10%">7</td>
-                    <td style="border:2px solid;width:50%">{{ tableRes jResult.0.denum_piesa 6 }}</td>
-                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[6]}} BUC
-                        {{else}} &nbsp; {{/if}}</td>
-                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.cant_piese 6}}</td>
-                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.pret_piesa 6}}</td>
-                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[6]}} {{ val_totala_piese.[6] }}
-                        {{else}} &nbsp; {{/if}}</td>
-                </tr>
-                <tr>
-                    <td style="border:2px solid;width:10%">8</td>
-                    <td style="border:2px solid;width:50%">{{ tableRes jResult.0.denum_piesa 7 }}</td>
-                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[7]}} BUC
-                        {{else}} &nbsp; {{/if}}</td>
-                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.cant_piese 7}}</td>
-                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.pret_piesa 7}}</td>
-                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[7]}} {{ val_totala_piese.[7] }}
-                        {{else}} &nbsp; {{/if}}</td>
-                </tr>
-                <tr>
-                    <td style="border:2px solid;width:10%">9</td>
-                    <td style="border:2px solid;width:50%">{{ tableRes jResult.0.denum_piesa 8 }}</td>
-                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[8]}} BUC
-                        {{else}} &nbsp; {{/if}}</td>
-                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.cant_piese 8}}</td>
-                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.pret_piesa 8}}</td>
-                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[8]}} {{ val_totala_piese.[8] }}
-                        {{else}} &nbsp; {{/if}}</td>
-                </tr>
-                <tr>
-                    <td style="border:2px solid;width:10%">10</td>
-                    <td style="border:2px solid;width:50%">{{ tableRes jResult.0.denum_piesa 9 }}</td>
-                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[9]}} BUC
-                        {{else}} &nbsp; {{/if}}</td>
-                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.cant_piese 9}}</td>
-                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.pret_piesa 9}}</td>
-                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[9]}} {{ val_totala_piese.[9] }}
-                        {{else}} &nbsp; {{/if}}</td>
-                </tr>
-                <tr>
-                    <td style="border:2px solid;width:10%">11</td>
-                    <td style="border:2px solid;width:50%">{{ tableRes jResult.0.denum_piesa 10 }}</td>
-                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[10]}} BUC
-                        {{else}} &nbsp; {{/if}}</td>
-                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.cant_piese 10}}</td>
-                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.pret_piesa 10}}</td>
-                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[10]}} {{ val_totala_piese.[10] }}
-                        {{else}} &nbsp; {{/if}}</td>
-                </tr>
-                <tr>
-                    <td style="border:2px solid;width:10%">12</td>
-                    <td style="border:2px solid;width:50%">{{ tableRes jResult.0.denum_piesa 11 }}</td>
-                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[11]}} BUC
-                        {{else}} &nbsp; {{/if}}</td>
-                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.cant_piese 11}}</td>
-                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.pret_piesa 11}}</td>
-                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[11]}} {{ val_totala_piese.[11] }}
-                        {{else}} &nbsp; {{/if}}</td>
-                </tr>
-                <tr>
-                    <td style="border:2px solid;width:10%">13</td>
-                    <td style="border:2px solid;width:50%">{{ tableRes jResult.0.denum_piesa 12 }}</td>
-                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[12]}} BUC
-                        {{else}} &nbsp; {{/if}}</td>
-                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.cant_piese 12}}</td>
-                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.pret_piesa 12}}</td>
-                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[12]}} {{ val_totala_piese.[12] }}
-                        {{else}} &nbsp; {{/if}}</td>
-                </tr>
-                <tr>
-                    <td style="border:2px solid;width:10%">14</td>
-                    <td style="border:2px solid;width:50%">{{ tableRes jResult.0.denum_piesa 13 }}</td>
-                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[13]}} BUC
-                        {{else}} &nbsp; {{/if}}</td>
-                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.cant_piese 13}}</td>
-                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.pret_piesa 13}}</td>
-                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[13]}} {{ val_totala_piese.[13] }}
-                        {{else}} &nbsp; {{/if}}</td>
-                </tr>
-                <tr>
-                    <td style="border:2px solid;width:10%">15</td>
-                    <td style="border:2px solid;width:50%">{{ tableRes jResult.0.denum_piesa 14 }}</td>
-                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[14]}} BUC
-                        {{else}} &nbsp; {{/if}}</td>
-                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.cant_piese 14}}</td>
-                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.pret_piesa 14}}</td>
-                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[14]}} {{ val_totala_piese.[14] }}
-                        {{else}} &nbsp; {{/if}}</td>
-                </tr>
-                <tr>
-                    <td style="border:2px solid;width:10%">16</td>
-                    <td style="border:2px solid;width:50%">{{ tableRes jResult.0.denum_piesa 15 }}</td>
-                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[15]}} BUC
-                        {{else}} &nbsp; {{/if}}</td>
-                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.cant_piese 15}}</td>
-                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.pret_piesa 15}}</td>
-                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[15]}} {{ val_totala_piese.[15] }}
-                        {{else}} &nbsp; {{/if}}</td>
-                </tr>
-                <tr>
-                    <td style="border:2px solid;width:10%">17</td>
-                    <td style="border:2px solid;width:50%">{{ tableRes jResult.0.denum_piesa 16 }}</td>
-                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[16]}} BUC
-                        {{else}} &nbsp; {{/if}}</td>
-                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.cant_piese 16}}</td>
-                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.pret_piesa 16}}</td>
-                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[16]}} {{ val_totala_piese.[16] }}
-                        {{else}} &nbsp; {{/if}}</td>
-                </tr>
-                <tr>
-                    <td style="border:2px solid;width:10%">18</td>
-                    <td style="border:2px solid;width:50%">{{ tableRes jResult.0.denum_piesa 17 }}</td>
-                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[17]}} BUC
-                        {{else}} &nbsp; {{/if}}</td>
-                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.cant_piese 17}}</td>
-                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.pret_piesa 17}}</td>
-                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[17]}} {{ val_totala_piese.[17] }}
-                        {{else}} &nbsp; {{/if}}</td>
-                </tr>
-                <tr>
-                    <td style="border:2px solid;width:10%">19</td>
-                    <td style="border:2px solid;width:50%">{{ tableRes jResult.0.denum_piesa 18 }}</td>
-                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[18]}} BUC
-                        {{else}} &nbsp; {{/if}}</td>
-                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.cant_piese 18}}</td>
-                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.pret_piesa 18}}</td>
-                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[18]}} {{ val_totala_piese.[18] }}
-                        {{else}} &nbsp; {{/if}}</td>
-                </tr>
-                <tr>
-                    <td style="border:2px solid;width:10%">20</td>
-                    <td style="border:2px solid;width:50%">{{ tableRes jResult.0.denum_piesa 19 }}</td>
-                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[19]}} BUC
-                        {{else}} &nbsp; {{/if}}</td>
-                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.cant_piese 19}}</td>
-                    <td style="border:2px solid;width:10%">{{tableRes jResult.0.pret_piesa 19}}</td>
-                    <td style="border:2px solid;width:10%">{{#if val_totala_piese.[19]}} {{ val_totala_piese.[19] }}
-                        {{else}} &nbsp; {{/if}}</td>
-                </tr>
+                {{/each}}
                 <tr>
                     <td style="border:2px solid;width:10%" colspan="2">
-                        Regie manopera
+                        Regie materiale
                     </td>
                     <td style="border:2px solid;width:10%"></td>
                     <td style="border:2px solid;width:10%"></td>
-                    <td style="border:2px solid;width:10%">{{valoare_totala_piese}}</td>
-                    <td style="border:2px solid;width:10%">{{ valoare }}</td>
+                    <td style="border:2px solid;width:10%"></td>
+                    <td style="border:2px solid;width:10%">{{total_materiale}} lei</td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td colspan="2">Total manopera</td>
-                    <td style="border-bottom:1px solid">{{total_cost_val}}</td>
+                    <td style="visibility:hidden;font-size:1px;line-height:1px;padding:0;margin:0;">&nbsp;</td>
+                    <td style="visibility:hidden;font-size:1px;line-height:1px;padding:0;margin:0;">&nbsp;</td>
+                    <td style="visibility:hidden;font-size:1px;line-height:1px;padding:0;margin:0;">&nbsp;</td>
+                    <td colspan="2" style="border-bottom:1px solid">Total manopera</td>
+                    <td style="border-bottom:1px solid">{{total_manopera}} lei</td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td colspan="2">Total materiale</td>
-                    <td style="border-bottom:1px solid">{{total_materiale}}</td>
+                    <td style="visibility:hidden;font-size:1px;line-height:1px;padding:0;margin:0;">&nbsp;</td>
+                    <td style="visibility:hidden;font-size:1px;line-height:1px;padding:0;margin:0;">&nbsp;</td>
+                    <td style="visibility:hidden;font-size:1px;line-height:1px;padding:0;margin:0;">&nbsp;</td>
+                    <td colspan="2" style="border-bottom:1px solid">Total materiale</td>
+                    <td style="border-bottom:1px solid">{{total_materiale}} lei</td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td style="visibility:hidden;font-size:1px;line-height:1px;padding:0;margin:0;">&nbsp;</td>
+                    <td style="visibility:hidden;font-size:1px;line-height:1px;padding:0;margin:0;">&nbsp;</td>
+                    <td style="visibility:hidden;font-size:1px;line-height:1px;padding:0;margin:0;">&nbsp;</td>
                     <td colspan="2"></td>
-                    <td>&nbsp;</td>
+                    <td style="visibility:hidden;font-size:1px;line-height:1px;padding:0;margin:0;">&nbsp;</td>
                 </tr>
                 <tr>
                     <td></td>
                     <td></td>
                     <td></td>
                     <td style="border:2px solid">Total: </td>
-                    <td colspan="2" style="border:2px solid">{{total_plata_ftva}}
-                    <td>
+                    <td colspan="2" style="border:2px solid">{{total_plata_ftva}} lei</td>
                 </tr>
                 <tr>
                     <td></td>
                     <td></td>
                     <td></td>
                     <td style="border:2px solid">TVA: </td>
-                    <td colspan="2" style="border:2px solid">{{total_tva}}</td>
+                    <td colspan="2" style="border:2px solid">{{total_tva}} lei</td>
                 </tr>
                 <tr>
                     <td></td>
                     <td></td>
                     <td></td>
                     <td style="border:2px solid">Total plata: </td>
-                    <td colspan="2" style="border:2px solid">{{total_plata}}</td>
+                    <td colspan="2" style="border:2px solid">{{total_plata}} lei</td>
                 </tr>
             </table>
         </div>
@@ -498,10 +241,10 @@
         <div class='text mt-5 mr-5 ml-5'>
             <p class='text-center'>************CERTIFICAT DE CALITATE SI GARANTIE************</p>
             <p class='text-left'>Unitatea service garanteaza lucrarea executata*) si conformitatea acesteia**), potrivit
-                OUG 140/2021 si L. i 296/2004,</p>
+                L. 449/2003 si L. i 296/2004,</p>
             <p class='text-left'>* 3 luni de la data receptiei autovehiculului, daca lucrarea nu a necesitat inlocuiri
                 de piese sau daca s-a executat cu piesa clientului</p>
-            <p class='text-left'>** Garantia pieselor furnizate de unitate, in baza OUG 140/2021 - conf. declaratiei
+            <p class='text-left'>** Garantia pieselor furnizate de unitate, in baza L. 449/2003 - conf. declaratiei
                 producatorului prin conventie intre parti conditionat de resp. indicatiilor de exploatare prevazute de
                 producatorul autovehiculului este de <b>3 luni</b></p>
             <p class='text-left'>*** La cererea beneficiarului unitatea va asigura vizualizarea activitatilor

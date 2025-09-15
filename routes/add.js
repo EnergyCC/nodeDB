@@ -4,6 +4,8 @@ const connection = require('../db');
 const checkAuthentication = require('./authentication');
 const { handleDatabaseError, handleValidationErrors } = require('../utils/errorHandler');
 const { processArrayField, processPairedArrays, processTripleArrays } = require('../utils/arrayProcessor');
+const { validateStringFields, validateNumericFields } = require('../middleware/validation');
+const { invalidateCache } = require('../middleware/cache');
 
 // route for add form
 router.get('/profile', checkAuthentication, (req, res) => {
@@ -16,7 +18,16 @@ router.get('/profile', checkAuthentication, (req, res) => {
 });
 
 // router post for the data post, always 5 data entries for profiles
-router.post('/profile', checkAuthentication, (req, res) => {
+router.post('/profile', checkAuthentication, 
+  validateStringFields({
+    nume_client: { required: true, maxLength: 64 },
+    tip_auto: { required: true, maxLength: 48 },
+    nr_inmatriculare: { required: true, maxLength: 15 },
+    serie_caroserie: { required: true, maxLength: 20 },
+    serie_motor: { required: true, maxLength: 20 },
+    nr_tel: { required: false, maxLength: 12 }
+  }),
+  (req, res) => {
   let {
     nume_client,
     tip_auto,
@@ -27,28 +38,11 @@ router.post('/profile', checkAuthentication, (req, res) => {
   } = req.body;
   let sql =
     'INSERT INTO profile(nume_client, tip_auto, nr_inmatriculare, serie_caroserie, serie_motor, nr_tel) VALUES (?, ?, ?, ?, ?, ?);';
-  let errors = [];
-
-  // field validation
-  if (!nume_client || typeof nume_client !== 'string' || nume_client.trim().length === 0) {
-    errors.push({ text: 'Nu ai introdus un nume client' });
-  }
-  if (!tip_auto || typeof tip_auto !== 'string' || tip_auto.trim().length === 0) {
-    errors.push({ text: 'Nu ai introdus un tip auto' });
-  }
-  if (!nr_inmatriculare || typeof nr_inmatriculare !== 'string' || nr_inmatriculare.trim().length === 0) {
-    errors.push({ text: 'Nu ai introdus un numar de inmatriculare' });
-  }
-  if (!serie_caroserie || typeof serie_caroserie !== 'string' || serie_caroserie.trim().length === 0) {
-    errors.push({ text: 'Nu ai introdus o serie de caroserie' });
-  }
-  if (!serie_motor || typeof serie_motor !== 'string' || serie_motor.trim().length === 0) {
-    errors.push({ text: 'Nu ai introdus o serie de motor' });
-  }
 
   // Additional validation for phone number
+  let errors = [];
   if (nr_tel && (typeof nr_tel !== 'string' && typeof nr_tel !== 'number')) {
-    errors.push({ text: 'Numarul de telefon este invalid' });
+    errors.push({ field: 'nr_tel', text: 'Numarul de telefon este invalid' });
   }
 
   if (errors.length > 0) {
@@ -88,6 +82,8 @@ router.post('/profile', checkAuthentication, (req, res) => {
         console.log(
           new Date() + ' -> Successfully created database entry'
         );
+        // Invalidate cache for API endpoints
+        invalidateCache('/index/getdb');
         res.redirect('/index');
       }
     }

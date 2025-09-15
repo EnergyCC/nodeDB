@@ -1,12 +1,12 @@
 <section id='remove-result'>
-
-    <div class="card text-white bg-secondary mb-3">
-        <div class="card-header">Sterge lucrare</div>
-        <div class="card-body">
-            <h4 class="card-title">Esti sigur ca vrei sa stergi: {{ operatie }} ?</h4>
-            <a href="/remove/jobs/{{ job_id }}/true?profile={{profile_id}}" class="btn btn-block btn-danger">Da</a>
-            <a href='/index/view/{{profile_id}}' class='btn btn-block btn-outline-primary'>Nu</a>
-        </div>
+  <div class="card text-white bg-secondary mb-3">
+    <div class="card-header">Sterge lucrare</div>
+    <div class="card-body">
+      <h4 class="card-title">Esti sigur ca vrei sa stergi aceasta lucrare?</h4>
+      <form method="POST" action="{{ url }}" style="display: inline;">
+        <button type="submit" class="btn btn-block btn-danger">Da</button>
+      </form>
+      <a href='/index/view/{{profile_id}}' class='btn btn-block btn-outline-primary'>Nu</a>
     </div>
-
+  </div>
 </section>

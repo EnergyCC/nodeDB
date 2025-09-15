@@ -1,0 +1,151 @@
+/* Print Styles for Raport */
+@media print {
+  /* Reset some styles for printing */
+  body {
+    font-size: 12px;
+    line-height: 1.4;
+    color: black;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #deviz {
+    margin: 0;
+    padding: 0;
+    color: black;
+    background-color: white;
+  }
+  
+  /* Ensure table headers repeat on new pages */
+  thead { 
+    display: table-header-group; 
+  }
+  
+  tfoot { 
+    display: table-footer-group; 
+  }
+  
+  /* Keep table rows together when possible */
+  tr { 
+    break-inside: avoid; 
+  }
+  
+  /* Page layout improvements */
+  /* Force a page break before the certification section */
+  .text.mt-5.mr-5.ml-5 {
+    page-break-before: always;
+    margin-top: 0 !important;
+  }
+  
+  /* Add some padding to the certification text */
+  .text.mt-5.mr-5.ml-5 {
+    padding: 20px;
+    color: black;
+  }
+  
+  /* Ensure tables stay together when possible */
+  table {
+    break-inside: avoid;
+    color: black;
+    background-color: white;
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  /* Improve table appearance in print */
+  table th, table td {
+    padding: 5px;
+    font-size: 11px;
+    color: black;
+    background-color: white;
+    border: 1px solid black;
+  }
+  
+  /* Fix for empty cells causing visual artifacts */
+  table td:empty {
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Prevent widows and orphans */
+  p {
+    break-inside: avoid;
+    color: black;
+  }
+  
+  /* Ensure links are black in print */
+  a {
+    color: black;
+    text-decoration: none;
+  }
+  
+  /* Hide elements that shouldn't print */
+  .no-print {
+    display: none !important;
+  }
+  
+  /* Specific styles for report elements */
+  .unitate {
+    font-weight: bold;
+  }
+  
+  .deviz h4 {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Table specific styles */
+  table th {
+    font-weight: bold;
+    background-color: #f0f0f0;
+  }
+  
+  /* Ensure proper spacing */
+  .mt-3, .mt-4, .mt-5 {
+    margin-top: 10px !important;
+  }
+  
+  .ml-5 {
+    margin-left: 20px !important;
+  }
+  
+  .mr-5 {
+    margin-right: 20px !important;
+  }
+  
+  /* Float clearing */
+  .clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  /* Certification section positioning */
+  .text.mt-5.mr-5.ml-5 {
+    position: relative;
+  }
+  
+  /* Page size for better PDF generation */
+  @page {
+    size: A4;
+    margin: 10mm;
+  }
+  
+  /* Prevent extra blank pages */
+  body, html {
+    page-break-after: avoid;
+  }
+  
+  /* Handle content overflow naturally */
+  /* This ensures content flows to next page when needed */
+  #deviz {
+    page-break-inside: auto;
+  }
+  
+  /* Prevent blank page generation */
+  .text.mt-5.mr-5.ml-5:empty {
+    display: none;
+  }
+}

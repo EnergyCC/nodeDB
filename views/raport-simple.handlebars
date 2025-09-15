@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Raport Service {{ jResult.0.job_id }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            margin: 20px;
+            line-height: 1.4;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        table th, table td {
+            border: 1px solid #000;
+            padding: 5px;
+            text-align: left;
+        }
+        
+        table th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .section {
+            margin: 15px 0;
+        }
+        
+        h1, h2, h3 {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Service Cris&Jon S.R.L.</h1>
+        <h2>Comanda-Deviz nr.: {{ jResult.0.job_id }}</h2>
+        <p>DATA: {{ parseData jResult.0.data_adaugare }}</p>
+    </div>
+    
+    <div class="section">
+        <h3>Informații Client</h3>
+        <table>
+            <tr>
+                <td>Tip auto: {{ firstUpper pResult.0.tip_auto }}</td>
+                <td>Nr. înmatriculare: {{ pResult.0.nr_inmatriculare }}</td>
+            </tr>
+            <tr>
+                <td>Client: {{ firstUpper pResult.0.nume_client }}</td>
+                <td>Nr. Telefon: {{ pResult.0.nr_tel }}</td>
+            </tr>
+            <tr>
+                <td>Serie caroserie: {{ pResult.0.serie_caroserie }}</td>
+                <td>Serie Motor: {{ pResult.0.serie_motor }}</td>
+            </tr>
+            <tr>
+                <td colspan="2">kilometri: {{ jResult.0.kilometri }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h3>Lucrări solicitate de client</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Descriere</th>
+                </tr>
+            </thead>
+            <tbody>
+            {{#each lucrari_sol_data}}
+                <tr>
+                    <td>{{this}}</td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <h3>Piese client</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Denumirea</th>
+                    <th>Bucăți</th>
+                </tr>
+            </thead>
+            <tbody>
+            {{#each piese_client_data}}
+                <tr>
+                    <td>{{this.denumire}}</td>
+                    <td>{{this.bucati}}</td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <h3>Lucrări convenite</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nr.</th>
+                    <th>Operație</th>
+                    <th>Ore</th>
+                    <th>Tarif/oră</th>
+                    <th>Valoare</th>
+                </tr>
+            </thead>
+            <tbody>
+            {{#each lucrari_convenite_data}}
+                <tr>
+                    <td>{{this.index}}</td>
+                    <td>{{this.operatie}}</td>
+                    <td>{{this.timp}}</td>
+                    <td>{{../jResult.0.tarif_ora}} lei</td>
+                    <td>{{this.valoare}} lei</td>
+                </tr>
+            {{/each}}
+            <tr>
+                <td colspan="2">Total manoperă</td>
+                <td>{{total_ore_operatie}} ore</td>
+                <td></td>
+                <td>{{total_cost_val}} lei</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <h3>Piese materiale</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nr.</th>
+                    <th>Denumire</th>
+                    <th>Cantitate</th>
+                    <th>Preț</th>
+                    <th>Valoare</th>
+                </tr>
+            </thead>
+            <tbody>
+            {{#each piese_materiale_data}}
+                <tr>
+                    <td>{{this.index}}</td>
+                    <td>{{this.denumire}}</td>
+                    <td>{{this.cantitate}}</td>
+                    <td>{{this.pret}}</td>
+                    <td>{{this.valoare}}</td>
+                </tr>
+            {{/each}}
+            <tr>
+                <td colspan="2">Total materiale</td>
+                <td></td>
+                <td></td>
+                <td>{{total_materiale}} lei</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <table>
+            <tr>
+                <td><strong>Total manoperă:</strong></td>
+                <td>{{total_manopera}} lei</td>
+            </tr>
+            <tr>
+                <td><strong>Total materiale:</strong></td>
+                <td>{{total_materiale}} lei</td>
+            </tr>
+            <tr>
+                <td><strong>Total de plată:</strong></td>
+                <td><strong>{{total_plata}} lei</strong></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
