@@ -139,6 +139,23 @@ document.addEventListener('DOMContentLoaded', function() {
     const detailedView = document.getElementById('detailedView');
     const compactView = document.getElementById('compactView');
     
+    // Load saved view preference from localStorage
+    const savedView = localStorage.getItem('profileViewPreference') || 'detailed';
+    
+    // Apply saved view preference
+    if (savedView === 'compact') {
+        detailedView.style.display = 'none';
+        compactView.style.display = 'block';
+        toggleButton.setAttribute('data-view', 'compact');
+        toggleButton.innerHTML = '<i class="fas fa-th-large"></i> Vizualizare Detaliata';
+    } else {
+        // Default to detailed view
+        detailedView.style.display = 'block';
+        compactView.style.display = 'none';
+        toggleButton.setAttribute('data-view', 'detailed');
+        toggleButton.innerHTML = '<i class="fas fa-th-large"></i> Vizualizare Compacta';
+    }
+    
     toggleButton.addEventListener('click', function() {
         const currentView = toggleButton.getAttribute('data-view');
         
@@ -148,12 +165,16 @@ document.addEventListener('DOMContentLoaded', function() {
             compactView.style.display = 'block';
             toggleButton.setAttribute('data-view', 'compact');
             toggleButton.innerHTML = '<i class="fas fa-th-large"></i> Vizualizare Detaliata';
+            // Save preference to localStorage
+            localStorage.setItem('profileViewPreference', 'compact');
         } else {
             // Switch to detailed view
             compactView.style.display = 'none';
             detailedView.style.display = 'block';
             toggleButton.setAttribute('data-view', 'detailed');
             toggleButton.innerHTML = '<i class="fas fa-th-large"></i> Vizualizare Compacta';
+            // Save preference to localStorage
+            localStorage.setItem('profileViewPreference', 'detailed');
         }
     });
 });
