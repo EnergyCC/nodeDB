@@ -116,11 +116,14 @@
   }
   
   /* Float clearing */
+  /* UNUSED: The following style appears to be unused as clearfix is not used in the HTML */
+  /*
   .clearfix::after {
     content: "";
     clear: both;
     display: table;
   }
+  */
   
   /* Certification section positioning */
   .text.mt-5.mr-5.ml-5 {
@@ -144,8 +147,10 @@
     page-break-inside: auto;
   }
   
-  /* Prevent blank page generation */
+  /* UNUSED: The following style appears to be unused as empty certification sections are not generated */
+  /*
   .text.mt-5.mr-5.ml-5:empty {
     display: none;
   }
+  */
 }

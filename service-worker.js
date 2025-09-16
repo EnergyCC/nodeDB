@@ -1,11 +1,14 @@
 self.addEventListener('install', (e) => {
     console.log('service worker installed');
+    // UNUSED: Caching functionality is commented out and not used
+    /*
     // e.waitUntil(
     //     caches.open('static')
     //     .then((cache) => {
     //         cache.addAll([]);
     //     })
     // );
+    */
 });
 
 self.addEventListener('activate', () => {
@@ -13,6 +16,8 @@ self.addEventListener('activate', () => {
 });
 
 self.addEventListener('fetch', (event) => {
+    // UNUSED: Caching functionality is commented out and not used
+    /*
     // event.respondWith(
     //     caches.match(event.request)
     //     .then((res) => {
@@ -23,5 +28,6 @@ self.addEventListener('fetch', (event) => {
     //         }
     //     })
     // );
+    */
     console.log('event fetched');
 });

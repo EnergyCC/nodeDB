@@ -113,6 +113,8 @@ const hbs = exphbs.create({
       return JSON.stringify(context);
     },
     // Helper functions for raport template
+    // UNUSED: The following helpers appear to be unused in the current templates
+    /*
     range: function(start, end) {
       var result = [];
       for (var i = start; i < end; i++) {
@@ -126,6 +128,8 @@ const hbs = exphbs.create({
     subtract: function(a, b) {
       return a - b;
     },
+    */
+    // Form validation helpers
     // Form validation helpers
     hasError: function (fieldName, options) {
       // Check if there are errors and if any error is for this field
@@ -201,21 +205,23 @@ app.use('/index', require('./routes/index'));
 // Sales route
 app.use('/sales', require('./routes/sales'));
 
-// Simple route
-app.use('/simple', require('./routes/simple'));
-app.use('/simple-pdf', require('./routes/simple-pdf'));
-app.use('/pdf', require('./routes/pdf-simple'));
-app.use('/working-pdf', require('./routes/working-pdf'));
-
-// Add route
-app.use('/add', require('./routes/add'));
+// UNUSED: Simple route (development/testing only)
+// app.use('/simple', require('./routes/simple'));
 app.use('/remove', require('./routes/remove'));
 app.use('/edit', require('./routes/edit'));
 
 // IP logs route
 app.use('/logs', require('./routes/ip-logs'));
 
-// Debug route
+// UNUSED: Debug route (development/testing only)
+// app.use('/debug', require('./debug_endpoint'));
+
+// UNUSED: Simple PDF route (development/testing only)
+// app.use('/simple-pdf', require('./routes/simple-pdf'));
+// app.use('/pdf', require('./routes/pdf-simple'));
+// app.use('/working-pdf', require('./routes/working-pdf'));
+
+// UNUSED: Debug route is commented out and not used
 // app.use('/debug', require('./debug_endpoint'));
 
 // Login route

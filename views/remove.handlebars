@@ -4,6 +4,7 @@
     <div class="card-body">
       <h4 class="card-title">Esti sigur ca vrei sa stergi: {{ nume_client }} ?</h4>
       <form method="POST" action="{{ url }}" style="display: inline;">
+        <input type="hidden" name="_csrf" value="{{csrfToken}}" />
         <button type="submit" class="btn btn-block btn-danger">Da</button>
       </form>
       <a href='/index' class='btn btn-block btn-outline-primary'>Nu</a>

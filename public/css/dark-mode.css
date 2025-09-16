@@ -10,14 +10,16 @@ body {
 /* Navigation */
 .navbar {
   background-color: #1f1f1f !important;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.navbar-brand, .navbar-nav .nav-link {
+.navbar-brand,
+.navbar-nav .nav-link {
   color: #bb86fc !important;
 }
 
-.navbar-brand:hover, .navbar-nav .nav-link:hover {
+.navbar-brand:hover,
+.navbar-nav .nav-link:hover {
   color: #3700b3 !important;
 }
 
@@ -25,7 +27,7 @@ body {
 .card {
   background-color: #1e1e1e;
   border: 1px solid #333;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .card-header {
@@ -161,12 +163,14 @@ body {
   border-bottom: 2px solid #333;
 }
 
-.table td, .table th {
+.table td,
+.table th {
   border-top: 1px solid #333;
 }
 
 .table-hover tbody tr:hover {
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
 }
 
 .table .thead-dark th {
@@ -223,21 +227,22 @@ footer {
   .card {
     margin-bottom: 1rem;
   }
-  
+
   .btn {
     margin-bottom: 0.5rem;
   }
-  
+
   /* Improve form controls on mobile */
   .form-control {
-    font-size: 16px; /* Prevent zoom on iOS */
+    font-size: 16px;
+    /* Prevent zoom on iOS */
   }
-  
+
   /* Adjust table styles for mobile */
   .table-responsive {
     font-size: 0.9rem;
   }
-  
+
   .table th,
   .table td {
     padding: 0.5rem;
@@ -245,37 +250,41 @@ footer {
 }
 
 @media (max-width: 600px) {
+
   /* Further improve readability on small screens */
   body {
     font-size: 0.95rem;
   }
-  
+
   /* Adjust card padding for mobile */
   .card-body {
     padding: 1rem;
   }
-  
+
   /* Improve button spacing on mobile */
   .btn-block {
     margin-bottom: 0.75rem;
   }
-  
+
   /* Ensure proper spacing for mobile */
-  .mt-3, .my-3 {
+  .mt-3,
+  .my-3 {
     margin-top: 0.75rem !important;
   }
-  
-  .mb-3, .my-3 {
+
+  .mb-3,
+  .my-3 {
     margin-bottom: 0.75rem !important;
   }
 }
 
 @media (max-width: 400px) {
+
   /* Further reduce padding on tiny screens */
   .card-body {
     padding: 0.75rem;
   }
-  
+
   .btn {
     padding: 0.6rem 0.8rem;
     font-size: 0.9rem;
@@ -301,6 +310,8 @@ footer {
 }
 
 /* Custom styles for specific elements */
+/* UNUSED: The following styles appear to be unused or overridden by Bootstrap classes */
+
 .bg-primary {
   background-color: #1f1f1f !important;
 }
@@ -313,7 +324,10 @@ footer {
   background-color: #2d2d2d !important;
 }
 
+
 /* Fix for card headers */
+/* UNUSED: The following styles appear to be unused as card headers use Bootstrap classes */
+
 .card-header.bg-primary {
   background-color: #2d2d2d !important;
 }
@@ -331,7 +345,8 @@ a:hover {
   color: #e0e0e0;
 }
 
-/* Ensure button link hover colors are visible */
+/* UNUSED: The following styles appear to be unused as button links are not used in the application */
+/*
 .btn a:hover {
   color: #fff;
 }
@@ -339,6 +354,7 @@ a:hover {
 .btn-light a:hover {
   color: #e0e0e0;
 }
+*/
 
 /* Dark Mode Toggle */
 .dark-mode-toggle {

@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const puppeteer = require('puppeteer');
 
-// Simple PDF test route
+// UNUSED: Simple PDF test route (development/testing only)
+/*
 router.get('/simple-pdf-test', async (req, res) => {
   console.log('Simple PDF test route called');
   
@@ -91,5 +92,6 @@ router.get('/simple-pdf-test', async (req, res) => {
     res.status(500).send('Error generating PDF: ' + error.message);
   }
 });
+*/
 
 module.exports = router;

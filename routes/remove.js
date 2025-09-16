@@ -42,18 +42,28 @@ router.get('/profile/:id', checkAuthentication, (req, res) => {
 
 // delete profile
 router.post('/profile/:id', checkAuthentication, (req, res) => {
-  let sql = 'UPDATE profile SET is_active = FALSE WHERE profile_id = ?';
-  connection.pool.query(sql, req.params.id, (err, result) => {
+  // First mark all associated jobs as inactive
+  let updateJobsSql = 'UPDATE jobs SET is_active = FALSE WHERE profile_id = ?';
+  connection.pool.query(updateJobsSql, req.params.id, (err, result) => {
     if (err) {
-      console.error(err);
-      let error = err.sqlMessage || 'Database query error';
-      res.render('errors', {
-        error
-      });
-    } else {
-      console.log(new Date() + ' -> Successfully marked profile as inactive');
-      res.redirect('/index');
+      console.error('Error marking jobs as inactive:', err);
+      // Continue with profile deletion even if job update fails
     }
+    
+    // Then mark the profile as inactive
+    let sql = 'UPDATE profile SET is_active = FALSE WHERE profile_id = ?';
+    connection.pool.query(sql, req.params.id, (err, result) => {
+      if (err) {
+        console.error(err);
+        let error = err.sqlMessage || 'Database query error';
+        res.render('errors', {
+          error
+        });
+      } else {
+        console.log(new Date() + ' -> Successfully marked profile as inactive');
+        res.redirect('/index');
+      }
+    });
   });
 });
 

@@ -1,3 +1,6 @@
+// UNUSED: Script for creating temporary accounts (development/testing only)
+// This script is not referenced in package.json and appears to be unused
+/*
 const mysql = require('mysql');
 const bcrypt = require('bcrypt');
 require('dotenv').config();
@@ -53,3 +56,4 @@ connection.connect(async (err) => {
     process.exit(1);
   }
 });
+*/

@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const puppeteer = require('puppeteer');
 
-// Simple, reliable PDF generation route
+// UNUSED: Simple, reliable PDF generation route (development/testing only)
+/*
 router.get('/pdf-simple/:id', async (req, res) => {
   try {
     const jobId = req.params.id;
@@ -70,5 +71,6 @@ router.get('/pdf-simple/:id', async (req, res) => {
     });
   }
 });
+*/
 
 module.exports = router;

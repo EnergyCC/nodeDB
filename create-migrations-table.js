@@ -1,3 +1,6 @@
+// UNUSED: Script for creating migrations table (development/testing only)
+// This script is not referenced anywhere and appears to be unused
+/*
 const mysql = require('mysql');
 require('dotenv').config();
 
@@ -47,3 +50,4 @@ async function createMigrationsTable() {
 
 // Run the function
 createMigrationsTable();
+*/

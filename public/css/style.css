@@ -6,6 +6,8 @@ body {
 }
 
 /* Navigation css */
+/* UNUSED: The following styles appear to be unused as the navigation is handled by Bootstrap classes */
+
 nav a {
   text-decoration: none;
   font-size: 1.5rem;
@@ -93,32 +95,34 @@ nav a {
     width: 100%;
     padding: 0 1rem;
   }
-  
-  .card-body .row > div {
+
+  .card-body .row>div {
     margin-bottom: 1rem;
   }
-  
+
   /* Improve form layout on mobile */
   .form-group {
     margin-bottom: 1rem;
   }
-  
+
   .form-control {
-    font-size: 16px; /* Prevent zoom on iOS */
+    font-size: 16px;
+    /* Prevent zoom on iOS */
   }
-  
+
   /* Adjust button sizes for better touch targets */
   .btn {
     padding: 0.75rem 1rem;
     font-size: 1rem;
-    min-height: 44px; /* Minimum touch target size */
+    min-height: 44px;
+    /* Minimum touch target size */
   }
-  
+
   /* Improve table display on mobile */
   .table-responsive {
     font-size: 0.9rem;
   }
-  
+
   .table th,
   .table td {
     padding: 0.5rem;
@@ -129,46 +133,53 @@ nav a {
   .showBrand {
     display: none !important;
   }
-  
+
   .navbar-brand h3 {
     font-size: 1.25rem;
   }
-  
+
   .navBtn .nav-link {
     font-size: 1rem;
     padding: 0.5rem;
   }
-  
+
   /* Stack form elements on very small screens */
-  .form-row > .col,
-  .form-row > [class*="col-"] {
+  .form-row>.col,
+  .form-row>[class*="col-"] {
     flex: 0 0 100%;
     max-width: 100%;
   }
-  
+
   /* Improve readability on small screens */
   body {
     font-size: 0.95rem;
   }
-  
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     line-height: 1.2;
   }
-  
+
   /* Ensure proper spacing for mobile */
-  .mt-3, .my-3 {
+  .mt-3,
+  .my-3 {
     margin-top: 0.75rem !important;
   }
-  
-  .mb-3, .my-3 {
+
+  .mb-3,
+  .my-3 {
     margin-bottom: 0.75rem !important;
   }
-  
+
   /* Adjust card padding for mobile */
   .card-body {
     padding: 1rem;
   }
-  
+
   /* Improve button spacing on mobile */
   .btn-block {
     margin-bottom: 0.75rem;
@@ -180,16 +191,16 @@ nav a {
   .content {
     padding: 0 0.5rem;
   }
-  
+
   .card {
     margin-bottom: 1rem;
   }
-  
+
   /* Further reduce padding on tiny screens */
   .card-body {
     padding: 0.75rem;
   }
-  
+
   .btn {
     padding: 0.6rem 0.8rem;
     font-size: 0.9rem;

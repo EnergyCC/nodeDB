@@ -4,7 +4,8 @@ const connection = require('../db');
 const checkAuthentication = require('./authentication');
 const { processArrayField, processPairedArrays, processTripleArrays } = require('../utils/arrayProcessor');
 
-// Simple route for testing array handling
+// UNUSED: Simple route for testing array handling (development/testing only)
+/*
 router.post('/jobs-simple/:id', checkAuthentication, (req, res) => {
   console.log('=== SIMPLE JOB ROUTE ===');
   console.log('Received body:', req.body);
@@ -39,5 +40,6 @@ router.post('/jobs-simple/:id', checkAuthentication, (req, res) => {
     <a href="/index">Back to Index</a>
   `);
 });
+*/
 
 module.exports = router;

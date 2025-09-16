@@ -10,8 +10,8 @@ const PDFDocument = require('pdfkit');
 const fs = require('fs');
 const { cacheMiddleware } = require('../middleware/cache');
 
-//temporary route to create profile and jobs tables
-
+// UNUSED: Temporary route to create profile and jobs tables (no longer needed as we have proper table creation routes)
+/*
 router.get('/createtables', checkAuthentication, (req, res) => {
   let sqlP =
     'CREATE TABLE IF NOT EXISTS profile(profile_id INT PRIMARY KEY AUTO_INCREMENT, nume_client VARCHAR(64), tip_auto VARCHAR(48), nr_inmatriculare VARCHAR(15), serie_caroserie VARCHAR(20), serie_motor VARCHAR(20), nr_tel INT)';
@@ -29,6 +29,7 @@ router.get('/createtables', checkAuthentication, (req, res) => {
     }
   });
 });
+*/
 
 //create router for index
 
@@ -402,7 +403,8 @@ router.get('/raport/:id', checkAuthentication, (req, res) => {
   });
 });
 
-// Test PDF route with PDFKit
+// UNUSED: Test PDF route with PDFKit (for development/testing only)
+/*
 router.get('/test-pdfkit', checkAuthentication, async (req, res) => {
   try {
     // Create a document
@@ -428,8 +430,10 @@ router.get('/test-pdfkit', checkAuthentication, async (req, res) => {
     res.status(500).send('Error generating PDF: ' + error.message);
   }
 });
+*/
 
-// Test PDF route
+// UNUSED: Test PDF route (for development/testing only)
+/*
 router.get('/test-pdf', checkAuthentication, async (req, res) => {
   let browser;
   try {
@@ -489,6 +493,7 @@ router.get('/test-pdf', checkAuthentication, async (req, res) => {
     res.status(500).send('Error generating PDF: ' + error.message);
   }
 });
+*/
 
 router.get('/raport-pdf/:id', checkAuthentication, async (req, res) => {
   let job_id = req.params.id;
@@ -751,7 +756,8 @@ router.get('/raport-pdf/:id', checkAuthentication, async (req, res) => {
   }
 });
 
-// Test route to debug HTML rendering
+// UNUSED: Test route to debug HTML rendering (for development/testing only)
+/*
 router.get('/test-html-simple/:id', checkAuthentication, async (req, res) => {
   let job_id = req.params.id;
   
@@ -941,5 +947,6 @@ router.get('/test-html-simple/:id', checkAuthentication, async (req, res) => {
     res.status(500).send('Error generating HTML: ' + error.message);
   }
 });
+*/
 
 module.exports = router;
